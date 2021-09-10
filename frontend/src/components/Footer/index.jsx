@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
-  const copyrightText = 'Copyright &copy; DeviceStore';
+  const copyrightText = 'Copyright \u00a9 DeviceStore';
   return (
     <footer>
       <Container>

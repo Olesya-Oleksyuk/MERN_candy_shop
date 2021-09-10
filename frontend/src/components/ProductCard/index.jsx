@@ -1,25 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import './style.scss';
+
+import Rating from '../Rating';
 import { toCurrency } from '../../helpers/data';
 
-const Product = ({ product }) => {
+const ProductCard = ({ product }) => {
   const price = toCurrency(product.price, 'USD', 'en-US');
 
   return (
     <>
       <Card className="my-3 p-3 rounded">
-        <a href={`/product/${product._id}`}>
+        <Link to={`/product/${product._id}`}>
           <Card.Img src={product.image} variant="top" />
-        </a>
+        </Link>
         <Card.Body>
-          <a href={`/product/${product._id}`} className="product-link">
+          <Link to={`/product/${product._id}`} className="product-link">
             <Card.Title as="div">
               <strong>{product.name}</strong>
             </Card.Title>
-          </a>
+          </Link>
+          <Card.Text as="div">
+            <Rating
+              ratingValue={product.rating}
+              reviewsNumber={product.numReviews}
+            />
+          </Card.Text>
           <Card.Text as="h3" className="py-3">
             {price}
           </Card.Text>
@@ -29,7 +38,7 @@ const Product = ({ product }) => {
   );
 };
 
-Product.propTypes = {
+ProductCard.propTypes = {
   product: PropTypes.shape({
     _id: PropTypes.string,
     image: PropTypes.string,
@@ -40,4 +49,4 @@ Product.propTypes = {
   }).isRequired,
 };
 
-export default React.memo(Product);
+export default React.memo(ProductCard);
