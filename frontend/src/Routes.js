@@ -6,11 +6,14 @@ import Product from './pages/Product';
 
 const Routes = () => (
   <>
-    <Route path="/" exact>
+    <Route path="/product/:id" exact>
+      <Product />
+    </Route>
+    <Route path="/home" exact>
       <Home />
     </Route>
-    <Route path="/product/:id">
-      <Product />
+    <Route path="/" exact>
+      <Home />
     </Route>
   </>
 );
