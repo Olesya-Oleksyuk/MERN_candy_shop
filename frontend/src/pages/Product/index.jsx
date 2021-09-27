@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Row, Col, Image, ListGroup, Card, Button, ListGroupItem,
 } from 'react-bootstrap';
-
 import { Link, useParams } from 'react-router-dom';
-import products from '../../mocks/products';
+import axios from 'axios';
+
 import Rating from '../../components/Rating';
 import { toCurrency } from '../../helpers/data';
 
 const Product = () => {
+  const [product, setProduct] = useState({});
   const { id: productId } = useParams();
-  const product = products.find((i) => i._id === productId);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get(`/api/products/${productId}`);
+      setProduct(data);
+    };
+
+    fetchProducts();
+  }, []);
+
+  // const product = products.find((i) => i._id === productId);
   const price = toCurrency(product.price, 'USD', 'en-US');
 
   return (
