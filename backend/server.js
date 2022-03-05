@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -14,6 +15,12 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/products', productRoutes);
+
+// middleware #1: not found error, nonvalid object ID
+app.use(notFound);
+
+// middleware #2: a server error, default fallback
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
