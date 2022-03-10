@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 
 import ProductCard from '../../components/ProductCard';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+
 import { listProducts } from '../../actions/productAction';
 
 const Home = () => {
@@ -15,19 +18,28 @@ const Home = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
+  const getProducts = () => {
+    if (loading) {
+      return <Loader />;
+    }
+    if (error) {
+      return (<Message variant="danger">{error}</Message>);
+    }
+    return (
+      <Row>
+        {products.map((item) => (
+          <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
+            <ProductCard product={item} />
+          </Col>
+        ))}
+      </Row>
+    );
+  };
+
   return (
     <>
       <h1>Последние продукты</h1>
-      { loading ? <h1>Loading...</h1> : error ? <h3>{error}</h3>
-        : (
-          <Row>
-            {products.map((item) => (
-              <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
-                <ProductCard product={item} />
-              </Col>
-            ))}
-          </Row>
-        )}
+      {getProducts()}
     </>
   );
 };
