@@ -9,7 +9,6 @@ import connectDB from './config/db.js';
 dotenv.config();
 await connectDB();
 
-
 const importData = async () => {
   try {
     await Order.deleteMany();
@@ -20,8 +19,8 @@ const importData = async () => {
     const adminUser = createdUsers[0]._id;
 
     // add the admin user [0] to each product, the owner of them all
-    const sampleProducts = products.map(item => {
-      return { ...item, user: adminUser }
+    const sampleProducts = products.map((item) => {
+      return { ...item, user: adminUser };
     });
 
     await Product.insertMany(sampleProducts);
