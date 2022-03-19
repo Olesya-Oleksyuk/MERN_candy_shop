@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Row, Col, Image, ListGroup, Card, Button, ListGroupItem,
+  Row, Col, Image, ListGroup, Card, Button, ListGroupItem, FormSelect,
 } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Rating from '../../components/Rating';
@@ -14,16 +14,22 @@ import { listProductDetails } from '../../actions/productAction';
 import './style.scss';
 
 const Product = () => {
+  const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   const currentProductId = productDetails.product._id;
 
   const { id: productId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(listProductDetails(productId));
   }, []);
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${productId}?qty=${quantity}`);
+  };
 
   const price = toCurrency(product.price, 'USD', 'en-US');
 
@@ -89,8 +95,26 @@ const Product = () => {
                     </Col>
                   </Row>
                 </ListGroupItem>
+                {product.countInStock > 0 && (
+                  <ListGroupItem>
+                    <Row>
+                      <Col>Количество:</Col>
+                      <Col>
+                        <FormSelect value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+                          {
+                            [...Array(product.countInStock).keys()].map((i) => (
+                              <option key={i + 1} value={i + 1}>
+                                {i + 1}
+                              </option>
+                            ))
+                          }
+                        </FormSelect>
+                      </Col>
+                    </Row>
+                  </ListGroupItem>
+                )}
                 <ListGroupItem className="d-grid" disabled={!product.countInStock}>
-                  <Button type="button">
+                  <Button type="button" disabled={product.countInStock === 0} onClick={addToCartHandler}>
                     Добавить в корзину
                   </Button>
                 </ListGroupItem>
