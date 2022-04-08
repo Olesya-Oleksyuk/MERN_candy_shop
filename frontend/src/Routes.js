@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Product from './pages/Product';
+import Cart from './pages/Cart';
 
 const Routes = () => (
   <>
@@ -11,6 +12,9 @@ const Routes = () => (
     </Route>
     <Route path="/home" exact>
       <Home />
+    </Route>
+    <Route path="/cart/:id?">
+      <Cart />
     </Route>
     <Route path="/" exact>
       <Home />

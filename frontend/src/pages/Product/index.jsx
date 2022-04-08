@@ -14,7 +14,7 @@ import { listProductDetails } from '../../actions/productAction';
 import './style.scss';
 
 const Product = () => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -40,6 +40,7 @@ const Product = () => {
     if (error) {
       return (<Message variant="danger">{error}</Message>);
     }
+
     if (product._id === productId) {
       return (
         <Row>
