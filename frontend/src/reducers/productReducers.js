@@ -7,21 +7,31 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants';
 
-export const productListReducer = (state = { products: [] }, action) => {
+export const productListReducer = (
+  state = {
+    products: [],
+    loading: false,
+    error: false,
+  }, action,
+) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { loading: true, products: [] };
+      return { ...state, loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload };
+      return { ...state, loading: false, products: action.payload };
     case PRODUCT_LIST_FAIL:
-      return { loading: false, error: action.payload };
+      return { ...state, loading: false, error: action.payload };
     default:
       return state;
   }
 };
 
 export const productDetailsReducer = (
-  state = { product: { reviews: [] } },
+  state = {
+    product: { reviews: [] },
+    loading: false,
+    error: false,
+  },
   action,
 ) => {
   switch (action.type) {

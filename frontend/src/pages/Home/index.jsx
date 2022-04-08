@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 
@@ -16,9 +16,9 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(listProducts());
-  }, [dispatch]);
+  }, []);
 
-  const getProducts = () => {
+  const productsContent = useMemo(() => {
     if (loading) {
       return <Loader />;
     }
@@ -34,12 +34,12 @@ const Home = () => {
         ))}
       </Row>
     );
-  };
+  }, [productList]);
 
   return (
     <>
       <h1>Последние продукты</h1>
-      {getProducts()}
+      {productsContent}
     </>
   );
 };
