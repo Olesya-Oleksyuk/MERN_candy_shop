@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 // create schema
 const userSchema = mongoose.Schema(
@@ -26,6 +27,11 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+// сопоставляем введеный пользователем пароль с зашифрованным паролем из БД
+userSchema.methods.matchPassword = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password)
+}
 
 // create model from the schema
 const User = mongoose.model('User', userSchema);
