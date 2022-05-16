@@ -4,18 +4,17 @@ import {
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Row, Col, ListGroup, Image, Form, Button, Card,
+  Row, Col, ListGroup, Image, Button, Card, ListGroupItem, FormSelect,
 } from 'react-bootstrap';
+
 import Message from '../../components/Message';
-import { addToCart } from '../../actions/cartAction';
+import { addToCart, removeFromCart } from '../../actions/cartAction';
+import './style.scss';
 
-function useQuery() {
+const useQuery = () => {
   const { search } = useLocation();
-  console.log('search', search);
-  console.log(' URLSearchParams(search)', new URLSearchParams(search));
-
   return useMemo(() => new URLSearchParams(search), [search]);
-}
+};
 
 const Cart = () => {
   const { id: productId } = useParams();
@@ -28,14 +27,98 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  console.log('cart', cart);
-
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
-  return <div> Cart </div>;
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
+  const checkoutHandler = () => {
+    history.push('/login?redirect=shipping');
+    console.log('checkout');
+  };
+
+  return (
+    <Row>
+      <Col md={8}>
+        <h1>Корзина товаров</h1>
+        {cartItems.length === 0 ? (
+          <Message variant="warning">
+            Ваша корзина пуста
+            <Link to="/" className="ms-4">Вернуться</Link>
+          </Message>
+        ) : (
+          <ListGroup variant="flush">
+            {cartItems.map((item) => (
+              <ListGroupItem key={item.product}>
+                <Row>
+                  <Col md={2}>
+                    <Image src={item.image} alt={item.name} fluid rounded />
+                  </Col>
+                  <Col md={4}>
+                    <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>
+                  </Col>
+                  <Col md={2}>
+                    $
+                    {item.price}
+                  </Col>
+                  <Col sm={6} md={2}>
+                    <FormSelect
+                      value={item.quantity}
+                      onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
+                    >
+                      {
+                          [...Array(item.countInStock).keys()].map((i) => (
+                            <option key={i + 1} value={i + 1}>
+                              {i + 1}
+                            </option>
+                          ))
+                        }
+                    </FormSelect>
+                  </Col>
+                  <Col sm={2} md={1} className="ms-auto">
+                    <Button
+                      type="button"
+                      variant="outline-dark"
+                      className="trash-btn"
+                      onClick={() => removeFromCartHandler(item.product)}
+                    >
+                      <i className="fas fa-trash" />
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant="flush">
+            <ListGroupItem>
+              <h2>
+                Всего (
+                {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+                ) товаров в корзине
+                {' '}
+              </h2>
+              $
+              {cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
+            </ListGroupItem>
+            <ListGroupItem>
+              <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                Оформить заказ
+              </Button>
+            </ListGroupItem>
+          </ListGroup>
+        </Card>
+      </Col>
+    </Row>
+  );
 };
 
 export default Cart;

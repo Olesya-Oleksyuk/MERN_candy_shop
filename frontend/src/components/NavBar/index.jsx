@@ -3,9 +3,10 @@ import {
   Container, Nav, Navbar,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import './style.scss';
 
 const NavBar = () => (
-  <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+  <Navbar className="customNav" bg="dark" variant="dark" expand="lg" collapseOnSelect>
     <Container>
       <LinkContainer to="/">
         <Navbar.Brand>Device Store</Navbar.Brand>

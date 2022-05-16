@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="700433cb-bded-44f7-a472-d5cc80027c20" name="Changes" comment="add prettier to backend">
+    <list default="true" id="1c8c7f09-03c0-4dd5-9739-20ccd4e09067" name="Changes" comment="add filtering &amp; sorting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/data/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/middleware/errorMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/middleware/errorMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/orderModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/orderModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/productModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/productModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/userModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/productRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/productRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/seeder.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/seeder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NavBar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NavBar/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Cart/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Cart/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/App.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +15,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1yisqv9aKfgEsHllcV9eEQ1hALt" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="26cjJuUux63pLE6Iu68Fj06oCua" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -31,53 +32,72 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="format.on.save" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/eslint" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="actions.on.save" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="RunManager" selected="JavaScript Debug.js">
+    <configuration name="Unnamed" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" nameIsGenerated="true" host="http://localhost:3000/" port="9229">
+      <method v="2" />
+    </configuration>
+    <configuration name="js" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="productReducers.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="productReducers.js" working-dir="$PROJECT_DIR$/frontend/src/reducers">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Attach to Node.js/Chrome.Unnamed" />
+      <item itemvalue="JavaScript Debug.js" />
+      <item itemvalue="Node.js.productReducers.js" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.productReducers.js" />
+      </list>
+    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="700433cb-bded-44f7-a472-d5cc80027c20" name="Changes" comment="" />
-      <created>1632745939093</created>
+      <changelist id="1c8c7f09-03c0-4dd5-9739-20ccd4e09067" name="Changes" comment="add prettier to backend" />
+      <created>1647729707574</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1632745939093</updated>
-      <workItem from="1632745940327" duration="31000" />
-      <workItem from="1647166173821" duration="3346000" />
-      <workItem from="1647170352725" duration="637000" />
-      <workItem from="1647171009403" duration="2680000" />
+      <updated>1647729707574</updated>
+      <workItem from="1647729711279" duration="552000" />
+      <workItem from="1647786071097" duration="197000" />
+      <workItem from="1647786283897" duration="6557000" />
+      <workItem from="1648216779024" duration="20492000" />
+      <workItem from="1649104769891" duration="2361000" />
+      <workItem from="1649193929104" duration="11704000" />
+      <workItem from="1652623012841" duration="25000" />
+      <workItem from="1652623050384" duration="3522000" />
+      <workItem from="1652626642524" duration="16998000" />
+      <workItem from="1652717681752" duration="6581000" />
     </task>
-    <task id="LOCAL-00001" summary="fix error handler error + testing error state in the component with Redux">
-      <created>1646922965523</created>
+    <task id="LOCAL-00001" summary="small product reducer fix">
+      <created>1649418439572</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1646922965523</updated>
+      <updated>1649418439573</updated>
     </task>
-    <task id="LOCAL-00002" summary="add loader and message components">
-      <created>1646926339382</created>
+    <task id="LOCAL-00002" summary="add cart functionality and reducer">
+      <created>1649418536419</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1646926339382</updated>
+      <updated>1649418536419</updated>
     </task>
-    <task id="LOCAL-00003" summary="add loader and message components">
-      <created>1646945306729</created>
+    <task id="LOCAL-00003" summary="add filtering &amp; sorting">
+      <created>1652639498043</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1646945306729</updated>
+      <updated>1652639498043</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -98,14 +118,40 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add redux, product list reducer" />
-    <MESSAGE value="fix error handler error + testing error state in the component with Redux" />
-    <MESSAGE value="add loader and message components" />
-    <MESSAGE value="add prettier to backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="add prettier to backend" />
+    <MESSAGE value="small product reducer fix" />
+    <MESSAGE value="add cart functionality and reducer" />
+    <MESSAGE value="add filtering &amp; sorting" />
+    <option name="LAST_COMMIT_MESSAGE" value="add filtering &amp; sorting" />
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/reducers/productReducers.js</url>
+          <line>16</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/reducers/productReducers.js</url>
+          <line>19</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/reducers/cartReducers.js</url>
+          <line>4</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/App.js</url>
+          <line>10</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/node_modules/react-bootstrap/esm/Alert.d.ts</url>
+          <line>16</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
