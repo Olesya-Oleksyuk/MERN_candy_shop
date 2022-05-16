@@ -1,17 +1,14 @@
 import express from 'express';
-import asyncHandler from 'express-async-handler';
-import Product from '../models/productModel.js';
+import {
+  getProducts,
+  getProductsById,
+} from '../controllers/productController.js';
 import APIfeatures from '../helper/queriesHandler.js';
 import { isEmpty } from '../helper/helper.js';
 
 const router = express.Router();
 
-router.get(
-  '/',
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    res.json(products);
-
+router.route('/').get(getProducts);
 
     // // с фильтрацией
     // console.log('check', req.query);
@@ -25,20 +22,7 @@ router.get(
     //   const products = await features.query;
     //   res.json(products);
     // }
-  })
-);
 
-router.get(
-  '/:id',
-  asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404);
-      throw new Error('Product not found');
-    }
-  })
-);
+router.route('/:id').get(getProductsById);
 
 export default router;
