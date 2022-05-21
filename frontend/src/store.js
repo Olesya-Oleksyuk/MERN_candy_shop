@@ -4,15 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { productListReducer, productDetailsReducer } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
+import { userLoginReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
+  userLogin: userLoginReducer,
 });
 
 // fetch from the local storage
-
 const fetchCartData = () => {
   const cartDataFromStorage = localStorage.getItem('cartItems');
   if (cartDataFromStorage) {
@@ -21,8 +22,17 @@ const fetchCartData = () => {
   return [];
 };
 
+const fetchUserInfo = () => {
+  const userInfoFromStorage = localStorage.getItem('userInfo');
+  if (userInfoFromStorage) {
+    return JSON.parse(userInfoFromStorage);
+  }
+  return null;
+};
+
 const initialState = {
   cart: { cartItems: fetchCartData() },
+  userLogin: { userInfo: fetchUserInfo() },
 };
 const middleware = [thunk];
 

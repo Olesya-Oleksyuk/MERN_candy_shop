@@ -85,6 +85,7 @@ const Cart = () => {
                       type="button"
                       variant="outline-dark"
                       className="trash-btn"
+                      style={{ marginTop: '5px' }}
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fas fa-trash" />
@@ -97,7 +98,7 @@ const Cart = () => {
         )}
       </Col>
       <Col md={4}>
-        <Card>
+        <Card style={{ marginTop: '8px' }}>
           <ListGroup variant="flush">
             <ListGroupItem>
               <h2>

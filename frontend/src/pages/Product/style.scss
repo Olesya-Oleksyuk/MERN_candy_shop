@@ -6,4 +6,8 @@
 .return {
   border-color: white;
   border-width: 5px;
+  @media (max-width: 576px) {
+    border-color: yellow;
+    border-width: 5px;
+  }
 }
