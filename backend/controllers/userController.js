@@ -37,8 +37,12 @@ const authUser = asyncHandler(async (req, res) => {
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
+  if ( !name || !email || !password) {
+    res.status(400);
+    throw new Error('Заполните поля');
+  }
 
-  const userExist = await User.findOne({email});
+    const userExist = await User.findOne({email});
 
   if (userExist) {
     res.status(400);

@@ -21,9 +21,9 @@ const NavBar = () => {
       return (
         <NavDropdown title={userInfo.name} id="username">
           <LinkContainer to="/profile">
-            <NavDropdown.Item>Profile</NavDropdown.Item>
+            <NavDropdown.Item>Профиль</NavDropdown.Item>
           </LinkContainer>
-          <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={logoutHandler}>Выход</NavDropdown.Item>
         </NavDropdown>
       );
     }
@@ -31,7 +31,7 @@ const NavBar = () => {
       <LinkContainer to="/login">
         <Nav.Link>
           <i className="fas fa-user pe-1" />
-          Регистрация
+          Вход
         </Nav.Link>
       </LinkContainer>
     );
