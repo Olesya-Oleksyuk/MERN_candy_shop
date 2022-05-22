@@ -12,7 +12,7 @@ const authUser = asyncHandler(async (req, res) => {
   try {
     await User.findOne({ email })
   } catch (e) {
-    throw new Error('Invalid email or password')
+    throw new Error('Неверный адрес электронной почты или пароль')
   }
 
   const user = await User.findOne({ email })
@@ -27,7 +27,7 @@ const authUser = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(401);
-    throw new Error('Invalid email or password')
+    throw new Error('Неверный адрес электронной почты или пароль')
   }
 
 });
@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExist) {
     res.status(400);
-    throw new Error('User already exists');
+    throw new Error('Пользователь уже зарегистрирован');
   }
 
   const newUser = await User.create({
@@ -61,7 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(400);
-    throw new Error('Invalid user data');
+    throw new Error('Неверные данные пользователя');
   }
 
 });
@@ -75,7 +75,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     await User.findById(req.user._id);
   } catch (e) {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error('Пользователь не найден');
   }
 
   const user = await User.findById(req.user._id);

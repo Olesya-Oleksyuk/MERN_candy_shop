@@ -1,7 +1,7 @@
 // custom error handling, json response
 
 const notFound = (req, res, next) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
+  const error = new Error(`Не найдено - ${req.originalUrl}`);
   res.status(404);
   next(error);
 };

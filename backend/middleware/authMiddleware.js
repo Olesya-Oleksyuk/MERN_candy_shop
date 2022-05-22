@@ -28,13 +28,13 @@ const protect = asyncHandler (async (req, res, next) => {
     } catch (err) {
       console.error(err)
       res.status(401);
-      throw new Error('Not authorized, token failed');
+      throw new Error('Ошибка авторизации! Токен повреждён');
     }
   }
 
   if (!token) {
     res.status(401);
-    throw new Error('Not authorized, no token');
+    throw new Error('Ошибка авторизации! Токен отсутствует');
   }
 
 });
