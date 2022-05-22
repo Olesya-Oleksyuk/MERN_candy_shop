@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   Form, Button, Row, Col, FormGroup, FormLabel, FormControl,
 } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { getUserDetails } from '../../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 
 const ProfileScreen = () => {
   const history = useHistory();
@@ -26,6 +26,9 @@ const ProfileScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -43,7 +46,9 @@ const ProfileScreen = () => {
     if (password !== confirmPassword) {
       setMessage('Пароли не совпадают!');
     } else {
-      //
+      dispatch(updateUserProfile({
+        id: user._id, name, email, password,
+      }));
     }
   };
 
@@ -61,22 +66,43 @@ const ProfileScreen = () => {
             <h2>Профиль</h2>
             { message && <Message variant="danger">{message}</Message>}
             { error && <Message variant="danger">{error}</Message>}
+            { success && <Message variant="success">Профиль обновлён</Message>}
             <Form onSubmit={submitHandler}>
               <FormGroup controlId="name" className="my-3">
                 <FormLabel>Имя пользователя</FormLabel>
-                <FormControl type="name" placeholder="Введите имя" value={name} onChange={(e) => setName(e.target.value)} />
+                <FormControl
+                  type="name"
+                  placeholder="Введите имя"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </FormGroup>
               <FormGroup controlId="email" className="my-3">
                 <FormLabel>Электронная почта</FormLabel>
-                <FormControl type="email" placeholder="Введите email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <FormControl
+                  type="email"
+                  placeholder="Введите email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </FormGroup>
               <FormGroup controlId="password" className="my-3">
                 <FormLabel>Пароль</FormLabel>
-                <FormControl type="password" placeholder="Введите пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <FormControl
+                  type="password"
+                  placeholder="Введите пароль"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </FormGroup>
               <FormGroup controlId="confirmPassword" className="my-3">
                 <FormLabel>Пароль</FormLabel>
-                <FormControl type="password" placeholder="Подтвердите пароль" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                <FormControl
+                  type="password"
+                  placeholder="Подтвердите пароль"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
               </FormGroup>
               <Button type="submit" variant="primary" className="my-3">
                 Обновить
