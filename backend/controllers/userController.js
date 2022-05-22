@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
-// @desc Аутентификация пользователя и генерация токена
+// @desc Аутентификация (логгирование) пользователя и генерация токена
 // @route POST /api/users/login
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
@@ -93,4 +93,38 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, getUserProfile };
+// @desc Измененить детали профиля пользователя
+// @route PUT /api/users/profile
+// @access Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+
+  try {
+    await User.findById(req.user._id);
+  } catch (e) {
+    res.status(404);
+    throw new Error('Пользователь не найден');
+  }
+
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      // автоматическая дешифровка благодаря методу модели user
+      user.password = req.body.password
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    })
+  }
+});
+
+export { authUser, registerUser, getUserProfile, updateUserProfile };
