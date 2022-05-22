@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   Form, Button, Row, Col, FormGroup, FormLabel, FormControl,
@@ -35,7 +35,7 @@ const LoginScreen = () => {
     dispatch(login(email, password));
   };
 
-  const loginFormContent = useMemo(() => {
+  const loginFormContent = () => {
     if (loading) {
       return (
         <>
@@ -80,11 +80,11 @@ const LoginScreen = () => {
     }
 
     return <></>;
-  }, [userInfo]);
+  };
 
   return (
     <FormContainer>
-      {loginFormContent}
+      {loginFormContent()}
     </FormContainer>
   );
 };
