@@ -37,4 +37,25 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 })
 
-export { addOrderItems }
+// @desc Выгрузить заказ по ID
+// @route GET /api/orders/:id
+// @access Private
+const getOrderById = asyncHandler(async (req, res) => {
+
+  // const order = await Order.findById(req.params.id);
+
+  // аналог join в SQL
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'name email'
+  );
+
+  if(order) {
+    res.json(order);
+  } else {
+    res.status(404);
+    throw new Error('Заказ не найден')
+  }
+})
+
+export { addOrderItems, getOrderById }
