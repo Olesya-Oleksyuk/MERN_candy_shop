@@ -10,6 +10,7 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducers';
+import { shippingReducer } from './reducers/shippingReducer';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  shipping: shippingReducer,
 });
 
 // fetch from the local storage
@@ -38,9 +40,18 @@ const fetchUserInfo = () => {
   return null;
 };
 
+const fetchShippingAddress = () => {
+  const shippingAddressFromStorage = localStorage.getItem('shippingAddress');
+  if (shippingAddressFromStorage) {
+    return JSON.parse(shippingAddressFromStorage);
+  }
+  return null;
+};
+
 const initialState = {
   cart: { cartItems: fetchCartData() },
   userLogin: { userInfo: fetchUserInfo() },
+  shipping: { shippingAddress: fetchShippingAddress() },
 };
 const middleware = [thunk];
 

@@ -7,9 +7,13 @@ import Cart from './pages/Cart';
 import LoginScreen from './pages/LoginScreen';
 import RegisterScreen from './pages/RegisterScreen';
 import ProfileScreen from './pages/Profile';
+import ShippingScreen from './pages/Shipping';
 
 const Routes = () => (
   <>
+    <Route path="/shipping" exact>
+      <ShippingScreen />
+    </Route>
     <Route path="/login" exact>
       <LoginScreen />
     </Route>
