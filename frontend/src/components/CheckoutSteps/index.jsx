@@ -7,7 +7,7 @@ import './style.scss';
 const CheckoutSteps = ({
   step1, step2, step3, step4,
 }) => (
-  <Nav className="justify-content-center mb-4">
+  <Nav className="justify-content-evenly mb-4">
     <NavItem>
       {step1 ? (
         <LinkContainer to="/login">
