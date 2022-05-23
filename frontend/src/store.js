@@ -12,6 +12,7 @@ import {
 } from './reducers/userReducers';
 import { shippingReducer } from './reducers/shippingReducer';
 import { paymentReducer } from './reducers/paymentReducers';
+import { orderCreateReducer } from './reducers/orderReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   shipping: shippingReducer,
   payment: paymentReducer,
+  orderCreate: orderCreateReducer,
 });
 
 // fetch from the local storage
@@ -62,7 +64,7 @@ const initialState = {
   cart: { cartItems: fetchCartData() },
   userLogin: { userInfo: fetchUserInfo() },
   shipping: { shippingAddress: fetchShippingAddress() },
-  payment: { paymentMethod: fetchPaymentMethod() },
+  payment: fetchPaymentMethod(),
 };
 const middleware = [thunk];
 
