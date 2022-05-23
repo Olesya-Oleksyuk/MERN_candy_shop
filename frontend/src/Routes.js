@@ -4,14 +4,18 @@ import { Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
-import LoginScreen from './pages/LoginScreen';
-import RegisterScreen from './pages/RegisterScreen';
+import LoginScreen from './pages/Login';
+import RegisterScreen from './pages/Register';
 import ProfileScreen from './pages/Profile';
 import ShippingScreen from './pages/Shipping';
 import PaymentScreen from './pages/Payment';
+import PlaceOrderScreen from './pages/PlaceOrder';
 
 const Routes = () => (
   <>
+    <Route path="/placeorder" exact>
+      <PlaceOrderScreen />
+    </Route>
     <Route path="/payment" exact>
       <PaymentScreen />
     </Route>

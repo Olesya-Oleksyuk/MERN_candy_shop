@@ -50,10 +50,19 @@ const fetchShippingAddress = () => {
   return null;
 };
 
+const fetchPaymentMethod = () => {
+  const paymentMethodFromStorage = localStorage.getItem('paymentMethod');
+  if (paymentMethodFromStorage) {
+    return JSON.parse(paymentMethodFromStorage);
+  }
+  return null;
+};
+
 const initialState = {
   cart: { cartItems: fetchCartData() },
   userLogin: { userInfo: fetchUserInfo() },
   shipping: { shippingAddress: fetchShippingAddress() },
+  payment: { paymentMethod: fetchPaymentMethod() },
 };
 const middleware = [thunk];
 
