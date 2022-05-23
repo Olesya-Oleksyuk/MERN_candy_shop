@@ -8,9 +8,13 @@ import LoginScreen from './pages/LoginScreen';
 import RegisterScreen from './pages/RegisterScreen';
 import ProfileScreen from './pages/Profile';
 import ShippingScreen from './pages/Shipping';
+import PaymentScreen from './pages/Payment';
 
 const Routes = () => (
   <>
+    <Route path="/payment" exact>
+      <PaymentScreen />
+    </Route>
     <Route path="/shipping" exact>
       <ShippingScreen />
     </Route>

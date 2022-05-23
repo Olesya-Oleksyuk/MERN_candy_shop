@@ -11,6 +11,7 @@ import {
   userUpdateProfileReducer,
 } from './reducers/userReducers';
 import { shippingReducer } from './reducers/shippingReducer';
+import { paymentReducer } from './reducers/paymentReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   shipping: shippingReducer,
+  payment: paymentReducer,
 });
 
 // fetch from the local storage
