@@ -10,7 +10,7 @@ import {
 export const productListReducer = (
   state = {
     products: [],
-    loading: false,
+    loading: true,
     error: false,
   }, action,
 ) => {
