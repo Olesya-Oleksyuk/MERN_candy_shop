@@ -12,7 +12,7 @@ import {
 } from './reducers/userReducers';
 import { shippingReducer } from './reducers/shippingReducer';
 import { paymentReducer } from './reducers/paymentReducers';
-import { orderCreateReducer } from './reducers/orderReducers';
+import { orderCreateReducer, orderDetailsReducer } from './reducers/orderReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -25,6 +25,7 @@ const reducer = combineReducers({
   shipping: shippingReducer,
   payment: paymentReducer,
   orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
 });
 
 // fetch from the local storage
