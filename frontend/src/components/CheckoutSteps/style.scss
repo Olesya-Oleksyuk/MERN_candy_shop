@@ -1,0 +1,13 @@
+@import "src/styles/customVariables";
+
+.checkout {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.checkout-passed {
+  @extend .checkout;
+  border-radius: 8px;
+  //background: primary;
+  background: $light-gray;
+}

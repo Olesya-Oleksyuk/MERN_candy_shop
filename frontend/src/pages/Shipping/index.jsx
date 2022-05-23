@@ -4,6 +4,8 @@ import {
   Form, Button, FormGroup, FormLabel, FormControl,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+
+import CheckoutSteps from '../../components/CheckoutSteps';
 import FormContainer from '../../components/FormContainer';
 import { saveShippingAddress } from '../../actions/shippmentActions';
 
@@ -31,6 +33,7 @@ const ShippingScreen = () => {
 
   return (
     <FormContainer>
+      <CheckoutSteps step1 step2 />
       <h1>Оформление заказа</h1>
       <Form onSubmit={submitHandler}>
         <FormGroup controlId="address" className="my-3">

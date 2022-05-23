@@ -39,8 +39,12 @@ const Cart = () => {
 
   const checkoutHandler = () => {
     history.push('/login?redirect=shipping');
-    console.log('checkout');
   };
+
+  const overallProductQuantity = () => cartItems.reduce((acc, item) => acc + Number(item.quantity), 0);
+
+  const overallProductPrice = () => cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
+    .toFixed(2);
 
   return (
     <Row>
@@ -103,12 +107,12 @@ const Cart = () => {
             <ListGroupItem>
               <h2>
                 Всего (
-                {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+                {overallProductQuantity()}
                 ) товаров в корзине
-                {' '}
               </h2>
               $
-              {cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
+              {' '}
+              {overallProductPrice()}
             </ListGroupItem>
             <ListGroupItem>
               <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>

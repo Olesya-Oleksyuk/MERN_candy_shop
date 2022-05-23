@@ -38,7 +38,7 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar className="customNav" bg="dark" variant="dark" expand="lg" collapseOnSelect>
+    <Navbar className="customNav" bg="primary" variant="dark" expand="lg" collapseOnSelect>
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Device Store</Navbar.Brand>
