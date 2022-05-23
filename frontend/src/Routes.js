@@ -10,9 +10,13 @@ import ProfileScreen from './pages/Profile';
 import ShippingScreen from './pages/Shipping';
 import PaymentScreen from './pages/Payment';
 import PlaceOrderScreen from './pages/PlaceOrder';
+import OrderScreen from './pages/Order';
 
 const Routes = () => (
   <>
+    <Route path="/orders/:id" exact>
+      <OrderScreen />
+    </Route>
     <Route path="/placeorder" exact>
       <PlaceOrderScreen />
     </Route>
