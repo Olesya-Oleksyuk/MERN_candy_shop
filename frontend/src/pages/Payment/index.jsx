@@ -20,7 +20,7 @@ const PaymentScreen = () => {
     history.push('/shipping');
   }
 
-  const [paymentMethod, setPaymentMethod] = useState('qiwi');
+  const [paymentMethod, setPaymentMethod] = useState('paypal');
 
   const dispatch = useDispatch();
 
@@ -41,21 +41,21 @@ const PaymentScreen = () => {
           <FormLabel as="legend">Выберете способ оплаты:</FormLabel>
           <Col>
             <FormCheck
-              type="radio"
-              label="Оплата с помощью QIWI или дебетовой картой"
-              id="qiwi"
-              name="paymentMethod"
-              value="qiwi"
               checked
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            <FormCheck
-              disabled
               type="radio"
               label="Оплата с помощью PayPal"
               id="paypal"
               name="paymentMethod"
               value="paypal"
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            />
+            <FormCheck
+              disabled
+              type="radio"
+              label="Оплата с помощью QIWI или дебетовой картой"
+              id="qiwi"
+              name="paymentMethod"
+              value="qiwi"
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
           </Col>

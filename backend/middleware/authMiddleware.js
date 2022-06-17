@@ -6,7 +6,8 @@ import User from '../models/userModel.js';
 // к ip-пользователя, который закодирован в токене, запрашиваем (fetching) этого
 // пользователя в аутентификационном мидлваре и присваиваем данные
 // о его профиле к телу запроса и затем мы можем использовать эту информацию
-// (req.user) в любом защищенном маршруте, к нам приедется обрабатывать
+// (через req.user) в ЛЮБОМ защищенном маршруте, к нам приедется обрабатывать
+// например req.user.id
 const protect = asyncHandler (async (req, res, next) => {
   let token;
 
@@ -26,7 +27,7 @@ const protect = asyncHandler (async (req, res, next) => {
 
       next();
     } catch (err) {
-      console.error(err)
+      console.error(err);
       res.status(401);
       throw new Error('Ошибка авторизации! Токен повреждён');
     }

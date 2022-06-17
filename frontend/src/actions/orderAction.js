@@ -26,6 +26,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
+    // req.body = order
     const { data } = await axios.post('/api/orders', order, config);
 
     // data = the new (added to DB) order

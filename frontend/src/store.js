@@ -14,6 +14,7 @@ import { shippingReducer } from './reducers/shippingReducer';
 import { paymentReducer } from './reducers/paymentReducers';
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers';
 
+// State slice names (productList, productDetails ...)
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
@@ -66,7 +67,7 @@ const initialState = {
   cart: { cartItems: fetchCartData() },
   userLogin: { userInfo: fetchUserInfo() },
   shipping: { shippingAddress: fetchShippingAddress() },
-  payment: fetchPaymentMethod(),
+  payment: { paymentMethod: fetchPaymentMethod() },
 };
 const middleware = [thunk];
 

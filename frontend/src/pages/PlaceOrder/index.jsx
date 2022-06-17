@@ -9,7 +9,7 @@ import { Link, useHistory } from 'react-router-dom';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import Message from '../../components/Message';
 
-import { addDecimals } from '../../helpers/data';
+import { addDecimals, capitalize } from '../../helpers/data';
 import { createOrder } from '../../actions/orderAction';
 
 const PlaceOrderScreen = () => {
@@ -55,16 +55,21 @@ const PlaceOrderScreen = () => {
               <h2>Доставка</h2>
               <p>
                 <strong className="me-2">Адрес:</strong>
-                {shipping.shippingAddress.address}
-                ,
-                {'  '}
-                {shipping.shippingAddress.city}
-                ,
-                {'  '}
-                {shipping.shippingAddress.postalCode}
-                ,
-                {'  '}
-                {shipping.shippingAddress.country}
+                <span className="pe-2">
+                  {shipping.shippingAddress.address}
+                  ,
+                </span>
+                <span className="pe-2">
+                  {shipping.shippingAddress.city}
+                  ,
+                </span>
+                <span className="pe-2">
+                  {shipping.shippingAddress.postalCode}
+                  ,
+                </span>
+                <span className="pe-2">
+                  {shipping.shippingAddress.country}
+                </span>
               </p>
             </ListGroupItem>
             <ListGroupItem>
@@ -72,7 +77,7 @@ const PlaceOrderScreen = () => {
               <strong className="me-2">
                 Метод:
               </strong>
-              {payment.paymentMethod?.paymentMethod?.toUpperCase()}
+              {payment.paymentMethod && payment.paymentMethod === 'paypal' ? 'PayPal' : capitalize(payment.paymentMethod) }
             </ListGroupItem>
             <ListGroupItem>
               <h2>Заказываемые товары</h2>

@@ -22,6 +22,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     // инстанциируем
     const order = new Order({
       orderItems,
+      // из мидлвара аутентификации
       user: req.user._id,
       shippingAddress,
       paymentMethod,
@@ -32,7 +33,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
     // сохраняем в БД
     const createdOrder = await order.save();
-    // smth was created
     res.status(201).json(createdOrder);
   }
 })
@@ -59,7 +59,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 })
 
 // @desc Обновить статус оплаты заказа на оплачено
-// @route GET /api/orders/:id/pay
+// @route PUT /api/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
 
