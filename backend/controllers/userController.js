@@ -10,12 +10,12 @@ const authUser = asyncHandler(async (req, res) => {
 
   // Аутентификация email & password
   try {
-    await User.findOne({ email })
+    await User.findOne({ email });
   } catch (e) {
-    throw new Error('Неверный адрес электронной почты или пароль')
+    throw new Error('Неверный адрес электронной почты или пароль');
   }
 
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
     res.json({
@@ -24,12 +24,11 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
-    })
+    });
   } else {
     res.status(401);
-    throw new Error('Неверный адрес электронной почты или пароль')
+    throw new Error('Неверный адрес электронной почты или пароль');
   }
-
 });
 
 // @desc Регистрация пользователя
@@ -37,12 +36,12 @@ const authUser = asyncHandler(async (req, res) => {
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-  if ( !name || !email || !password) {
+  if (!name || !email || !password) {
     res.status(400);
     throw new Error('Заполните поля');
   }
 
-    const userExist = await User.findOne({email});
+  const userExist = await User.findOne({ email });
 
   if (userExist) {
     res.status(400);
@@ -53,7 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-  })
+  });
 
   if (newUser) {
     res.status(201).json({
@@ -62,19 +61,17 @@ const registerUser = asyncHandler(async (req, res) => {
       email: newUser.email,
       isAdmin: newUser.isAdmin,
       token: generateToken(newUser._id),
-    })
+    });
   } else {
     res.status(400);
     throw new Error('Неверные данные пользователя');
   }
-
 });
 
 // @desc Получить профиль пользователя
 // @route GET /api/users/profile
 // @access Private
 const getUserProfile = asyncHandler(async (req, res) => {
-
   try {
     await User.findById(req.user._id);
   } catch (e) {
@@ -89,7 +86,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-    })
+    });
   }
 });
 
@@ -97,7 +94,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route PUT /api/users/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-
   try {
     await User.findById(req.user._id);
   } catch (e) {
@@ -112,7 +108,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
     if (req.body.password) {
       // автоматическая дешифровка благодаря методу модели user
-      user.password = req.body.password
+      user.password = req.body.password;
     }
 
     const updatedUser = await user.save();
@@ -123,7 +119,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
-    })
+    });
   }
 });
 

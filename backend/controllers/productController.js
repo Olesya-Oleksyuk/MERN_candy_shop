@@ -7,7 +7,7 @@ import Product from '../models/productModel.js';
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
   res.json(products);
-})
+});
 
 // @desc Выгрузить один товар
 // @route GET /api/products/:id
@@ -20,9 +20,6 @@ const getProductsById = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Товар не найден');
   }
-})
+});
 
-export {
-  getProducts,
-  getProductsById
-}
+export { getProducts, getProductsById };

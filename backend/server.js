@@ -14,7 +14,7 @@ await connectDB();
 
 const app = express();
 // allow to accept JSON data in the body
-app.use(express.json())
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('API is running...');
@@ -30,10 +30,10 @@ app.use(notFound);
 // middleware #2: a server error, default fallback
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-const NODE_ENV = process.env.NODE_ENV;
+const PORT = process.env.PORT || 5005;
+const { NODE_ENV } = process.env;
 
 app.listen(
-  5000,
+  5005,
   console.log(`Server running in ${NODE_ENV} mode on port ${PORT}`.yellow.bold)
 );

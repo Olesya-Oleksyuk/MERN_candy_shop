@@ -8,11 +8,13 @@ import User from '../models/userModel.js';
 // о его профиле к телу запроса и затем мы можем использовать эту информацию
 // (через req.user) в ЛЮБОМ защищенном маршруте, к нам приедется обрабатывать
 // например req.user.id
-const protect = asyncHandler (async (req, res, next) => {
+const protect = asyncHandler(async (req, res, next) => {
   let token;
 
-  if (req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
     try {
       console.log('Token found: ', req.headers.authorization);
       token = req.headers.authorization.split(' ')[1];
@@ -37,7 +39,6 @@ const protect = asyncHandler (async (req, res, next) => {
     res.status(401);
     throw new Error('Ошибка авторизации! Токен отсутствует');
   }
-
 });
 
 export { protect };

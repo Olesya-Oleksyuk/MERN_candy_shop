@@ -11,7 +11,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     paymentMethod,
     itemsPrice,
     shippingPrice,
-    totalPrice
+    totalPrice,
   } = req.body;
 
   if (orderItems && orderItems.length === 0) {
@@ -28,20 +28,19 @@ const addOrderItems = asyncHandler(async (req, res) => {
       paymentMethod,
       itemsPrice,
       shippingPrice,
-      totalPrice
+      totalPrice,
     });
 
     // сохраняем в БД
     const createdOrder = await order.save();
     res.status(201).json(createdOrder);
   }
-})
+});
 
 // @desc Выгрузить заказ по ID
 // @route GET /api/orders/:id
 // @access Private
 const getOrderById = asyncHandler(async (req, res) => {
-
   // const order = await Order.findById(req.params.id);
 
   // аналог join в SQL
@@ -50,7 +49,8 @@ const getOrderById = asyncHandler(async (req, res) => {
     'name email'
   );
 
-  if(order) {
+
+  if (order && (req.user.isAdmin || req.user._id.equals(order.user._id))) {
     res.json(order);
   } else {
     res.status(404);
@@ -62,7 +62,6 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @route PUT /api/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-
   const order = await Order.findById(req.params.id);
 
   if (order) {
@@ -79,8 +78,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     res.json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error('Заказ не найден')
+    throw new Error('Заказ не найден');
   }
-})
+});
 
-export { addOrderItems, getOrderById, updateOrderToPaid }
+export { addOrderItems, getOrderById, updateOrderToPaid };

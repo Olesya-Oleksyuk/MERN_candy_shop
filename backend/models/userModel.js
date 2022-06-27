@@ -29,8 +29,8 @@ const userSchema = mongoose.Schema(
 );
 
 // сопоставляем введеный пользователем пароль с зашифрованным паролем из БД
-userSchema.methods.matchPassword = async function(enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password)
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
 // pre-save метод для хэширования строкового пароля при добавлении новой записи
