@@ -21,6 +21,7 @@
         "only-warn"
     ],
     "rules": {
+        "linebreak-style": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "no-unused-expressions": ["error", {
             "allowShortCircuit": true,
@@ -28,5 +29,6 @@
             "allowTaggedTemplates": true
         }],
         "no-underscore-dangle": "off"
-    }
+    },
+    "ignorePatterns": ["/backend"]
 }
