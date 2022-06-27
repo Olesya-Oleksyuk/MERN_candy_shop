@@ -21,16 +21,18 @@ const PlaceOrderScreen = () => {
   const payment = useSelector((state) => state.payment);
 
   // Расчёт цен
-  cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
+  cart.itemsPrice = addDecimals(cart.cartItems
+    .reduce((acc, item) => acc + item.price * item.quantity, 0));
   shipping.shippingPrice = addDecimals(cart.itemsPrice > 200 ? 0 : 100);
-  cart.totalPrice = addDecimals((Number(cart.itemsPrice) + Number(shipping.shippingPrice)).toFixed(2));
+  cart.totalPrice = addDecimals((Number(cart.itemsPrice) + Number(shipping.shippingPrice))
+    .toFixed(2));
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`);
+      history.push(`/orders/${order._id}`);
     }
   }, [history, success]);
 

@@ -14,7 +14,7 @@ import OrderScreen from './pages/Order';
 
 const Routes = () => (
   <>
-    <Route path="/order/:id" exact>
+    <Route path="/orders/:id" exact>
       <OrderScreen />
     </Route>
     <Route path="/placeorder" exact>

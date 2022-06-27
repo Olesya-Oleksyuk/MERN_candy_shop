@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
-  Col, Image, ListGroup, ListGroupItem, Row,
+  Col,
+  Image,
+  ListGroup,
+  ListGroupItem,
+  Row,
 } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
@@ -29,7 +33,7 @@ const OrderScreen = () => {
       return <Loader />;
     }
     if (error) {
-      return <Message />;
+      return <Message variant="danger">{error}</Message>;
     }
     if (order) {
       return (
@@ -50,10 +54,10 @@ const OrderScreen = () => {
                     </strong>
                     <p />
                     <p>
-                      <strong>
-                        Почта:
-                      </strong>
-                      <a href={`mailto:${order.user.email}`} className="ms-2">{order.user.email}</a>
+                      <strong>Почта:</strong>
+                      <a href={`mailto:${order.user.email}`} className="ms-2">
+                        {order.user.email}
+                      </a>
                     </p>
                     <strong className="me-2">Адрес:</strong>
                     <span className="pe-2">
@@ -77,32 +81,43 @@ const OrderScreen = () => {
                       Доставлено
                       {order.paidAt}
                     </Message>
-                  ) : (<Message variant="danger">Не доставлено</Message>)}
+                  ) : (
+                    <Message variant="danger">Не доставлено</Message>
+                  )}
                 </ListGroupItem>
                 <ListGroupItem>
                   <h2>Способ оплаты</h2>
                   <p>
-                    <strong className="me-2">
-                      Метод:
-                    </strong>
-                    {order.paymentMethod && order.paymentMethod === 'paypal' ? 'PayPal' : capitalize(payment.paymentMethod) }
+                    <strong className="me-2">Метод:</strong>
+                    {order.paymentMethod && order.paymentMethod === 'paypal'
+                      ? 'PayPal'
+                      : capitalize(payment.paymentMethod)}
                   </p>
                   {order.isPaid ? (
                     <Message variant="success">
                       Оплачено
                       {order.paidAt}
                     </Message>
-                  ) : (<Message variant="danger">Не оплачено</Message>)}
+                  ) : (
+                    <Message variant="danger">Не оплачено</Message>
+                  )}
                 </ListGroupItem>
                 <ListGroupItem>
                   <h2>Заказываемые товары</h2>
-                  {order.orderItems.length === 0 ? <Message>Ваш заказ пустой</Message> : (
+                  {order.orderItems.length === 0 ? (
+                    <Message>Ваш заказ пустой</Message>
+                  ) : (
                     <ListGroup variant="flush">
                       {order.orderItems.map((item, index) => (
                         <ListGroupItem key={index}>
                           <Row>
                             <Col md={1}>
-                              <Image src={item.image} alt={item.name} fluid rounded />
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fluid
+                                rounded
+                              />
                             </Col>
                             <Col>
                               <Link to={`/product/${item.product}`}>
@@ -169,11 +184,7 @@ const OrderScreen = () => {
     return <></>;
   };
 
-  return (
-    <>
-      {getContent()}
-    </>
-  );
+  return <>{getContent()}</>;
 };
 
 export default OrderScreen;

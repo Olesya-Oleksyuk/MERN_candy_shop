@@ -41,16 +41,18 @@ const Cart = () => {
     history.push('/login?redirect=shipping');
   };
 
-  const overallProductQuantity = () => cartItems.reduce((acc, item) => acc + Number(item.quantity), 0);
+  const overallProductQuantity = () => cartItems
+    .reduce((acc, item) => acc + Number(item.quantity), 0);
 
-  const overallProductPrice = () => cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
+  const overallProductPrice = () => cartItems
+    .reduce((acc, item) => acc + item.quantity * item.price, 0)
     .toFixed(2);
 
   return (
     <Row>
       <Col md={8}>
         <h1>Корзина товаров</h1>
-        {cartItems.length === 0 ? (
+        {!cartItems.length ? (
           <Message variant="warning">
             Ваша корзина пуста
             <Link to="/" className="ms-4">Вернуться</Link>
@@ -68,6 +70,7 @@ const Cart = () => {
                   </Col>
                   <Col md={2}>
                     $
+                    {' '}
                     {item.price}
                   </Col>
                   <Col sm={6} md={2}>
