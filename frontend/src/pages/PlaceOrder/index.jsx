@@ -11,6 +11,7 @@ import Message from '../../components/Message';
 
 import { addDecimals, capitalize } from '../../helpers/data';
 import { createOrder } from '../../actions/orderAction';
+import { clearCart } from '../../actions/cartAction';
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const PlaceOrderScreen = () => {
 
   useEffect(() => {
     if (success) {
+      dispatch(clearCart());
       history.push(`/orders/${order._id}`);
     }
   }, [history, success]);
