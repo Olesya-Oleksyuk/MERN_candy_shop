@@ -24,7 +24,7 @@ const PlaceOrderScreen = () => {
   // Расчёт цен
   cart.itemsPrice = addDecimals(cart.cartItems
     .reduce((acc, item) => acc + item.price * item.quantity, 0));
-  shipping.shippingPrice = addDecimals(cart.itemsPrice > 200 ? 0 : 100);
+  shipping.shippingPrice = addDecimals(cart.itemsPrice > 50 ? 0 : 4.8);
   cart.totalPrice = addDecimals((Number(cart.itemsPrice) + Number(shipping.shippingPrice))
     .toFixed(2));
 

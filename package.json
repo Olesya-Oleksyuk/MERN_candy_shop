@@ -1,5 +1,5 @@
 {
-  "name": "device-store",
+  "name": "candy-shop",
   "version": "1.0.0",
   "description": "E-commerce MERN app",
   "main": "server.js",
