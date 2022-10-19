@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
-
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 import connectDB from './config/db.js';
@@ -24,10 +23,6 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
-
-app.get('/api/config/paypal', (req, res) =>
-  res.send(process.env.PAYPAL_CLIENT_ID)
-);
 
 // middleware #1: not found error, nonvalid object ID
 app.use(notFound);
