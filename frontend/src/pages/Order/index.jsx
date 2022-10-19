@@ -17,7 +17,7 @@ import UsePaypalButton from '../../components/UsePaypalButton';
 
 import { getOrderDetails } from '../../actions/orderAction';
 
-import { capitalize, toCurrency } from '../../helpers/data';
+import { capitalize, toCurrency, toDateTime } from '../../helpers/data';
 
 import './style.scss';
 
@@ -86,8 +86,8 @@ const OrderScreen = () => {
                   </p>
                   {order.isDelivered ? (
                     <Message variant="success">
-                      Доставлено
-                      {order.paidAt}
+                      Доставлено:&nbsp;
+                      {toDateTime(order.deliveredAt, 'long')}
                     </Message>
                   ) : (
                     <Message variant="danger">Не доставлено</Message>
@@ -105,7 +105,7 @@ const OrderScreen = () => {
                   {order.isPaid ? (
                     <Message variant="success">
                       Оплачено:&nbsp;
-                      {order.paidAt}
+                      {toDateTime(order.paidAt, 'long')}
                     </Message>
                   ) : (
                     <Message variant="danger">Не оплачено</Message>
