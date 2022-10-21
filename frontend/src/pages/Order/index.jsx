@@ -13,7 +13,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import UsePaypalButton from '../../components/UsePaypalButton';
+import PaypalButton from '../../components/PaypalButton';
 
 import { getOrderDetails } from '../../actions/orderAction';
 
@@ -174,12 +174,13 @@ const OrderScreen = () => {
                       </Col>
                     </Row>
                   </ListGroupItem>
-                  <UsePaypalButton
-                    order={order}
+                  { order.paymentMethod === 'paypal' && (
+                  <PaypalButton
                     orderId={orderId}
                     orderIsPaid={order.isPaid}
                     orderPrice={order.totalPrice}
                   />
+                  )}
                 </ListGroup>
               </Card>
             </Col>

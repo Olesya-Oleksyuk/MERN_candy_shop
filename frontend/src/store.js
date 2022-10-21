@@ -12,7 +12,7 @@ import {
 } from './reducers/userReducers';
 import { shippingReducer } from './reducers/shippingReducer';
 import { paymentReducer } from './reducers/paymentReducers';
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers';
+import { orderCreateReducer, orderDetailsReducer, orderPayProcessReducer } from './reducers/orderReducers';
 
 // State slice names (productList, productDetails ...)
 const reducer = combineReducers({
@@ -27,7 +27,7 @@ const reducer = combineReducers({
   payment: paymentReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
-  orderPay: orderPayReducer,
+  orderPayProcess: orderPayProcessReducer,
 });
 
 // fetch from the local storage

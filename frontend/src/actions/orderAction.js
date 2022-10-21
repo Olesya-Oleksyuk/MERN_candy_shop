@@ -6,9 +6,9 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
-  ORDER_PAY_FAIL,
-  ORDER_PAY_REQUEST,
-  ORDER_PAY_SUCCESS,
+  ORDER_PAY_PROCESS_FAIL,
+  ORDER_PAY_PROCESS_REQUEST,
+  ORDER_PAY_PROCESS_SUCCESS,
 } from '../constants/orderConstants';
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -81,7 +81,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: ORDER_PAY_REQUEST,
+      type: ORDER_PAY_PROCESS_REQUEST,
     });
 
     const { userLogin: { userInfo } } = getState();
@@ -97,13 +97,13 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
 
     // data = the fetched order
     dispatch({
-      type: ORDER_PAY_SUCCESS,
+      type: ORDER_PAY_PROCESS_SUCCESS,
       payload: data,
     });
   } catch (e) {
     console.log(e.response.data.message);
     dispatch({
-      type: ORDER_PAY_FAIL,
+      type: ORDER_PAY_PROCESS_FAIL,
       payload:
         e.response && e.response.data.message
           ? e.response.data.message

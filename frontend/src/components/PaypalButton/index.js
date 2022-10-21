@@ -7,7 +7,7 @@ import axios from 'axios';
 import Loader from '../Loader';
 
 import { getOrderDetails, payOrder } from '../../actions/orderAction';
-import { ORDER_PAY_RESET } from '../../constants/orderConstants';
+import { ORDER_PAY_PROCESS_RESET } from '../../constants/orderConstants';
 
 // dynamically adding PayPal script
 const addPayPalScript = async (setSdkReady) => {
@@ -25,27 +25,23 @@ const addPayPalScript = async (setSdkReady) => {
   document.body.appendChild(script);
 };
 
-const UsePaypalButton = ({
-  order, orderId, orderIsPaid, orderPrice,
-}) => {
+const PaypalButton = ({ orderId, orderIsPaid, orderPrice }) => {
   const dispatch = useDispatch();
   const [sdkReady, setSdkReady] = useState(false);
 
   const {
     loading: loadingPay, success: successPay,
-  } = useSelector((state) => state.orderPay);
+  } = useSelector((state) => state.orderPayProcess);
 
   useEffect(() => {
     // reload order details when order has been paid
     if (successPay) {
-      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_PAY_PROCESS_RESET });
       dispatch(getOrderDetails(orderId));
-    } else if (!order.isPaid) {
-      if (!window.paypal) {
-        addPayPalScript(setSdkReady, sdkReady);
-      }
+    } else if (!orderIsPaid) {
+      (!window.paypal) ? addPayPalScript(setSdkReady) : setSdkReady(true);
     }
-  }, [dispatch, successPay, order, orderId]);
+  }, [dispatch, successPay, orderIsPaid, orderPrice]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult));
@@ -65,4 +61,4 @@ const UsePaypalButton = ({
   );
 };
 
-export default UsePaypalButton;
+export default PaypalButton;
