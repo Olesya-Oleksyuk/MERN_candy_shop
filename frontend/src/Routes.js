@@ -9,16 +9,16 @@ import RegisterScreen from './pages/Register';
 import ProfileScreen from './pages/Profile';
 import ShippingScreen from './pages/Shipping';
 import PaymentScreen from './pages/Payment';
-import PlaceOrderScreen from './pages/PlaceOrder';
-import OrderScreen from './pages/Order';
+import OrderInCheckoutScreen from './pages/OrderInCheckout';
+import OrderOverviewPage from './pages/OrderOverview';
 
 const Routes = () => (
   <>
     <Route path="/orders/:id" exact>
-      <OrderScreen />
+      <OrderOverviewPage />
     </Route>
     <Route path="/placeorder" exact>
-      <PlaceOrderScreen />
+      <OrderInCheckoutScreen />
     </Route>
     <Route path="/payment" exact>
       <PaymentScreen />

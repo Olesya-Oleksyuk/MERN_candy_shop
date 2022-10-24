@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { CART_ADD_ITEM, CART_CLEAR, CART_REMOVE_ITEM } from '../constants/cartConstants';
-import { ORDER_CREATE_FINISH } from '../constants/orderConstants';
 
 export const addToCart = (id, quantity) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
@@ -34,10 +33,6 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
 export const clearCart = () => async (dispatch, getState) => {
   dispatch({
     type: CART_CLEAR,
-  });
-
-  dispatch({
-    type: ORDER_CREATE_FINISH,
   });
 
   // сохранение в локальном хранилище
