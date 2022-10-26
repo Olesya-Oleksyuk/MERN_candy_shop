@@ -5,7 +5,8 @@ import {
 import { Link } from 'react-router-dom';
 
 import Message from '../Message';
-import { capitalize, toCurrency, toDateTime } from '../../helpers/data';
+import { paymentMethodName, toCurrency, toDateTime } from '../../helpers/data';
+import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 
 const OrderInfo = (
   {
@@ -26,22 +27,9 @@ const OrderInfo = (
 ) => {
   const shippingAddress = () => `${shippingStreet}, ${shippingCity}, ${shippingPostalCode}, ${shippingCountry}`;
 
-  const overallProductCost = (cost, amount) => `${amount} X ${toCurrency(cost, 'USD')} = ${toCurrency(
-    (cost * amount).toFixed(2),
-    'USD',
+  const overallProductCost = (cost, amount) => `${amount} X ${toCurrency(cost, CURRENCY.DEFAULT)} = ${toCurrency(
+    (cost * amount).toFixed(2), CURRENCY.DEFAULT,
   )}`;
-
-  const paymentMethodName = () => {
-    if (paymentMethod) {
-      switch (paymentMethod) {
-        case 'paypal':
-          return 'PayPal';
-        default:
-          return capitalize(paymentMethod);
-      }
-    }
-    return 'не выбран';
-  };
 
   return (
     <ListGroup variant="flush">
@@ -71,7 +59,7 @@ const OrderInfo = (
         { !isOrderPlaced ? null : isDelivered ? (
           <Message variant="success">
             Доставлено:&nbsp;
-            {toDateTime(deliveredAt, 'long')}
+            {toDateTime(deliveredAt, DATE_TIME_FORMAT.DEFAULT)}
           </Message>
         ) : (
           <Message variant="danger">Не доставлено</Message>
@@ -83,12 +71,12 @@ const OrderInfo = (
           <strong className="me-2">
             Метод:
           </strong>
-          {paymentMethodName()}
+          {paymentMethodName(paymentMethod)}
         </p>
         {!isOrderPlaced ? null : isPaid ? (
           <Message variant="success">
             Оплачено:&nbsp;
-            {toDateTime(paidAt, 'long')}
+            {toDateTime(paidAt, DATE_TIME_FORMAT.DEFAULT)}
           </Message>
         ) : (
           <Message variant="danger">Не оплачено</Message>

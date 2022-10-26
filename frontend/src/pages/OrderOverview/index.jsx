@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
+import { CURRENCY } from '../../helpers/constants';
 
 import { getOrderDetails } from '../../actions/orderAction';
 
@@ -61,7 +62,7 @@ const OrderOverviewPage = () => {
                 totalProductPrice={order.itemsPrice}
                 shippingPrice={order.shippingPrice}
                 totalPrice={order.totalPrice}
-                currency="USD"
+                currency={CURRENCY.DEFAULT}
                 paymentMethod={order.paymentMethod}
               />
             </Col>

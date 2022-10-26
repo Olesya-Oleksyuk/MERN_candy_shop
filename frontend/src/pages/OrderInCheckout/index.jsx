@@ -8,6 +8,8 @@ import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
 
+import { CURRENCY } from '../../helpers/constants';
+
 import { addDecimals } from '../../helpers/data';
 import { createOrder } from '../../actions/orderAction';
 import { clearCart } from '../../actions/cartAction';
@@ -70,7 +72,7 @@ const OrderInCheckoutScreen = () => {
             totalProductPrice={cart.itemsPrice}
             shippingPrice={shipping.shippingPrice}
             totalPrice={cart.totalPrice}
-            currency="USD"
+            currency={CURRENCY.DEFAULT}
             paymentMethod={payment.paymentMethod}
           >
             {error ? <Message variant="danger">{error}</Message> : (

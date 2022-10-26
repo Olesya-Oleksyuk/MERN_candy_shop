@@ -3,8 +3,9 @@ import {
   Card, Col, ListGroup, ListGroupItem, Row,
 } from 'react-bootstrap';
 
-import { toCurrency } from '../../helpers/data';
 import PaypalButton from '../PaypalButton';
+import { toCurrency } from '../../helpers/data';
+import { CURRENCY, PAYMENT_METHOD } from '../../helpers/constants';
 
 const Receipt = (
   {
@@ -12,8 +13,8 @@ const Receipt = (
     totalProductPrice,
     shippingPrice,
     totalPrice,
-    currency = 'USD',
-    paymentMethod = 'paypal',
+    currency = CURRENCY.DEFAULT,
+    paymentMethod = PAYMENT_METHOD.PAYPAL,
     isPaid,
     children,
   },

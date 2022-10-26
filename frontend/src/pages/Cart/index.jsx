@@ -8,6 +8,10 @@ import {
 } from 'react-bootstrap';
 
 import Message from '../../components/Message';
+
+import { toCurrency } from '../../helpers/data';
+import { CURRENCY } from '../../helpers/constants';
+
 import { addToCart, removeFromCart } from '../../actions/cartAction';
 import './style.scss';
 
@@ -44,9 +48,9 @@ const Cart = () => {
   const overallProductQuantity = () => cartItems
     .reduce((acc, item) => acc + Number(item.quantity), 0);
 
-  const overallProductPrice = () => cartItems
+  const overallProductPrice = () => toCurrency(cartItems
     .reduce((acc, item) => acc + item.quantity * item.price, 0)
-    .toFixed(2);
+    .toFixed(2), CURRENCY.DEFAULT);
 
   return (
     <Row>
@@ -69,9 +73,7 @@ const Cart = () => {
                     <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>
-                    $
-                    {' '}
-                    {item.price}
+                    {toCurrency(item.price, CURRENCY.DEFAULT)}
                   </Col>
                   <Col sm={6} md={2}>
                     <FormSelect
@@ -113,8 +115,6 @@ const Cart = () => {
                 {overallProductQuantity()}
                 ) товаров в корзине
               </h2>
-              $
-              {' '}
               {overallProductPrice()}
             </ListGroupItem>
             <ListGroupItem>

@@ -27,7 +27,7 @@ const Rating = ({
       </span>
       { reviewsNumber && (
         <div>
-          Просмотров:
+          Просмотров:&nbsp;
           {reviewsNumber}
         </div>
       )}

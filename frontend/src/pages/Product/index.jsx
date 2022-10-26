@@ -9,6 +9,7 @@ import Rating from '../../components/Rating';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { toCurrency } from '../../helpers/data';
+import { CURRENCY } from '../../helpers/constants';
 
 import { listProductDetails } from '../../actions/productAction';
 import './style.scss';
@@ -31,7 +32,7 @@ const Product = () => {
     history.push(`/cart/${productId}?qty=${quantity}`);
   };
 
-  const price = toCurrency(product.price, 'USD', 'en-US');
+  const price = toCurrency(product.price, CURRENCY.DEFAULT);
 
   const getContent = () => {
     if (loading || (currentProductId !== productId)) {
@@ -57,15 +58,13 @@ const Product = () => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <div>
-                  Цена:
-                  {' '}
+                  Цена:&nbsp;
                   {price}
                 </div>
               </ListGroup.Item>
               <ListGroup.Item>
                 <div>
-                  Описание:
-                  {' '}
+                  Описание:&nbsp;
                   {product.description}
                 </div>
               </ListGroup.Item>

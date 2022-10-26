@@ -7,9 +7,10 @@ import './style.scss';
 
 import Rating from '../Rating';
 import { toCurrency } from '../../helpers/data';
+import { CURRENCY } from '../../helpers/constants';
 
 const ProductCard = ({ product }) => {
-  const price = toCurrency(product.price, 'USD', 'en-US');
+  const price = toCurrency(product.price, CURRENCY.DEFAULT);
 
   return (
     <>

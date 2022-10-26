@@ -5,6 +5,8 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { PAYMENT_METHOD } from '../../helpers/constants';
+
 import CheckoutSteps from '../../components/CheckoutSteps';
 import FormContainer from '../../components/FormContainer';
 import { savePaymentMethod } from '../../actions/paymentActions';
@@ -46,7 +48,7 @@ const PaymentScreen = () => {
               label="Оплата с помощью PayPal"
               id="paypal"
               name="paymentMethod"
-              value="paypal"
+              value={PAYMENT_METHOD.PAYPAL}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             <FormCheck
@@ -55,7 +57,7 @@ const PaymentScreen = () => {
               label="Оплата с помощью QIWI или дебетовой картой"
               id="qiwi"
               name="paymentMethod"
-              value="qiwi"
+              value={PAYMENT_METHOD.QIWI}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
           </Col>
