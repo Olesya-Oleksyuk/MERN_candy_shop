@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
+import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 
 const ProfileScreen = () => {
   const history = useHistory();
@@ -39,6 +40,11 @@ const ProfileScreen = () => {
       setEmail(user.email);
     }
   }, [dispatch, history, userInfo, user]);
+
+  // удаляем сообщение об "обновлении профиля", если оно есть при уходе со страницы
+  useEffect(() => function removeUpdateMessage() {
+    dispatch({ type: USER_UPDATE_PROFILE_RESET });
+  }, [history]);
 
   const submitHandler = (e) => {
     setMessage(null);
