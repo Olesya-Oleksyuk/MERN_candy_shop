@@ -152,7 +152,10 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       payload: data,
     });
 
-    dispatch(getUserDetails('profile'));
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    });
 
     // сохраняем данные о текущем залогированном пользователе в local storage
     localStorage.setItem('userInfo', JSON.stringify(data));
