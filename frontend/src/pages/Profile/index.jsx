@@ -28,7 +28,7 @@ const ProfileScreen = () => {
   const { userInfo } = userLogin;
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { success } = userUpdateProfile;
+  const { success: userUpdatedSuccess } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
@@ -43,8 +43,10 @@ const ProfileScreen = () => {
 
   // удаляем сообщение об "обновлении профиля", если оно есть при уходе со страницы
   useEffect(() => function removeUpdateMessage() {
-    dispatch({ type: USER_UPDATE_PROFILE_RESET });
-  }, [history]);
+    if (userUpdatedSuccess) {
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
+    }
+  }, [history, userUpdatedSuccess]);
 
   const submitHandler = (e) => {
     setMessage(null);
@@ -72,7 +74,7 @@ const ProfileScreen = () => {
             <h2>Профиль</h2>
             { message && <Message variant="danger">{message}</Message>}
             { error && <Message variant="danger">{error}</Message>}
-            { success && <Message variant="success">Профиль обновлён</Message>}
+            { userUpdatedSuccess && <Message variant="success">Профиль обновлён</Message>}
             <Form onSubmit={submitHandler}>
               <FormGroup controlId="name" className="my-3">
                 <FormLabel>Имя пользователя</FormLabel>
