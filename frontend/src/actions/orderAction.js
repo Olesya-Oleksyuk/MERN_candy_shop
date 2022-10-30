@@ -6,6 +6,9 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
+  ORDER_LIST_CUSTOMER_FAIL,
+  ORDER_LIST_CUSTOMER_REQUEST,
+  ORDER_LIST_CUSTOMER_SUCCESS,
   ORDER_PAY_PROCESS_FAIL,
   ORDER_PAY_PROCESS_REQUEST,
   ORDER_PAY_PROCESS_SUCCESS,
@@ -104,6 +107,40 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     console.log(e.response.data.message);
     dispatch({
       type: ORDER_PAY_PROCESS_FAIL,
+      payload:
+        e.response && e.response.data.message
+          ? e.response.data.message
+          : e.message,
+    });
+  }
+};
+
+// it knows who we are by our token
+export const listCustomerOrder = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_LIST_CUSTOMER_REQUEST,
+    });
+
+    const { userLogin: { userInfo } } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get('/api/orders/myorders', config);
+
+    // data = the fetched order
+    dispatch({
+      type: ORDER_LIST_CUSTOMER_SUCCESS,
+      payload: data,
+    });
+  } catch (e) {
+    console.log(e.response.data.message);
+    dispatch({
+      type: ORDER_LIST_CUSTOMER_FAIL,
       payload:
         e.response && e.response.data.message
           ? e.response.data.message

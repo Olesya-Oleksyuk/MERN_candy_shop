@@ -10,6 +10,9 @@ import {
   ORDER_PAY_PROCESS_SUCCESS,
   ORDER_PAY_PROCESS_FAIL,
   ORDER_PAY_PROCESS_RESET,
+  ORDER_LIST_CUSTOMER_REQUEST,
+  ORDER_LIST_CUSTOMER_SUCCESS,
+  ORDER_LIST_CUSTOMER_FAIL,
 } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -81,6 +84,29 @@ export const orderPayProcessReducer = (state = { }, action) => {
       };
     case ORDER_PAY_PROCESS_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const orderListCustomerReducer = (
+  state = { orders: [] }, action,
+) => {
+  switch (action.type) {
+    case ORDER_LIST_CUSTOMER_REQUEST:
+      return {
+        loading: true,
+      };
+    case ORDER_LIST_CUSTOMER_SUCCESS:
+      return {
+        loading: false,
+        orders: action.payload,
+      };
+    case ORDER_LIST_CUSTOMER_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

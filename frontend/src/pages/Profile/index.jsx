@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+
 import {
-  Form, Button, Row, Col, FormGroup, FormLabel, FormControl,
+  Form, Button, Row, Col, FormGroup, FormLabel, FormControl, Table,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
+import { toCurrency } from '../../helpers/data';
+import { CURRENCY } from '../../helpers/constants';
+
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
+import { listCustomerOrder } from '../../actions/orderAction';
 
 const ProfileScreen = () => {
   const history = useHistory();
@@ -30,11 +36,15 @@ const ProfileScreen = () => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success: userUpdatedSuccess } = userUpdateProfile;
 
+  const orderListCustomer = useSelector((state) => state.orderListCustomer);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListCustomer;
+
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
     } else if (!user?.name) {
       dispatch(getUserDetails('profile'));
+      dispatch(listCustomerOrder());
     } else {
       setName(user.name);
       setEmail(user.email);
@@ -119,6 +129,42 @@ const ProfileScreen = () => {
           </Col>
           <Col>
             <h2>Мои заказы</h2>
+            { loadingOrders ? <Loader /> : errorOrders ? <Message variant="danger">{errorOrders}</Message> : (
+              <Table striped bordered hover responsive size="sm" style={{ textAlign: 'center' }}>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>TOTAL</th>
+                    <th>PAID</th>
+                    <th>DELIVERED</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order._id}>
+                      <td>{order._id}</td>
+                      <td>{order.createdAt.substring(0, 10)}</td>
+                      <td>{toCurrency(order.totalPrice, CURRENCY.USD)}</td>
+                      <td>
+                        {order.isPaid ? order.paidAt.substring(0, 10)
+                          : <i className="fas fa-times" style={{ color: 'red' }} /> }
+                      </td>
+                      <td>
+                        {order.isDelivered ? order.deliveredAt.substring(0, 10)
+                          : <i className="fas fa-times" style={{ color: 'red' }} /> }
+                      </td>
+                      <td>
+                        <LinkContainer to={`order/${order._id}`}>
+                          <Button className="btn-sm" variant="light">Детали</Button>
+                        </LinkContainer>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) }
           </Col>
         </Row>
       );
