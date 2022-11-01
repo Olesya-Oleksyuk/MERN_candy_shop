@@ -15,7 +15,8 @@ const Home = () => {
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
+    // get products from the server only when page is reloaded manually
+    if (!!loading && !!products && !!loading) dispatch(listProducts());
   }, []);
 
   const productsContent = () => {
