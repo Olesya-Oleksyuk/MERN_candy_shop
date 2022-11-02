@@ -24,6 +24,7 @@ const OrdersTable = () => {
   const getOrdersContent = () => {
     if (loading) return <Loader />;
     if (error) return <Message variant="danger">{error}</Message>;
+    if (!orders.length) return <Message variant="secondary">Заказов нет!</Message>;
     return (
       <Table striped bordered hover responsive size="sm" style={{ textAlign: 'center' }}>
         <thead>
