@@ -37,6 +37,25 @@ const NavBar = () => {
     );
   };
 
+  const userIsAdmin = () => {
+    if (userInfo && userInfo.isAdmin) {
+      return (
+        <NavDropdown title="Админ" id="adminmenu">
+          <LinkContainer to="/admin/userlist">
+            <NavDropdown.Item>Пользователи</NavDropdown.Item>
+          </LinkContainer>
+          <LinkContainer to="/admin/productlist">
+            <NavDropdown.Item>Продукты</NavDropdown.Item>
+          </LinkContainer>
+          <LinkContainer to="/admin/orderlist">
+            <NavDropdown.Item>Заказы</NavDropdown.Item>
+          </LinkContainer>
+        </NavDropdown>
+      );
+    }
+    return <></>;
+  };
+
   return (
     <Navbar className="customNav" bg="primary" variant="dark" expand="lg" collapseOnSelect>
       <Container>
@@ -52,9 +71,8 @@ const NavBar = () => {
                 Корзина
               </Nav.Link>
             </LinkContainer>
-            {
-              userLoggedIn()
-            }
+            {userLoggedIn()}
+            {userIsAdmin()}
           </Nav>
         </Navbar.Collapse>
       </Container>
