@@ -11,6 +11,7 @@ import ShippingScreen from './pages/Shipping';
 import PaymentScreen from './pages/Payment';
 import OrderInCheckoutScreen from './pages/OrderInCheckout';
 import OrderOverviewPage from './pages/OrderOverview';
+import UserListScreen from './pages/UserList';
 
 const Routes = () => (
   <>
@@ -43,6 +44,9 @@ const Routes = () => (
     </Route>
     <Route path="/home" exact>
       <Home />
+    </Route>
+    <Route path="/admin/userlist" exact>
+      <UserListScreen />
     </Route>
     <Route path="/" exact>
       <Home />
