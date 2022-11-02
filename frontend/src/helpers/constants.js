@@ -22,7 +22,8 @@ export const CURRENCY = {
 };
 
 export const DATE_TIME_FORMAT = {
-  DEFAULT: 'default',
+  MEDIUM: 'medium',
+  LONG: 'long',
   SHORT: 'short',
 };
 
