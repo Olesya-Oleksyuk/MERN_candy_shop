@@ -59,7 +59,7 @@ const OrderInfo = (
         { !isOrderPlaced ? null : isDelivered ? (
           <Message variant="success">
             Доставлено:&nbsp;
-            {toDateTime(deliveredAt, DATE_TIME_FORMAT.DEFAULT)}
+            {toDateTime(deliveredAt, DATE_TIME_FORMAT.LONG)}
           </Message>
         ) : (
           <Message variant="danger">Не доставлено</Message>
@@ -76,7 +76,7 @@ const OrderInfo = (
         {!isOrderPlaced ? null : isPaid ? (
           <Message variant="success">
             Оплачено:&nbsp;
-            {toDateTime(paidAt, DATE_TIME_FORMAT.DEFAULT)}
+            {toDateTime(paidAt, DATE_TIME_FORMAT.LONG)}
           </Message>
         ) : (
           <Message variant="danger">Не оплачено</Message>

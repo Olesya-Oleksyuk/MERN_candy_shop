@@ -12,12 +12,14 @@ export const addDecimals = (num) => (Math.round(num * 100) / 100).toFixed(2);
 export const toDateTime = (date, version, locales = LOCALES.RU) => {
   const dateObj = new Date(date);
   switch (version) {
-    case DATE_TIME_FORMAT.DEFAULT:
+    case DATE_TIME_FORMAT.LONG:
       return new Intl.DateTimeFormat(locales, { dateStyle: 'medium', timeStyle: 'short' }).format(dateObj);
+    case DATE_TIME_FORMAT.MEDIUM:
+      return new Intl.DateTimeFormat(locales, { dateStyle: 'short', timeStyle: 'short' }).format(dateObj);
     case DATE_TIME_FORMAT.SHORT:
-      return new Intl.DateTimeFormat(locales, { dateStyle: 'short', timeStyle: 'short' }).format(dateObj);
+      return new Intl.DateTimeFormat('ru').format(dateObj);
     default:
-      return new Intl.DateTimeFormat(locales, { dateStyle: 'short', timeStyle: 'short' }).format(dateObj);
+      return new Intl.DateTimeFormat('ru').format(dateObj);
   }
 };
 
