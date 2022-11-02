@@ -55,7 +55,7 @@ const OrdersTable = () => {
                   : <i className="fas fa-times" style={{ color: 'red' }} /> }
               </td>
               <td>
-                <LinkContainer to={`order/${order._id}`}>
+                <LinkContainer to={`orders/${order._id}`}>
                   <Button className="btn-sm" variant="light">Детали</Button>
                 </LinkContainer>
               </td>
