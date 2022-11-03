@@ -41,7 +41,7 @@ const NavBar = () => {
     if (userInfo && userInfo.isAdmin) {
       return (
         <NavDropdown title="Админ" id="adminmenu">
-          <LinkContainer to="admin/userlist">
+          <LinkContainer to="/admin/userlist">
             <NavDropdown.Item>Пользователи</NavDropdown.Item>
           </LinkContainer>
           <LinkContainer to="/admin/productlist">
