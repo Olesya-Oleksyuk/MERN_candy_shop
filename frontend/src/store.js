@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
+  userDeleteReducer,
   userDetailsReducer,
   userListReducer,
   userLoginReducer,
@@ -36,6 +37,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPayProcess: orderPayProcessReducer,
   orderListCustomer: orderListCustomerReducer,
+  userDelete: userDeleteReducer,
 });
 
 // fetch from the local storage
