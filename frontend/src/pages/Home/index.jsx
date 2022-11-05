@@ -7,16 +7,22 @@ import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 
 import { listProducts } from '../../actions/productAction';
+import { PRODUCT_LIST_RESET } from '../../constants/productConstants';
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const {
+    loading, error, products, requiredReset,
+  } = productList;
 
   useEffect(() => {
     // get products from the server only when page is reloaded manually
-    if (!!loading && !!products && !!loading) dispatch(listProducts());
+    dispatch(listProducts());
+    return function leaveHomePage() {
+      dispatch({ type: PRODUCT_LIST_RESET });
+    };
   }, []);
 
   const productsContent = () => {
@@ -26,15 +32,18 @@ const Home = () => {
     if (error) {
       return (<Message variant="danger">{error}</Message>);
     }
-    return (
-      <Row>
-        {products.map((item) => (
-          <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
-            <ProductCard product={item} />
-          </Col>
-        ))}
-      </Row>
-    );
+    if (!requiredReset) {
+      return (
+        <Row>
+          {products.map((item) => (
+            <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
+              <ProductCard product={item} />
+            </Col>
+          ))}
+        </Row>
+      );
+    }
+    return <></>;
   };
 
   return (
