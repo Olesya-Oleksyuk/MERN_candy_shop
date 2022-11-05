@@ -102,6 +102,7 @@ const RegisterScreen = () => {
 
   return (
     <FormContainer>
+      <h1>Регистрация</h1>
       {loginFormContent()}
     </FormContainer>
   );
