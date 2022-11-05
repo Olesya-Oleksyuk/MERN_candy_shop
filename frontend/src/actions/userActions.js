@@ -22,7 +22,10 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
 } from '../constants/userConstants';
-import { ORDER_DETAILS_RESET, ORDER_LIST_CUSTOMER_RESET } from '../constants/orderConstants';
+import {
+  ORDER_DETAILS_RESET,
+  ORDER_LIST_CUSTOMER_RESET,
+} from '../constants/orderConstants';
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -246,7 +249,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/users/${id}`, config);
+    await axios.delete(`/api/users/${id}`, config);
 
     dispatch({ type: USER_DELETE_SUCCESS });
   } catch (e) {
