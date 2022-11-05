@@ -41,4 +41,14 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { protect };
+// для защиты маршрутов, доступных только пользователю-администратору
+const isAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error('Пользователь не авторизован в качестве админа');
+  }
+};
+
+export { protect, isAdmin };

@@ -104,6 +104,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    // если имя не поменялось, оставляем старое имя
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     if (req.body.password) {
@@ -123,4 +124,83 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, getUserProfile, updateUserProfile };
+// @desc Получить список всех пользователей сайта
+// @route GET /api/users
+// @access Private/Admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+// @desc Удалить пользователя
+// @route DELETE /api/user/:id
+// @access Private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    await user.remove();
+    res.json({ message: 'Пользователь удален' });
+  } else {
+    res.status(404);
+    throw new Error('Пользователь не найдем');
+  }
+});
+
+// @desc Получить пользователя по ID
+// @route GET /api/users/:id
+// @access Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+  try {
+    await User.findById(req.params._id);
+  } catch (e) {
+    res.status(404);
+    throw new Error('Пользователь не найден');
+  }
+
+  // fetch all info except the password
+  const user = await User.findById(req.params.id).select('-password');
+  if (user) {
+    res.json(user);
+  }
+});
+
+// @desc Измененить пользователя
+// @route PUT /api/users/:id
+// @access Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+  try {
+    await User.findById(req.params.id);
+  } catch (e) {
+    res.status(404);
+    throw new Error('Пользователь не найден');
+  }
+
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = req.body.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  }
+});
+
+export {
+  authUser,
+  registerUser,
+  getUserProfile,
+  updateUserProfile,
+  getUsers,
+  deleteUser,
+  getUserById,
+  updateUser,
+};
