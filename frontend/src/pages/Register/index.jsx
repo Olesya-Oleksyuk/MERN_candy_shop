@@ -48,7 +48,6 @@ const RegisterScreen = () => {
     if (loading) {
       return (
         <>
-          <h1>Регистрация</h1>
           <Loader />
         </>
       );
@@ -102,6 +101,7 @@ const RegisterScreen = () => {
 
   return (
     <FormContainer>
+      <h1>Регистрация</h1>
       {loginFormContent()}
     </FormContainer>
   );
