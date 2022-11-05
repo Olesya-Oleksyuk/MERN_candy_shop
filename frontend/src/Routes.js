@@ -12,6 +12,7 @@ import PaymentScreen from './pages/Payment';
 import OrderInCheckoutScreen from './pages/OrderInCheckout';
 import OrderOverviewPage from './pages/OrderOverview';
 import UserListScreen from './pages/UserList';
+import UserEditScreen from './pages/UserEdit';
 
 const Routes = () => (
   <>
@@ -47,6 +48,9 @@ const Routes = () => (
     </Route>
     <Route path="/admin/userlist" exact>
       <UserListScreen />
+    </Route>
+    <Route path="/admin/user/:id/edit" exact>
+      <UserEditScreen />
     </Route>
     <Route path="/" exact>
       <Home />

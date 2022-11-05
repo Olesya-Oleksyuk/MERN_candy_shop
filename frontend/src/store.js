@@ -11,6 +11,7 @@ import {
   userLoginReducer,
   userRegisterReducer,
   userUpdateProfileReducer,
+  userUpdateReducer,
 } from './reducers/userReducers';
 import { shippingReducer } from './reducers/shippingReducer';
 import { paymentReducer } from './reducers/paymentReducers';
@@ -38,6 +39,7 @@ const reducer = combineReducers({
   orderPayProcess: orderPayProcessReducer,
   orderListCustomer: orderListCustomerReducer,
   userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
 });
 
 // fetch from the local storage

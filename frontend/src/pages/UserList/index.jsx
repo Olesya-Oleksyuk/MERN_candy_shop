@@ -63,7 +63,7 @@ const UserListScreen = () => {
                     : (<i className="fas fa-times" style={{ color: 'red' }} />)}
                 </td>
                 <td style={{ textAlign: 'center' }}>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant="link" size="sm">
                       <i className="fas fa-edit" />
                     </Button>
