@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 import Loader from '../../components/Loader';
@@ -15,13 +15,22 @@ import './style.scss';
 
 const OrderOverviewPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id: orderId } = useParams();
 
   const { order, loading, error } = useSelector((state) => state.orderDetails);
 
+  // проверяем залогированы ли мы
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo: loggedInUser } = userLogin;
+
   useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-  }, []);
+    if (!loggedInUser) {
+      history.push(`/login?redirect=orders/${orderId}`);
+    } else {
+      dispatch(getOrderDetails(orderId));
+    }
+  }, [loggedInUser, orderId]);
 
   const getContent = () => {
     if (loading) {

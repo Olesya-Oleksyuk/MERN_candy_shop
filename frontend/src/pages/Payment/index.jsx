@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Form, Button, FormGroup, FormLabel, FormCheck, Col,
+  Button, Col, Form, FormCheck, FormGroup, FormLabel,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,13 +14,19 @@ import { savePaymentMethod } from '../../actions/paymentActions';
 const PaymentScreen = () => {
   const history = useHistory();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo: loggedInUser } = userLogin;
+
   // если в local storage есть введеная ранее адресная информация
   const shipping = useSelector((state) => state.shipping);
-  const { shippingAddress } = shipping;
 
-  if (!shippingAddress) {
-    history.push('/shipping');
-  }
+  useEffect(() => {
+    if (!loggedInUser) {
+      history.push('/login?redirect=payment');
+    } else if (!shipping.shippingAddress) {
+      history.push('/shipping');
+    }
+  }, [loggedInUser, shipping]);
 
   const [paymentMethod, setPaymentMethod] = useState('paypal');
 

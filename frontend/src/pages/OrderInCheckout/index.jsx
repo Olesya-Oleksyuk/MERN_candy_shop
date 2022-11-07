@@ -19,9 +19,24 @@ const OrderInCheckoutScreen = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // проверяем залогированы ли мы
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo: loggedInUser } = userLogin;
+
+  // если в local storage есть введеная ранее адресная информация
   const cart = useSelector((state) => state.cart);
   const shipping = useSelector((state) => state.shipping);
   const payment = useSelector((state) => state.payment);
+
+  useEffect(() => {
+    if (!loggedInUser) {
+      history.push('/login?redirect=placeorder');
+    } else if (!shipping.shippingAddress) {
+      history.push('/shipping');
+    } else if (!payment.paymentMethod) {
+      history.push('/payment');
+    }
+  }, [loggedInUser, shipping, payment]);
 
   // Расчёт цен
   cart.itemsPrice = addDecimals(cart.cartItems

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Form, Button, FormGroup, FormLabel, FormControl,
+  Button, Form, FormControl, FormGroup, FormLabel,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,6 +11,16 @@ import { saveShippingAddress } from '../../actions/shippmentActions';
 
 const ShippingScreen = () => {
   const history = useHistory();
+
+  // проверяем залогированы ли мы
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo: loggedInUser } = userLogin;
+
+  useEffect(() => {
+    if (!loggedInUser) {
+      history.push('/login?redirect=shipping');
+    }
+  }, [loggedInUser]);
 
   // если в local storage есть введеная ранее адресная информация
   const shipping = useSelector((state) => state.shipping);

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
-  Form, Button, Row, Col, FormGroup, FormLabel, FormControl,
+  Button, Col, Form, FormControl, FormGroup, FormLabel, Row,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,15 +24,16 @@ const RegisterScreen = () => {
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { loading, error, userInfo: userRegisteredInfo } = userRegister;
 
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
-    if (userInfo) {
+    // если регистрация прошла успешно, появились данные в state.userRegister
+    if (userRegisteredInfo) {
       history.push(redirect);
     }
-  }, [dispatch, history, userInfo, redirect]);
+  }, [dispatch, history, userRegisteredInfo, redirect]);
 
   const submitHandler = (e) => {
     setMessage(null);
@@ -53,7 +54,7 @@ const RegisterScreen = () => {
       );
     }
 
-    if (!userInfo) {
+    if (!userRegisteredInfo) {
       return (
         <>
           { message && <Message variant="danger">{message}</Message>}
