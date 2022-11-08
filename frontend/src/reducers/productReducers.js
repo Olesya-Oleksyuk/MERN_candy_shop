@@ -1,26 +1,31 @@
 import {
-  PRODUCT_LIST_REQUEST,
-  PRODUCT_LIST_FAIL,
-  PRODUCT_LIST_SUCCESS,
+  PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
-  PRODUCT_DETAILS_FAIL,
+  PRODUCT_LIST_FAIL,
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_RESET,
+  PRODUCT_LIST_SUCCESS,
 } from '../constants/productConstants';
 
 export const productListReducer = (
   state = {
     products: [],
-    loading: true,
-    error: false,
   }, action,
 ) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { ...state, loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
-      return { ...state, loading: false, products: action.payload };
+      return {
+        ...state, loading: false, products: action.payload, requiredReset: false,
+      };
     case PRODUCT_LIST_FAIL:
-      return { ...state, loading: false, error: action.payload };
+      return {
+        ...state, loading: false, error: action.payloa, requiredReset: false,
+      };
+    case PRODUCT_LIST_RESET:
+      return { ...state, requiredReset: true };
     default:
       return state;
   }
