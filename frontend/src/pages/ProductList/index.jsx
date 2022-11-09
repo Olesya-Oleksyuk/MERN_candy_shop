@@ -12,7 +12,7 @@ import Message from '../../components/Message';
 import { CURRENCY } from '../../helpers/constants';
 import { toCurrency } from '../../helpers/data';
 
-import { listProducts } from '../../actions/productAction';
+import { deleteProduct, listProducts } from '../../actions/productAction';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,9 @@ const ProductList = () => {
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -30,15 +33,24 @@ const ProductList = () => {
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   const createProductHandler = () => {};
 
   const deleteHandler = (id) => {
     if (window.confirm('Вы уверены, что хотите удалить продукт?')) {
-      // dispatch(deleteProducts(id));
-      console.log('delete product');
+      dispatch(deleteProduct(id));
     }
+  };
+
+  const updateUserProgress = () => {
+    if (loadingDelete) {
+      return <Loader />;
+    }
+    if (errorDelete) {
+      return <Message variant="danger">{errorDelete}</Message>;
+    }
+    return <></>;
   };
 
   const getTableProductList = () => {
@@ -98,6 +110,7 @@ const ProductList = () => {
           </Button>
         </Col>
       </Row>
+      {updateUserProgress()}
       {getTableProductList()}
     </>
   );

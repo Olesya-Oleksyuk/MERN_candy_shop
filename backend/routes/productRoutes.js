@@ -1,8 +1,10 @@
 import express from 'express';
 import {
+  deleteProduct,
   getProducts,
   getProductsById,
 } from '../controllers/productController.js';
+import { isAdmin, protect } from '../middleware/authMiddleware.js';
 import APIfeatures from '../helper/queriesHandler.js';
 import { isEmpty } from '../helper/helper.js';
 
@@ -23,6 +25,9 @@ router.route('/').get(getProducts);
 //   res.json(products);
 // }
 
-router.route('/:id').get(getProductsById);
+router
+  .route('/:id')
+  .get(getProductsById)
+  .delete(protect, isAdmin, deleteProduct);
 
 export default router;
