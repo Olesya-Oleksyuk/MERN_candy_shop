@@ -1,8 +1,10 @@
 import express from 'express';
 import {
+  createProduct,
   deleteProduct,
   getProducts,
   getProductsById,
+  updateProduct,
 } from '../controllers/productController.js';
 import { isAdmin, protect } from '../middleware/authMiddleware.js';
 import APIfeatures from '../helper/queriesHandler.js';
@@ -10,7 +12,7 @@ import { isEmpty } from '../helper/helper.js';
 
 const router = express.Router();
 
-router.route('/').get(getProducts);
+router.route('/').get(getProducts).post(protect, isAdmin, createProduct);
 
 // // с фильтрацией
 // console.log('check', req.query);
@@ -28,6 +30,7 @@ router.route('/').get(getProducts);
 router
   .route('/:id')
   .get(getProductsById)
-  .delete(protect, isAdmin, deleteProduct);
+  .delete(protect, isAdmin, deleteProduct)
+  .put(protect, isAdmin, updateProduct);
 
 export default router;
