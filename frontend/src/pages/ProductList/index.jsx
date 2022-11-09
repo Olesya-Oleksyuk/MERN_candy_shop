@@ -12,7 +12,8 @@ import Message from '../../components/Message';
 import { CURRENCY } from '../../helpers/constants';
 import { toCurrency } from '../../helpers/data';
 
-import { deleteProduct, listProducts } from '../../actions/productAction';
+import { createProduct, deleteProduct, listProducts } from '../../actions/productAction';
+import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -24,18 +25,32 @@ const ProductList = () => {
   const productDelete = useSelector((state) => state.productDelete);
   const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct,
+  } = productCreate;
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    // productCreate: { data } => {} только после окончания useEffect-a
+    dispatch({ type: PRODUCT_CREATE_RESET });
+
+    if (!userInfo?.isAdmin) {
       history.push('/login');
     }
-  }, [dispatch, history, userInfo, successDelete]);
 
-  const createProductHandler = () => {};
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct]);
+
+  const createProductHandler = () => {
+    dispatch(createProduct());
+  };
 
   const deleteHandler = (id) => {
     if (window.confirm('Вы уверены, что хотите удалить продукт?')) {
@@ -49,6 +64,16 @@ const ProductList = () => {
     }
     if (errorDelete) {
       return <Message variant="danger">{errorDelete}</Message>;
+    }
+    return <></>;
+  };
+
+  const createProductProgress = () => {
+    if (loadingCreate) {
+      return <Loader />;
+    }
+    if (errorCreate) {
+      return <Message variant="danger">{errorCreate}</Message>;
     }
     return <></>;
   };
@@ -111,6 +136,7 @@ const ProductList = () => {
         </Col>
       </Row>
       {updateUserProgress()}
+      {createProductProgress()}
       {getTableProductList()}
     </>
   );
