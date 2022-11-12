@@ -23,7 +23,7 @@ const ProductList = () => {
   const { loading, error, products } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
-  const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
+  const { error: errorDelete, success: successDelete } = productDelete;
 
   const productCreate = useSelector((state) => state.productCreate);
   const {
@@ -31,22 +31,20 @@ const ProductList = () => {
   } = productCreate;
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo: loggedInUser } = userLogin;
 
   useEffect(() => {
-    // productCreate: { data } => {} только после окончания useEffect-a
-    dispatch({ type: PRODUCT_CREATE_RESET });
-
-    if (!userInfo?.isAdmin) {
+    if (loggedInUser && loggedInUser.isAdmin) {
+      if (successCreate) {
+        dispatch({ type: PRODUCT_CREATE_RESET });
+        history.push(`/admin/product/${createdProduct._id}/edit`);
+      } else {
+        dispatch(listProducts());
+      }
+    } else {
       history.push('/login');
     }
-
-    if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`);
-    } else {
-      dispatch(listProducts());
-    }
-  }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct]);
+  }, [dispatch, history, loggedInUser, successDelete, successCreate, createdProduct]);
 
   const createProductHandler = () => {
     dispatch(createProduct());
@@ -58,12 +56,9 @@ const ProductList = () => {
     }
   };
 
-  const updateUserProgress = () => {
-    if (loadingDelete) {
-      return <Loader />;
-    }
+  const deleteProductProgress = () => {
     if (errorDelete) {
-      return <Message variant="danger">{errorDelete}</Message>;
+      return <Message variant="danger">{errorCreate}</Message>;
     }
     return <></>;
   };
@@ -79,50 +74,53 @@ const ProductList = () => {
   };
 
   const getTableProductList = () => {
-    if (loading) return <Loader />;
-    if (error) return <Message variant="danger">{error}</Message>;
-    if (products) {
-      return (
-        <Table striped bordered hover responsive size="sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>НАЗВАНИЕ</th>
-              <th>ЦЕНА</th>
-              <th>КАТЕГОРИЯ</th>
-              <th>БРЕНД</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product._id}</td>
-                <td>{product.name}</td>
-                <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
-                <td style={{ textAlign: 'center' }}>
-                  <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                    <Button variant="link" size="sm">
-                      <i className="fas fa-edit" />
-                    </Button>
-                  </LinkContainer>
-                  <Button variant="danger" size="sm" onClick={() => deleteHandler(product._id)}>
-                    <i className="fas fa-trash" />
-                  </Button>
-                </td>
+    if (!loadingCreate && !successCreate) {
+      if (loading) return <Loader />;
+      if (error) return <Message variant="danger">{error}</Message>;
+      if (products) {
+        return (
+          <Table striped bordered hover responsive size="sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>НАЗВАНИЕ</th>
+                <th>ЦЕНА</th>
+                <th>КАТЕГОРИЯ</th>
+                <th>БРЕНД</th>
+                <th />
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      );
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
+                  <td>{product.category}</td>
+                  <td>{product.brand}</td>
+                  <td style={{ textAlign: 'center' }}>
+                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <Button variant="link" size="sm">
+                        <i className="fas fa-edit" />
+                      </Button>
+                    </LinkContainer>
+                    <Button variant="danger" size="sm" onClick={() => deleteHandler(product._id)}>
+                      <i className="fas fa-trash" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        );
+      }
     }
     return <></>;
   };
 
   return (
     <>
+      {!loadingCreate && (
       <Row className="align-items-center">
         <Col>
           <h1>Продукты</h1>
@@ -135,7 +133,8 @@ const ProductList = () => {
           </Button>
         </Col>
       </Row>
-      {updateUserProgress()}
+      )}
+      {deleteProductProgress()}
       {createProductProgress()}
       {getTableProductList()}
     </>
