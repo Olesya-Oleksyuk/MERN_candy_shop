@@ -9,9 +9,10 @@ import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
 import { CURRENCY } from '../../helpers/constants';
 
-import { getOrderDetails } from '../../actions/orderAction';
+import { deliverOrder, getOrderDetails } from '../../actions/orderAction';
 
 import './style.scss';
+import { ORDER_DELIVERY_PROCESS_RESET } from '../../constants/orderConstants';
 
 const OrderOverviewPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,11 @@ const OrderOverviewPage = () => {
 
   const { order, loading, error } = useSelector((state) => state.orderDetails);
 
+  const {
+    loading: loadingDelivery,
+    success: successDelivery,
+  } = useSelector((state) => state.orderDeliveryProcess);
+
   // проверяем залогированы ли мы
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo: loggedInUser } = userLogin;
@@ -27,10 +33,15 @@ const OrderOverviewPage = () => {
   useEffect(() => {
     if (!loggedInUser) {
       history.push(`/login?redirect=orders/${orderId}`);
-    } else {
+    } else if (!order || successDelivery || order._id !== orderId) {
       dispatch(getOrderDetails(orderId));
+      dispatch({ type: ORDER_DELIVERY_PROCESS_RESET });
     }
-  }, [loggedInUser, orderId]);
+  }, [loggedInUser, order, orderId, successDelivery]);
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order._id));
+  };
 
   const getContent = () => {
     if (loading) {
@@ -67,12 +78,16 @@ const OrderOverviewPage = () => {
             <Col md={4}>
               <Receipt
                 orderId={orderId}
+                adminAccess={loggedInUser.isAdmin}
                 isPaid={order.isPaid}
                 totalProductPrice={order.itemsPrice}
                 shippingPrice={order.shippingPrice}
                 totalPrice={order.totalPrice}
                 currency={CURRENCY.DEFAULT}
                 paymentMethod={order.paymentMethod}
+                isDelivered={order.isDelivered}
+                loadingProgressDeliver={loadingDelivery}
+                deliverHandler={deliverHandler}
               />
             </Col>
           </Row>
