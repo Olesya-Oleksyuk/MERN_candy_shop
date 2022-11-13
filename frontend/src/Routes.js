@@ -15,6 +15,7 @@ import UserListScreen from './pages/UserList';
 import UserEditScreen from './pages/UserEdit';
 import ProductList from './pages/ProductList';
 import ProductEditScreen from './pages/ProductEdit';
+import OrderListScreen from './pages/OrderList';
 
 const Routes = () => (
   <>
@@ -59,6 +60,9 @@ const Routes = () => (
     </Route>
     <Route path="/admin/product/:id/edit" exact>
       <ProductEditScreen />
+    </Route>
+    <Route path="/admin/orderlist" exact>
+      <OrderListScreen />
     </Route>
     <Route path="/" exact>
       <Home />

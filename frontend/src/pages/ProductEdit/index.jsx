@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, Form, FormControl, FormGroup, FormLabel,
 } from 'react-bootstrap';
+import { post } from 'axios';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import FormContainer from '../../components/FormContainer';
@@ -21,6 +22,10 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
+  const [uploading, setUploading] = useState({
+    inProgress: false,
+    uploadingError: '',
+  });
 
   const dispatch = useDispatch();
 
@@ -53,6 +58,30 @@ const ProductEditScreen = () => {
       history.push('/login');
     }
   }, [dispatch, product, productId, history, successUpdate]);
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    setUploading({ ...uploading, inProgress: true });
+
+    try {
+      const config = {
+        header: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+
+      const { data } = await post('/api/upload', formData, config);
+      setImage(data);
+      setUploading({ inProgress: false, uploadingError: '' });
+    } catch {
+      setUploading({
+        inProgress: false,
+        uploadingError: 'Ошибка загрузки изображения! Доступные расширения: jpg, jpeg, png.',
+      });
+    }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -98,6 +127,11 @@ const ProductEditScreen = () => {
               <FormLabel>Фото</FormLabel>
               <FormControl type="text" placeholder="Введите URL-фото" value={image} onChange={(e) => setImage(e.target.value)} />
             </FormGroup>
+            <Form.Group controlId="image-file" className="mb-3">
+              <Form.Control type="file" size="sm" aria-label="Выберете файл" onChange={uploadFileHandler} />
+              {uploading.inProgress && <Loader />}
+              {uploading.uploadingError && <Message variant="danger">{uploading.uploadingError}</Message>}
+            </Form.Group>
             <FormGroup controlId="brand" className="my-3">
               <FormLabel>Бренд</FormLabel>
               <FormControl type="text" placeholder="Введите бренд" value={brand} onChange={(e) => setBrand(e.target.value)} />

@@ -5,6 +5,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import Message from '../Message';
+
 import { paymentMethodName, toCurrency, toDateTime } from '../../helpers/data';
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 
@@ -31,6 +32,36 @@ const OrderInfo = (
     (cost * amount).toFixed(2), CURRENCY.DEFAULT,
   )}`;
 
+  const deliveryInfo = () => {
+    if (!isOrderPlaced) {
+      return null;
+    }
+    if (isDelivered) {
+      return (
+        <Message variant="success">
+          Доставлено:&nbsp;
+          {toDateTime(deliveredAt, DATE_TIME_FORMAT.LONG)}
+        </Message>
+      );
+    }
+    return (<Message variant="danger">Не доставлено</Message>);
+  };
+
+  const paymentInfo = () => {
+    if (!isOrderPlaced) {
+      return null;
+    }
+    if (isPaid) {
+      return (
+        <Message variant="success">
+          Оплачено:&nbsp;
+          {toDateTime(paidAt, DATE_TIME_FORMAT.LONG)}
+        </Message>
+      );
+    }
+    return (<Message variant="danger">Не оплачено</Message>);
+  };
+
   return (
     <ListGroup variant="flush">
       <ListGroupItem>
@@ -56,14 +87,7 @@ const OrderInfo = (
           &nbsp;
           {shippingAddress()}
         </p>
-        { !isOrderPlaced ? null : isDelivered ? (
-          <Message variant="success">
-            Доставлено:&nbsp;
-            {toDateTime(deliveredAt, DATE_TIME_FORMAT.LONG)}
-          </Message>
-        ) : (
-          <Message variant="danger">Не доставлено</Message>
-        )}
+        { deliveryInfo() }
       </ListGroupItem>
       <ListGroupItem>
         <h2>Способ оплаты</h2>
@@ -73,14 +97,7 @@ const OrderInfo = (
           </strong>
           {paymentMethodName(paymentMethod)}
         </p>
-        {!isOrderPlaced ? null : isPaid ? (
-          <Message variant="success">
-            Оплачено:&nbsp;
-            {toDateTime(paidAt, DATE_TIME_FORMAT.LONG)}
-          </Message>
-        ) : (
-          <Message variant="danger">Не оплачено</Message>
-        )}
+        { paymentInfo() }
       </ListGroupItem>
       <ListGroupItem>
         <h2>Заказываемые товары</h2>
