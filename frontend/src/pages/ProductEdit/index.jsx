@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -28,6 +28,7 @@ const ProductEditScreen = () => {
   });
 
   const dispatch = useDispatch();
+  const imgInputRef = useRef();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo: loggedInUser } = userLogin;
@@ -38,8 +39,11 @@ const ProductEditScreen = () => {
   const productUpdate = useSelector((state) => state.productUpdate);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
 
+  const limitImageTypesToAccept = (inputFileRef) => inputFileRef.current?.setAttribute('accept', 'image/*');
+
   useEffect(() => {
     if (loggedInUser && loggedInUser.isAdmin) {
+      imgInputRef.current && limitImageTypesToAccept(imgInputRef);
       if (successUpdate) {
         dispatch({ type: PRODUCT_UPDATE_RESET });
         history.push('/admin/productlist');
@@ -62,6 +66,7 @@ const ProductEditScreen = () => {
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
+    // добавляем к объекту поле с именем image и значением загруженного изображения
     formData.append('image', file);
     setUploading({ ...uploading, inProgress: true });
 
@@ -128,7 +133,7 @@ const ProductEditScreen = () => {
               <FormControl type="text" placeholder="Введите URL-фото" value={image} onChange={(e) => setImage(e.target.value)} />
             </FormGroup>
             <Form.Group controlId="image-file" className="mb-3">
-              <Form.Control type="file" size="sm" aria-label="Выберете файл" onChange={uploadFileHandler} />
+              <Form.Control type="file" size="sm" aria-label="Выберете файл" onChange={uploadFileHandler} ref={imgInputRef} />
               {uploading.inProgress && <Loader />}
               {uploading.uploadingError && <Message variant="danger">{uploading.uploadingError}</Message>}
             </Form.Group>
