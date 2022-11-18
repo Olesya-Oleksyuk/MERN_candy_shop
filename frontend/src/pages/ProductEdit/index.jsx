@@ -132,7 +132,7 @@ const ProductEditScreen = () => {
             </FormGroup>
             <Form.Group controlId="image-file" className="mb-3">
               <Form.Control type="file" size="sm" aria-label="Выберете файл" onChange={uploadFileHandler} ref={imgInputRef} />
-              {loadingPic && <Loader />}
+              {loadingPic && <Loader styleOptions={{ marginTop: '1rem' }} />}
               {errorPic && <Message variant="danger">{errorPic}</Message>}
               {successPic && <Message variant="success">Новое фото загружено</Message>}
             </Form.Group>
