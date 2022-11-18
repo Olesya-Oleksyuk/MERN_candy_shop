@@ -4,12 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, Form, FormControl, FormGroup, FormLabel,
 } from 'react-bootstrap';
-import { post } from 'axios';
+
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import FormContainer from '../../components/FormContainer';
-import { listProductDetails, updateProduct } from '../../actions/productAction';
-import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants';
+
+import { listProductDetails, updateProduct, uploadProductPicture } from '../../actions/productAction';
+import {
+  PIC_UPLOAD_RESET,
+  PRODUCT_NEW_IMAGE,
+  PRODUCT_UPDATE_RESET,
+} from '../../constants/productConstants';
 
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
@@ -22,10 +27,6 @@ const ProductEditScreen = () => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
-  const [uploading, setUploading] = useState({
-    inProgress: false,
-    uploadingError: '',
-  });
 
   const dispatch = useDispatch();
   const imgInputRef = useRef();
@@ -38,6 +39,11 @@ const ProductEditScreen = () => {
 
   const productUpdate = useSelector((state) => state.productUpdate);
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
+
+  const uploadProductPic = useSelector((state) => state.uploadProductPicture);
+  const {
+    loading: loadingPic, success: successPic, error: errorPic, pic: loadedPic,
+  } = uploadProductPic;
 
   const limitImageTypesToAccept = (inputFileRef) => inputFileRef.current?.setAttribute('accept', 'image/*');
 
@@ -63,29 +69,21 @@ const ProductEditScreen = () => {
     }
   }, [dispatch, product, productId, history, successUpdate]);
 
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    // добавляем к объекту поле с именем image и значением загруженного изображения
-    formData.append('image', file);
-    setUploading({ ...uploading, inProgress: true });
+  useEffect(() => {
+    if (successPic) {
+      setImage(loadedPic);
+      dispatch({ type: PIC_UPLOAD_RESET });
 
-    try {
-      const config = {
-        header: {
-          'Content-Type': 'multipart/form-data',
-        },
-      };
-
-      const { data } = await post('/api/upload', formData, config);
-      setImage(data);
-      setUploading({ inProgress: false, uploadingError: '' });
-    } catch {
-      setUploading({
-        inProgress: false,
-        uploadingError: 'Ошибка загрузки изображения! Доступные расширения: jpg, jpeg, png.',
+      dispatch({
+        type: PRODUCT_NEW_IMAGE,
+        payload: loadedPic,
       });
     }
+  }, [uploadProductPic, image]);
+
+  const uploadFileHandler = async (e) => {
+    const pic = e.target.files[0];
+    dispatch(uploadProductPicture(pic));
   };
 
   const submitHandler = (e) => {
@@ -134,8 +132,9 @@ const ProductEditScreen = () => {
             </FormGroup>
             <Form.Group controlId="image-file" className="mb-3">
               <Form.Control type="file" size="sm" aria-label="Выберете файл" onChange={uploadFileHandler} ref={imgInputRef} />
-              {uploading.inProgress && <Loader />}
-              {uploading.uploadingError && <Message variant="danger">{uploading.uploadingError}</Message>}
+              {loadingPic && <Loader />}
+              {errorPic && <Message variant="danger">{errorPic}</Message>}
+              {successPic && <Message variant="success">Новое фото загружено</Message>}
             </Form.Group>
             <FormGroup controlId="brand" className="my-3">
               <FormLabel>Бренд</FormLabel>

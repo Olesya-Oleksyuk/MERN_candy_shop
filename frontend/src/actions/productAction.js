@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+  PIC_UPLOAD_FAIL,
+  PIC_UPLOAD_REQUEST,
+  PIC_UPLOAD_SUCCESS,
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
@@ -153,6 +156,35 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         e.response && e.response.data.message
           ? e.response.data.message
           : e.message,
+    });
+  }
+};
+
+export const uploadProductPicture = (pic) => async (dispatch) => {
+  const formData = new FormData();
+  // добавляем к объекту поле с именем image и значением загруженного изображения
+  formData.append('image', pic);
+  try {
+    dispatch({
+      type: PIC_UPLOAD_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    const { data } = await axios.post('/api/upload', formData, config);
+
+    dispatch({
+      type: PIC_UPLOAD_SUCCESS,
+      payload: data,
+    });
+  } catch {
+    dispatch({
+      type: PIC_UPLOAD_FAIL,
+      payload: 'Ошибка загрузки изображения! Доступные расширения: jpg, jpeg, png.',
     });
   }
 };
