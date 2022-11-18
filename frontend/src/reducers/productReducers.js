@@ -16,6 +16,11 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_RESET,
+  PIC_UPLOAD_REQUEST,
+  PIC_UPLOAD_SUCCESS,
+  PIC_UPLOAD_FAIL,
+  PIC_UPLOAD_RESET,
+  PRODUCT_NEW_IMAGE,
 } from '../constants/productConstants';
 
 export const productListReducer = (
@@ -52,6 +57,8 @@ export const productDetailsReducer = (
       return { loading: false, product: action.payload };
     case PRODUCT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    case PRODUCT_NEW_IMAGE:
+      return { ...state, product: { ...state.product, image: action.payload } };
     default:
       return state;
   }
@@ -90,6 +97,7 @@ export const productCreateReducer = (
       return state;
   }
 };
+
 export const productUpdateReducer = (
   state = { product: {} },
   action,
@@ -103,6 +111,31 @@ export const productUpdateReducer = (
       return { loading: false, error: action.payload };
     case PRODUCT_UPDATE_RESET:
       return { product: {} };
+    default:
+      return state;
+  }
+};
+
+export const uploadProductPictureReducer = (
+  state = {
+    loading: false,
+    error: '',
+    success: false,
+    pic: '',
+  },
+  action,
+) => {
+  switch (action.type) {
+    case PIC_UPLOAD_REQUEST:
+      return { loading: true };
+    case PIC_UPLOAD_SUCCESS:
+      return { loading: false, success: true, pic: action.payload };
+    case PIC_UPLOAD_FAIL:
+      return { loading: false, error: action.payload };
+    case PIC_UPLOAD_RESET:
+      return {
+        loading: false, error: '', success: false, pic: '',
+      };
     default:
       return state;
   }
