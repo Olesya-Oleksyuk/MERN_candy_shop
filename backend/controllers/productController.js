@@ -82,10 +82,51 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Добавить новый отзыв на товар
+// @route POST /api/products/:id/reviews
+// @access Private
+const createProductReview = asyncHandler(async (req, res) => {
+  const { rating, comment } = req.body;
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    // check to see if the user has submitted the review for the product
+    const alreadyReviewed = product.reviews.find(
+      (rew) => rew.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      res.status(400);
+      throw new Error('Вы уже оставляли отзыв на этот товар');
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    product.reviews.push(review);
+
+    product.numReviews = product.reviews.length;
+    product.rating =
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      product.reviews.length;
+
+    await product.save();
+    res.status(201).json({ message: 'Отзыв оставлен' });
+  } else {
+    res.status(404);
+    throw new Error('Товар не найден');
+  }
+});
+
 export {
   getProducts,
   getProductsById,
   deleteProduct,
   createProduct,
   updateProduct,
+  createProductReview,
 };
