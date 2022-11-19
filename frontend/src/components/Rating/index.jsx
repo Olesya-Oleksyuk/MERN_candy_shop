@@ -25,10 +25,15 @@ const Rating = ({
       <span>
         { getRatingScale(ratingType) }
       </span>
-      { reviewsNumber && (
+      { !!reviewsNumber && (
         <div>
           Просмотров:&nbsp;
           {reviewsNumber}
+        </div>
+      )}
+      { !reviewsNumber && (
+        <div>
+          Просмотров нет
         </div>
       )}
     </div>
