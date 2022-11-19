@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
+import morgan from 'morgan';
 
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
@@ -16,6 +17,12 @@ dotenv.config();
 await connectDB();
 
 const app = express();
+
+// simple HTTP request logger middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 // allow to accept JSON data in the body
 app.use(express.json());
 
