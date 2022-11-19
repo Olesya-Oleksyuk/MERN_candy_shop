@@ -181,10 +181,14 @@ export const uploadProductPicture = (pic) => async (dispatch) => {
       type: PIC_UPLOAD_SUCCESS,
       payload: data,
     });
-  } catch {
+  } catch (e) {
+    console.log(e.response.data.message);
     dispatch({
       type: PIC_UPLOAD_FAIL,
-      payload: 'Ошибка загрузки изображения! Доступные расширения: jpg, jpeg, png.',
+      payload:
+        e.response && e.response.data.message
+          ? e.response.data.message
+          : e.message,
     });
   }
 };
