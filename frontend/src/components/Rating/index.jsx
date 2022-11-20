@@ -5,7 +5,7 @@ import './style.scss';
 import { COLOR, RATING_TYPE, STAR_TYPE } from './constants';
 
 const Rating = ({
-  ratingValue, reviewsNumber, starColor, ratingType,
+  ratingValue, reviewsNumber, noReviewsNumber, starColor, ratingType,
 }) => {
   const getStar = (starIndex, key) => {
     const { FULL, HALF, EMPTY } = STAR_TYPE;
@@ -31,11 +31,11 @@ const Rating = ({
           {reviewsNumber}
         </div>
       )}
-      { !reviewsNumber && (
+      { !reviewsNumber && !noReviewsNumber ? (
         <div>
           Просмотров нет
         </div>
-      )}
+      ) : <></> }
     </div>
   );
 };
