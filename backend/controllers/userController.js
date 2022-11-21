@@ -45,7 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExist) {
     res.status(400);
-    throw new Error('Пользователь уже зарегистрирован');
+    throw new Error('Пользователь с таким email-ом уже зарегистрирован');
   }
 
   const newUser = await User.create({

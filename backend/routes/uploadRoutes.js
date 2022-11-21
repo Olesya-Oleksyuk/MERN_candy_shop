@@ -3,6 +3,8 @@ import multer from 'multer';
 import path from 'path';
 
 const router = express.Router();
+
+// Настройка двика дискового пространства (расположение и имя файла)
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, 'uploads/');
@@ -15,7 +17,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// Валидация расширения файла (только изображения)
+// Функция для контроля принятия файлов
 const checkFileType = (file, cb) => {
   const filetypes = /jpg|jpeg|png/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -24,11 +26,12 @@ const checkFileType = (file, cb) => {
   if (extname && mimetype) {
     return cb(null, true);
   } else {
-    cb('Только изображения!');
+    cb(null, false);
+    cb(new Error('Ошибка загрузки изображения! Доступные расширения: jpg, jpeg, png'));
   }
 };
 
-// конфиг
+// конфигурация multer-мидлвара
 const upload = multer({
   storage,
   fileFilter: function (req, file, cb) {

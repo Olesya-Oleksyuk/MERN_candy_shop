@@ -25,6 +25,7 @@ const protect = asyncHandler(async (req, res, next) => {
       console.log('Decoded: ', decoded);
 
       // добавляем информацию о пользователе в тело запроса (кроме пароля)
+      // В req.user доступна информация ою аутентифицированном пользователе
       req.user = await User.findById(decoded.id).select('-password');
 
       next();
