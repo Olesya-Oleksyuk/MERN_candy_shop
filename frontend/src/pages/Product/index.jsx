@@ -16,8 +16,6 @@ import { CURRENCY } from '../../helpers/constants';
 import { listProductDetails } from '../../actions/productAction';
 import ReviewsSection from '../../components/ReviewsSection';
 
-import './style.scss';
-
 const Product = () => {
   const dispatch = useDispatch();
 

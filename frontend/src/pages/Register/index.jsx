@@ -87,7 +87,7 @@ const RegisterScreen = () => {
               <Link
                 to={redirect ? `/login?redirect=${redirect}` : '/login'}
                 style={{ marginLeft: '10px' }}
-                className="regular-link"
+                className="inline-link"
               >
                 Авторизироваться
               </Link>

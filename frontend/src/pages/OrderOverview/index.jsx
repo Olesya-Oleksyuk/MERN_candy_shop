@@ -11,7 +11,6 @@ import { CURRENCY } from '../../helpers/constants';
 
 import { deliverOrder, getOrderDetails } from '../../actions/orderAction';
 
-import './style.scss';
 import { ORDER_DELIVERY_PROCESS_RESET } from '../../constants/orderConstants';
 
 const OrderOverviewPage = () => {

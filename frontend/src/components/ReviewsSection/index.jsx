@@ -27,6 +27,11 @@ const ReviewsSection = ({
   const productReviewCreated = useSelector(((state) => state.productCreateReview));
   const { success: successProductReview, error: errorProductReview } = productReviewCreated;
 
+  const submitReviewHandler = (e) => {
+    e.preventDefault();
+    dispatch(createProductReview(productId, { rating, comment }));
+  };
+
   useEffect(() => {
     if (successProductReview) {
       setRating(0);
@@ -78,10 +83,6 @@ const ReviewsSection = ({
     </Form>
   );
 
-  const submitReviewHandler = (e) => {
-    e.preventDefault();
-    dispatch(createProductReview(productId, { rating, comment }));
-  };
 
   return (
     <>
@@ -98,7 +99,7 @@ const ReviewsSection = ({
             <Message>
               Вам необходимо
               {' '}
-              <Link to={`/login?redirect=product/${productId}`}>авторизоваться</Link>
+              <Link className="inline-link" to={`/login?redirect=product/${productId}`}>авторизоваться</Link>
               {' '}
               для написания отзыва
             </Message>

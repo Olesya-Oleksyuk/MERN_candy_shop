@@ -13,7 +13,6 @@ import { toCurrency } from '../../helpers/data';
 import { CURRENCY } from '../../helpers/constants';
 
 import { addToCart, removeFromCart } from '../../actions/cartAction';
-import './style.scss';
 
 const useQuery = () => {
   const { search } = useLocation();
@@ -69,10 +68,10 @@ const Cart = () => {
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={4}>
+                  <Col md={4} className="mt-2">
                     <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>
+                  <Col md={2} className="mt-2">
                     {toCurrency(item.price, CURRENCY.DEFAULT)}
                   </Col>
                   <Col sm={6} md={2}>
@@ -93,8 +92,6 @@ const Cart = () => {
                     <Button
                       type="button"
                       variant="outline-dark"
-                      className="trash-btn"
-                      style={{ marginTop: '5px' }}
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fas fa-trash" />

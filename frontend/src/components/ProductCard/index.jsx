@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-import './style.scss';
-
 import Rating from '../Rating';
 import { toCurrency } from '../../helpers/data';
 import { CURRENCY } from '../../helpers/constants';

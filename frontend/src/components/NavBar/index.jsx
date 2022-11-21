@@ -5,7 +5,6 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { logout } from '../../actions/userActions';
-import './style.scss';
 
 const NavBar = () => {
   const dispatch = useDispatch();

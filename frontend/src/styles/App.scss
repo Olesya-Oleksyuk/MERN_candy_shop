@@ -1,9 +1,9 @@
 // Your variable overrides here
 
-@import "src/styles/variables";
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "src/styles/bootswatch";
-@import "src/styles/customVariables";
+@import 'src/styles/variables';
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'src/styles/bootswatch';
+@import 'src/styles/customVariables';
 
 // Your custom rules here
 
@@ -14,15 +14,15 @@ html {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+    monospace;
 }
 
 .main-container {
@@ -43,8 +43,11 @@ h2 {
   padding: 0.5rem 0;
 }
 
-.regular-link {
+a {
   text-decoration: none;
+}
+
+.inline-link {
   font-style: italic;
 }
 
@@ -52,5 +55,33 @@ h2 {
   &-secondary {
     background-color: $reg-gray;
     border: none;
+  }
+}
+
+.btn {
+  &-return {
+    border-color: white;
+    border-width: 5px;
+    @media (max-width: 576px) {
+      background-color: $reg-gray;
+      border-width: 5px;
+      border-radius: 15px;
+    }
+  }
+  &-return:hover {
+    border-color: yellow;
+    border-width: 5px;
+  }
+
+  &-outline-dark {
+    border-color: #f7f7f9;
+  }
+}
+
+h1 {
+  .orderId {
+    @media (max-width: 576px) {
+      font-size: 1.5rem;
+    }
   }
 }

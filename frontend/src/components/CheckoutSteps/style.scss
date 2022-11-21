@@ -1,13 +1,29 @@
-@import "src/styles/customVariables";
+@import 'src/styles/customVariables';
 
-.checkout {
+a.checkout {
   border-radius: 8px;
   font-weight: 500;
+  display: block;
+  width: 115px;
+  text-align: center;
+  margin: 0 auto;
+
+  &-passed {
+    border-radius: 8px;
+    background: $light-gray !important;
+  }
 }
 
-.checkout-passed {
-  @extend .checkout;
-  border-radius: 8px;
-  //background: primary;
-  background: $light-gray;
+.nav {
+  @media (max-width: 1200px) {
+    .nav-item {
+      flex-basis: 50%;
+      border-radius: 15px;
+      margin-top: 1rem;
+    }
+
+    .nav-item:nth-child(-n + 2) {
+      margin-top: 0;
+    }
+  }
 }

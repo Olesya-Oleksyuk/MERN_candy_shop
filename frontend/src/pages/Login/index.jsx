@@ -69,7 +69,7 @@ const LoginScreen = () => {
               <Link
                 to={redirect ? `/register?redirect=${redirect}` : '/register'}
                 style={{ marginLeft: '10px' }}
-                className="regular-link"
+                className="inline-link"
               >
                 Зарегистрироваться
               </Link>

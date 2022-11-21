@@ -11,28 +11,28 @@ const CheckoutSteps = ({
     <NavItem>
       {step1 ? (
         <LinkContainer to="/login">
-          <NavLink className="checkout-passed">Вход</NavLink>
+          <NavLink className="checkout checkout-passed">Вход</NavLink>
         </LinkContainer>
       ) : <NavLink disabled className="checkout">Вход</NavLink>}
     </NavItem>
     <NavItem>
       {step2 ? (
         <LinkContainer to="/shipping">
-          <NavLink className="checkout-passed">Доставка</NavLink>
+          <NavLink className="checkout checkout-passed">Доставка</NavLink>
         </LinkContainer>
       ) : <NavLink disabled className="checkout">Доставка</NavLink>}
     </NavItem>
     <NavItem>
       {step3 ? (
         <LinkContainer to="/payment">
-          <NavLink className="checkout-passed">Оплата</NavLink>
+          <NavLink className="checkout checkout-passed">Оплата</NavLink>
         </LinkContainer>
       ) : <NavLink disabled className="checkout">Оплата</NavLink>}
     </NavItem>
     <NavItem>
       {step4 ? (
         <LinkContainer to="/placeorder">
-          <NavLink className="checkout-passed">Оформить</NavLink>
+          <NavLink className="checkout checkout-passed">Оформить</NavLink>
         </LinkContainer>
       ) : <NavLink disabled className="checkout">Оформить</NavLink>}
     </NavItem>
