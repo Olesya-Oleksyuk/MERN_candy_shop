@@ -1,11 +1,13 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 
-const Message = ({ variant, children }) => (
-  <Alert variant={variant}>
-    {children}
-  </Alert>
-);
+const Message = ({ variant, styleOptions, classOpt, children }) => {
+  return(
+    <Alert variant={variant} style={styleOptions} className={classOpt}>
+      {children}
+    </Alert>
+  );
+}
 
 Message.defaultProps = {
   variant: 'secondary',
