@@ -5,7 +5,7 @@ import './style.scss';
 import { COLOR, RATING_TYPE, STAR_TYPE } from './constants';
 
 const Rating = ({
-  ratingValue, reviewsNumber, noReviewsNumber, starColor, ratingType,
+  ratingValue, reviewsNumber = 0, noReviewsNumber, starColor, ratingType,
 }) => {
   const getStar = (starIndex, key) => {
     const { FULL, HALF, EMPTY } = STAR_TYPE;
