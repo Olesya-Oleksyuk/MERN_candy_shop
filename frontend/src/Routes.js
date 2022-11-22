@@ -64,6 +64,9 @@ const Routes = () => (
     <Route path="/admin/orderlist" exact>
       <OrderListScreen />
     </Route>
+    <Route path="/search/:keyword">
+      <Home />
+    </Route>
     <Route path="/" exact>
       <Home />
     </Route>

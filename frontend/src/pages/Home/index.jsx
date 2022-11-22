@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 import ProductCard from '../../components/ProductCard';
 import Message from '../../components/Message';
@@ -10,13 +11,14 @@ import { listProducts } from '../../actions/productAction';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { keyword: searchKeyword } = useParams();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, []);
+    dispatch(listProducts(searchKeyword));
+  }, [searchKeyword]);
 
   const productsContent = () => {
     if (loading) {
