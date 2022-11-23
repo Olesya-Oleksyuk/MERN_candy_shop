@@ -1,11 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
-import {
-  Link, useHistory, useLocation, useParams,
-} from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Row, Col, ListGroup, Image, Button, Card, ListGroupItem, FormSelect,
-} from 'react-bootstrap';
+import { Button, Card, Col, FormSelect, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 
 import Message from '../../components/Message';
 
@@ -54,7 +50,7 @@ const Cart = () => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Корзина товаров</h1>
+        <h1 className="header-1">Корзина товаров</h1>
         {!cartItems.length ? (
           <Message variant="warning">
             Ваша корзина пуста
@@ -63,18 +59,18 @@ const Cart = () => {
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
-              <ListGroupItem key={item.product}>
+              <ListGroupItem key={item.product} className="px-5 px-sm-3 pb-4">
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={4} className="mt-2">
+                  <Col md={4} className="mt-4 mt-md-2">
                     <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2} className="mt-2">
                     {toCurrency(item.price, CURRENCY.DEFAULT)}
                   </Col>
-                  <Col sm={6} md={2}>
+                  <Col xs={9} sm={6} md={2} className="mt-2 mt-md-0">
                     <FormSelect
                       value={item.quantity}
                       onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
@@ -88,11 +84,12 @@ const Cart = () => {
                         }
                     </FormSelect>
                   </Col>
-                  <Col sm={2} md={1} className="ms-auto">
+                  <Col xs={3} sm={2} md={1} className="mt-2 mt-md-0">
                     <Button
                       type="button"
                       variant="outline-dark"
                       onClick={() => removeFromCartHandler(item.product)}
+                      style={{ display: 'block', margin: '0 auto' }}
                     >
                       <i className="fas fa-trash" />
                     </Button>

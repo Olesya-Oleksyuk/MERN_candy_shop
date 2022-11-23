@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="header-product">Последние продукты</h1>
+      <h1 className="header-1">Последние продукты</h1>
       {productsContent()}
     </>
   );
