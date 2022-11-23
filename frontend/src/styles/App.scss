@@ -90,8 +90,6 @@ h1 {
   @extend .card;
 
   @media (max-width: 576px) {
-    width: 85%;
-    margin: 0 auto;
     padding-bottom: 0;
 
     .card-body {

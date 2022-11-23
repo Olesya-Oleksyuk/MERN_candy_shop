@@ -30,7 +30,7 @@ const Home = () => {
     return (
       <Row>
         {products.map((item) => (
-          <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
+          <Col sm={12} md={6} lg={4} xl={3} key={item._id} className="px-5 px-sm-3">
             <ProductCard product={item} />
           </Col>
         ))}
