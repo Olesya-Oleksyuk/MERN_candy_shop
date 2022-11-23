@@ -85,3 +85,35 @@ h1 {
     }
   }
 }
+
+.card-product {
+  @extend .card;
+
+  @media (max-width: 576px) {
+    width: 85%;
+    margin: 0 auto;
+    padding-bottom: 0;
+
+    .card-body {
+      padding-bottom: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card-title {
+      font-size: 1.5rem;
+    }
+
+    .card-text {
+      strong {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.header-product {
+  @media (max-width: 576px) {
+    text-align: center;
+  }
+}

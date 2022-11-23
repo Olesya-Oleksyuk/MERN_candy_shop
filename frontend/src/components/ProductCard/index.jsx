@@ -12,9 +12,9 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <Card className="my-3 p-3 rounded">
+      <Card className="my-3 p-sm-3 rounded" bsPrefix="card-product">
         <Link to={`/product/${product._id}`}>
-          <Card.Img src={product.image} variant="top" />
+          <Card.Img src={product.image} />
         </Link>
         <Card.Body>
           <Link to={`/product/${product._id}`} className="product-link">
