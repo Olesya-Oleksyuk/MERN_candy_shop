@@ -11,14 +11,15 @@ import { listProducts } from '../../actions/productAction';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { keyword: searchKeyword } = useParams();
+  const { keyword: searchKeyword, pageNumber: pageNumberParam } = useParams();
+  const pageNumber = pageNumberParam || 1;
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts(searchKeyword));
-  }, [searchKeyword]);
+    dispatch(listProducts(searchKeyword, pageNumber));
+  }, [searchKeyword, pageNumber]);
 
   const productsContent = () => {
     if (loading) {

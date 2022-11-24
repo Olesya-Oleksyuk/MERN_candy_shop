@@ -67,6 +67,12 @@ const Routes = () => (
     <Route path="/search/:keyword">
       <Home />
     </Route>
+    <Route path="/page/:pageNumber" exact>
+      <Home />
+    </Route>
+    <Route path="/search/:keyword/page/:pageNumber" exact>
+      <Home />
+    </Route>
     <Route path="/" exact>
       <Home />
     </Route>
