@@ -1,7 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
-import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
+import {
+  Link, useHistory, useLocation, useParams,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, Col, FormSelect, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
+import {
+  Button, Card, Col, FormSelect, Image, ListGroup, ListGroupItem, Row,
+} from 'react-bootstrap';
 
 import Message from '../../components/Message';
 
@@ -49,7 +53,7 @@ const Cart = () => {
 
   return (
     <Row>
-      <Col md={8}>
+      <Col md={8} className="cart-product-container">
         <h1 className="header-1">Корзина товаров</h1>
         {!cartItems.length ? (
           <Message variant="warning">
@@ -59,19 +63,33 @@ const Cart = () => {
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
-              <ListGroupItem key={item.product} className="px-5 px-sm-3 pb-4">
+              <ListGroupItem
+                key={item.product}
+                className="cart-list px-5 px-sm-3 pb-4"
+              >
                 <Row>
-                  <Col md={2}>
+                  <Col md={2} className="cart-img">
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
                   <Col md={4} className="mt-4 mt-md-2">
-                    <Link style={{ textDecoration: 'none' }} to={`/product/${item.product}`}>{item.name}</Link>
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/product/${item.product}`}
+                    >
+                      {item.name}
+                    </Link>
                   </Col>
                   <Col md={2} className="mt-2">
                     {toCurrency(item.price, CURRENCY.DEFAULT)}
                   </Col>
-                  <Col xs={9} sm={6} md={2} className="mt-2 mt-md-0">
+                  <Col
+                    xs={9}
+                    sm={6}
+                    md={2}
+                    className="mt-2 mt-md-0 p-md-0 px-xl-4"
+                  >
                     <FormSelect
+                      bsPrefix="cart-product-quantity-select"
                       value={item.quantity}
                       onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
                     >
@@ -84,12 +102,16 @@ const Cart = () => {
                         }
                     </FormSelect>
                   </Col>
-                  <Col xs={3} sm={2} md={1} className="mt-2 mt-md-0">
+                  <Col
+                    xs={3}
+                    sm={2}
+                    md={1}
+                    className="mt-2 mt-md-0 ms-auto ms-md-3 p-0 py-md-0 cart-btn"
+                  >
                     <Button
                       type="button"
                       variant="outline-dark"
                       onClick={() => removeFromCartHandler(item.product)}
-                      style={{ display: 'block', margin: '0 auto' }}
                     >
                       <i className="fas fa-trash" />
                     </Button>
@@ -101,18 +123,27 @@ const Cart = () => {
         )}
       </Col>
       <Col md={4}>
-        <Card style={{ marginTop: '8px' }}>
+        <Card className="mt-2">
           <ListGroup variant="flush">
             <ListGroupItem>
-              <h2>
+              <span className="cart-overall-text">
                 Всего (
                 {overallProductQuantity()}
                 ) товаров в корзине
+              </span>
+              <h2>
+                Итого:
+                {' '}
+                {overallProductPrice()}
               </h2>
-              {overallProductPrice()}
             </ListGroupItem>
             <ListGroupItem>
-              <Button type="button" className="btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
+              <Button
+                type="button"
+                className="btn-block ms-auto mx-md-auto ms-lg-auto me-lg-0"
+                disabled={cartItems.length === 0}
+                onClick={checkoutHandler}
+              >
                 Оформить заказ
               </Button>
             </ListGroupItem>
