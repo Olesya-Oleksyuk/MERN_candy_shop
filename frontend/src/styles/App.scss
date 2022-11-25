@@ -192,3 +192,36 @@ h1 {
   @extend .form-select;
   font-size: inherit;
 }
+
+.product-pagination {
+  .pagination {
+    padding: 0 36px;
+    justify-content: space-between;
+  }
+}
+
+.product-pagination-md {
+  .pagination {
+    justify-content: center;
+  }
+}
+
+.product-pagination-xs {
+  .pagination {
+    padding: 0 36px;
+    justify-content: center;
+  }
+
+  .page-item {
+    padding-right: 0.8rem;
+  }
+
+  .page-item:last-child {
+    padding-right: 0;
+  }
+}
+
+.product-pagination-sm {
+  @extend .product-pagination-xs;
+  font-size: 1.2rem;
+}
