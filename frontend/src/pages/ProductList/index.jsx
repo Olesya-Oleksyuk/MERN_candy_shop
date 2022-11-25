@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import {
   Button, Col, Row, Table,
 } from 'react-bootstrap';
@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
+import ProductPagination from '../../components/ProductPagination';
 
 import { CURRENCY } from '../../helpers/constants';
 import { toCurrency } from '../../helpers/data';
@@ -19,8 +20,13 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const params = useParams();
+  const pageNumber = params.pageNumber || 1;
+
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const {
+    loading, error, products, page, pages,
+  } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
   const { error: errorDelete, success: successDelete } = productDelete;
@@ -39,12 +45,12 @@ const ProductList = () => {
         dispatch({ type: PRODUCT_CREATE_RESET });
         history.push(`/admin/product/${createdProduct._id}/edit`);
       } else {
-        dispatch(listProducts());
+        dispatch(listProducts('', pageNumber));
       }
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, loggedInUser, successDelete, successCreate, createdProduct]);
+  }, [dispatch, history, loggedInUser, successDelete, successCreate, createdProduct, pageNumber]);
 
   const createProductHandler = () => {
     dispatch(createProduct());
@@ -137,6 +143,7 @@ const ProductList = () => {
       {deleteProductProgress()}
       {createProductProgress()}
       {getTableProductList()}
+      <ProductPagination pages={pages} page={page} isAdmin />
     </>
   );
 };
