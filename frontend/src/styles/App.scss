@@ -131,19 +131,11 @@ h1 {
   }
 }
 
-.header-1 {
-  @include media-breakpoint-down(sm) {
-    text-align: center;
-  }
-}
+// Cart Page
 
-.cart-product-container {
-  @include media-breakpoint-up(sm) {
-    padding: 0 4rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    padding: 0;
+.cart-list {
+  @include media-breakpoint-up(xl) {
+    font-size: 1.2rem;
   }
 }
 
@@ -159,28 +151,13 @@ h1 {
 }
 
 .cart-img {
-  @include media-breakpoint-down(sm) {
-    padding: 0;
-  }
-
   @include media-breakpoint-up(sm) {
     border: 1px solid rgba(0, 0, 0, 0.125);
-    padding: 1.5rem 5rem;
   }
 
   @include media-breakpoint-up(md) {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    padding: 0;
-  }
-}
-
-.cart-list {
-  @include media-breakpoint-up(lg) {
-    font-size: 1rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: 1.2rem;
+    border: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
   }
 }
 

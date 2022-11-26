@@ -53,7 +53,7 @@ const Cart = () => {
 
   return (
     <Row>
-      <Col md={8} className="cart-product-container">
+      <Col md={8} className="py-sm-0 px-sm-6 p-md-0">
         <h1 className="header-1">Корзина товаров</h1>
         {!cartItems.length ? (
           <Message variant="warning">
@@ -68,7 +68,7 @@ const Cart = () => {
                 className="cart-list px-5 px-sm-3 pb-4"
               >
                 <Row>
-                  <Col md={2} className="cart-img">
+                  <Col md={2} className="cart-img p-0 py-sm-4 px-sm-7 p-md-0 px-lg-4">
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
                   <Col md={4} className="mt-4 mt-md-2">
@@ -111,6 +111,7 @@ const Cart = () => {
                     <Button
                       type="button"
                       variant="outline-dark"
+                      className="btn-block mx-auto"
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fas fa-trash" />
