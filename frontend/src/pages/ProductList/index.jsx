@@ -85,39 +85,41 @@ const ProductList = () => {
       if (error) return <Message variant="danger">{error}</Message>;
       if (products) {
         return (
-          <Table striped bordered hover responsive size="sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>НАЗВАНИЕ</th>
-                <th>ЦЕНА</th>
-                <th>КАТЕГОРИЯ</th>
-                <th>БРЕНД</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td style={{ textAlign: 'center' }}>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant="link" size="sm">
-                        <i className="fas fa-edit" />
-                      </Button>
-                    </LinkContainer>
-                    <Button variant="danger" size="sm" onClick={() => deleteHandler(product._id)}>
-                      <i className="fas fa-trash" />
-                    </Button>
-                  </td>
+          <div className="mb-3 mb-md-0">
+            <Table striped bordered hover responsive size="sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>НАЗВАНИЕ</th>
+                  <th>ЦЕНА</th>
+                  <th>КАТЕГОРИЯ</th>
+                  <th>БРЕНД</th>
+                  <th />
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product.id}>
+                    <td>{product._id}</td>
+                    <td>{product.name}</td>
+                    <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
+                    <td>{product.category}</td>
+                    <td>{product.brand}</td>
+                    <td style={{ textAlign: 'center' }}>
+                      <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                        <Button variant="link" size="sm">
+                          <i className="fas fa-edit" />
+                        </Button>
+                      </LinkContainer>
+                      <Button variant="danger" size="sm" onClick={() => deleteHandler(product._id)}>
+                        <i className="fas fa-trash" />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
         );
       }
     }
