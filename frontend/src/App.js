@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <main className="py-3 main-container">
-        <Container>
+        <Container fluid="xl">
           <Routes />
         </Container>
       </main>

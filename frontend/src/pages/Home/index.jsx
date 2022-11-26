@@ -32,13 +32,16 @@ const Home = () => {
       return (<Message variant="danger">{error}</Message>);
     }
     return (
-      <Row className="px-3 px-md-5">
-        {products.map((item) => (
-          <Col xs={6} sm={6} md={6} lg={4} xl={3} key={item._id} className="px-1 px-sm-2 ">
-            <ProductCard product={item} />
-          </Col>
-        ))}
-      </Row>
+      <>
+        <Row className="px-3 px-md-5">
+          {products.map((item) => (
+            <Col xs={6} sm={6} md={6} lg={4} xl={3} key={item._id} className="px-1 px-sm-2 ">
+              <ProductCard product={item} />
+            </Col>
+          ))}
+        </Row>
+        <ProductPagination pages={pages} page={page} keyword={searchKeyword || ''} />
+      </>
     );
   };
 
@@ -46,7 +49,6 @@ const Home = () => {
     <>
       <h1 className="header-1">Последние продукты</h1>
       {productsContent()}
-      <ProductPagination pages={pages} page={page} keyword={searchKeyword || ''} />
     </>
   );
 };
