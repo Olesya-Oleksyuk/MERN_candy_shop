@@ -109,35 +109,26 @@ h1 {
   }
 }
 
+.header-1 {
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+  }
+}
+
+// Home Page
 .card-product {
   @extend .card;
 
   @include media-breakpoint-down(sm) {
-    padding-bottom: 0;
-
-    .card-body {
-      padding-bottom: 0;
+    .card-title {
+      font-size: 1rem;
     }
   }
-
-  @include media-breakpoint-up(md) {
-    padding-bottom: 0;
-
-    .card-body {
-      padding-bottom: 0;
-    }
-  }
-
-  .card-title {
-    @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
+    .card-title {
       font-size: 1.2rem;
     }
-
-    @include media-breakpoint-down(md) {
-        font-size: 1.5rem;
-    }
   }
-
 }
 
 .header-1 {
