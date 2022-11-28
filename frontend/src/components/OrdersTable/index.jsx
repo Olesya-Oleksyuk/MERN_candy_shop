@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../Loader';
 import Message from '../Message';
+import useAdaptiveCell from '../../helpers/AdaptiveTable';
 
 import { toCurrency, toDateTime } from '../../helpers/data';
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
@@ -16,6 +17,8 @@ const OrdersTable = () => {
 
   const orderListCustomer = useSelector((state) => state.orderListCustomer);
   const { loading, error, orders } = orderListCustomer;
+
+  const { onClickCellHandler, adaptiveCell } = useAdaptiveCell();
 
   useEffect(() => {
     dispatch(listCustomerOrder());
@@ -40,7 +43,12 @@ const OrdersTable = () => {
         <tbody>
           {orders.map((order) => (
             <tr key={order._id}>
-              <td>{order._id}</td>
+              <td
+                className={adaptiveCell(order._id)}
+                onClick={(e) => onClickCellHandler(e, order._id)}
+              >
+                {order._id}
+              </td>
               <td>
                 {' '}
                 {toDateTime(order.createdAt, DATE_TIME_FORMAT.SHORT)}

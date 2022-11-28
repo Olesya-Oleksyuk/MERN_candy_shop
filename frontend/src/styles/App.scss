@@ -198,3 +198,30 @@ h1 {
   @extend .product-pagination-xs;
   font-size: 1.2rem;
 }
+
+// For Tables
+@function th-onclick-shadow($color) {
+  @return rgba($color, 0.4) 5px 5px, rgba($color, 0.3) 10px 10px,
+    rgba($color, 0.2) 15px 15px, rgba($color, 0.1) 20px 20px,
+    rgba($color, 0.05) 25px 25px;
+}
+
+.cell-expanded {
+  @include media-breakpoint-down(md) {
+    position: absolute;
+    color: $light-gray;
+    background: $primary !important;
+    border-right: #ff9793;
+    padding-bottom: 12px !important;
+    z-index: 2;
+    box-shadow: th-onclick-shadow($primary) !important;
+  }
+}
+
+.cell-truncated {
+  @include media-breakpoint-down(md) {
+    max-width: 100px;
+    color: $primary;
+    text-decoration: underline;
+  }
+}
