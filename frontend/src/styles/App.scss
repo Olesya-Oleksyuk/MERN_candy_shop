@@ -200,6 +200,30 @@ h1 {
 }
 
 // For Tables
+.td-control {
+  @include media-breakpoint-down(md) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0.25rem 10px !important;
+
+    button {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    justify-content: center;
+    padding: 0.25rem 10px !important;
+  }
+}
+
+.td-center {
+  text-align: center;
+}
+
 @function th-onclick-shadow($color) {
   @return rgba($color, 0.4) 5px 5px, rgba($color, 0.3) 10px 10px,
     rgba($color, 0.2) 15px 15px, rgba($color, 0.1) 20px 20px,
