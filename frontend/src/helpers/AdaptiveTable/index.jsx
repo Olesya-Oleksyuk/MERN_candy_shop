@@ -1,27 +1,27 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const useAdaptiveCell = () => {
+export const useAdaptiveCell = () => {
   const [activeCell, setActiveCell] = useState({
     id: '',
     isClicked: false,
   });
 
-  const onClickCellHandler = (e, orderId) => {
-    if (!activeCell.id || activeCell.id !== orderId) {
+  const onClickCellHandler = (cellContent) => {
+    if (!activeCell.id || activeCell.id !== cellContent) {
       setActiveCell({
-        id: orderId,
+        id: cellContent,
         isClicked: true,
       });
     } else {
       setActiveCell({
-        id: orderId,
+        id: cellContent,
         isClicked: !activeCell.isClicked,
       });
     }
   };
 
-  const adaptiveCell = (orderId) => {
-    if (activeCell.id === orderId) {
+  const adaptiveCell = (cellContent) => {
+    if (activeCell.id === cellContent) {
       return activeCell.isClicked ? ' cell-expanded' : 'text-truncate cell-truncated';
     }
     return 'text-truncate cell-truncated';
@@ -29,5 +29,3 @@ const useAdaptiveCell = () => {
 
   return { onClickCellHandler, adaptiveCell };
 };
-
-export default useAdaptiveCell;

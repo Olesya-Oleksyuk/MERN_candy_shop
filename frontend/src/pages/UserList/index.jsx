@@ -8,10 +8,17 @@ import { deleteUser, listUsers } from '../../actions/userActions';
 
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
+import {
+  CheckIcon, CrossIcon, EditIcon, TrashIcon,
+} from '../../components/IconsForTable';
+
+import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const { onClickCellHandler, adaptiveCell } = useAdaptiveCell();
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
@@ -41,35 +48,40 @@ const UserListScreen = () => {
     if (error) return <Message variant="danger">{error}</Message>;
     if (users) {
       return (
-        <Table striped bordered hover responsive size="sm">
+        <Table striped bordered hover responsive className="table-adaptive">
           <thead>
             <tr>
               <th>ID</th>
               <th>ИМЯ</th>
               <th>EMAIL</th>
-              <th style={{ textAlign: 'center' }}>АДМИН</th>
+              <th className="td-center">АДМИН</th>
               <th />
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td>{user._id}</td>
+                <td
+                  className={adaptiveCell(user._id)}
+                  onClick={() => onClickCellHandler(user._id)}
+                >
+                  {user._id}
+                </td>
                 <td>{user.name}</td>
                 <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
-                <td style={{ textAlign: 'center' }}>
+                <td className="td-center">
                   {user.isAdmin
-                    ? (<i className="fas fa-check" style={{ color: '#48E5C2' }} />)
-                    : (<i className="fas fa-times" style={{ color: 'red' }} />)}
+                    ? <CheckIcon />
+                    : <CrossIcon />}
                 </td>
-                <td style={{ textAlign: 'center' }}>
+                <td className="td-control">
                   <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                    <Button variant="link" size="sm">
-                      <i className="fas fa-edit" />
+                    <Button variant="link" size="sm" className="btn-table">
+                      <EditIcon />
                     </Button>
                   </LinkContainer>
-                  <Button variant="danger" size="sm" onClick={() => deleteHandler(user._id)}>
-                    <i className="fas fa-trash" />
+                  <Button variant="danger" size="sm" className="btn-table" onClick={() => deleteHandler(user._id)}>
+                    <TrashIcon />
                   </Button>
                 </td>
               </tr>
@@ -78,6 +90,7 @@ const UserListScreen = () => {
         </Table>
       );
     }
+    return <></>;
   };
 
   return (

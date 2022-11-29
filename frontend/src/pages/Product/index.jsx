@@ -82,7 +82,7 @@ const Product = () => {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={6} className="my-3">
               <ReviewsSection
                 reviews={product.reviews}
                 productId={productId}

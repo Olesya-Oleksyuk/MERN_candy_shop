@@ -15,10 +15,15 @@ import { toCurrency } from '../../helpers/data';
 
 import { createProduct, deleteProduct, listProducts } from '../../actions/productAction';
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
+import { EditIcon, TrashIcon } from '../../components/IconsForTable';
+
+import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const { onClickCellHandler, adaptiveCell } = useAdaptiveCell();
 
   const params = useParams();
   const pageNumber = params.pageNumber || 1;
@@ -86,7 +91,7 @@ const ProductList = () => {
       if (products) {
         return (
           <div className="mb-3 mb-md-0">
-            <Table striped bordered hover responsive size="sm">
+            <Table striped bordered hover responsive className="table-adaptive">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -100,19 +105,26 @@ const ProductList = () => {
               <tbody>
                 {products.map((product) => (
                   <tr key={product.id}>
-                    <td>{product._id}</td>
-                    <td>{product.name}</td>
+                    <td
+                      className={adaptiveCell(product._id)}
+                      onClick={() => onClickCellHandler(product._id)}
+                    >
+                      {product._id}
+                    </td>
+                    <td>
+                      {product.name}
+                    </td>
                     <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
                     <td>{product.category}</td>
                     <td>{product.brand}</td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td className="td-control">
                       <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                        <Button variant="link" size="sm">
-                          <i className="fas fa-edit" />
+                        <Button variant="link" size="sm" className="btn-table">
+                          <EditIcon />
                         </Button>
                       </LinkContainer>
-                      <Button variant="danger" size="sm" onClick={() => deleteHandler(product._id)}>
-                        <i className="fas fa-trash" />
+                      <Button variant="danger" size="sm" className="btn-table" onClick={() => deleteHandler(product._id)}>
+                        <TrashIcon />
                       </Button>
                     </td>
                   </tr>

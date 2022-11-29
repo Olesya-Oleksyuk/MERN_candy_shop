@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../Loader';
 import Message from '../Message';
-import useAdaptiveCell from '../../helpers/AdaptiveTable';
+import { CrossIcon } from '../IconsForTable';
 
+import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 import { toCurrency, toDateTime } from '../../helpers/data';
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 
@@ -29,14 +30,14 @@ const OrdersTable = () => {
     if (error) return <Message variant="danger">{error}</Message>;
     if (!orders.length) return <Message variant="secondary">Заказов нет!</Message>;
     return (
-      <Table striped bordered hover responsive size="sm" style={{ textAlign: 'center' }}>
+      <Table striped bordered hover responsive className="table-adaptive">
         <thead>
           <tr>
             <th>ID</th>
             <th>ДАТА</th>
             <th>ИТОГО</th>
-            <th>ОПЛАЧЕНО</th>
-            <th>ДОСТАВЛЕНО</th>
+            <th className="td-center">ОПЛАЧЕНО</th>
+            <th className="td-center">ДОСТАВЛЕНО</th>
             <th />
           </tr>
         </thead>
@@ -45,26 +46,25 @@ const OrdersTable = () => {
             <tr key={order._id}>
               <td
                 className={adaptiveCell(order._id)}
-                onClick={(e) => onClickCellHandler(e, order._id)}
+                onClick={() => onClickCellHandler(order._id)}
               >
                 {order._id}
               </td>
               <td>
-                {' '}
                 {toDateTime(order.createdAt, DATE_TIME_FORMAT.SHORT)}
               </td>
               <td>{toCurrency(order.totalPrice, CURRENCY.USD)}</td>
-              <td>
+              <td className="td-center">
                 {order.isPaid ? toDateTime(order.paidAt, DATE_TIME_FORMAT.SHORT)
-                  : <i className="fas fa-times" style={{ color: 'red' }} /> }
+                  : <CrossIcon /> }
               </td>
-              <td>
+              <td className="td-center">
                 {order.isDelivered ? toDateTime(order.deliveredAt, DATE_TIME_FORMAT.SHORT)
-                  : <i className="fas fa-times" style={{ color: 'red' }} /> }
+                  : <CrossIcon /> }
               </td>
-              <td>
+              <td className="td-center">
                 <LinkContainer to={`orders/${order._id}`}>
-                  <Button className="btn-sm" variant="light">Детали</Button>
+                  <Button className="btn-table" variant="light">Детали</Button>
                 </LinkContainer>
               </td>
             </tr>

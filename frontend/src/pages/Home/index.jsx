@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="header-1">Последние продукты</h1>
+      <h1 className="header-1 mx-3 mx-md-5 mx-xl-0">Последние продукты</h1>
       {productsContent()}
     </>
   );

@@ -83,10 +83,9 @@ const ReviewsSection = ({
     </Form>
   );
 
-
   return (
     <>
-      <h2>Отзывы</h2>
+      <h1 className="ms-3 mb-0">Отзывы</h1>
       {reviewsNumber === 0 && <Message>Отзывов пока нет</Message>}
       <ListGroup variant="flush">
         {reviews.map((rew) => reviewPost(rew))}
