@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import ProductPagination from '../../components/ProductPagination';
 import ProductCatalogue from '../../components/ProductCatalogue';
+import NoFoundProduct from '../../components/NoFound/Product';
 
 import { listProducts } from '../../actions/productAction';
 
@@ -23,6 +24,13 @@ const Home = () => {
   }, [searchKeyword, pageNumber]);
 
   const getProductContent = () => {
+    if (!loading && products.length === 0) {
+      return (
+        <div className="product-catalogue__no-found">
+          <NoFoundProduct />
+        </div>
+      );
+    }
     return (
       <>
         <Row className="px-0 mx-0 px-md-5">
