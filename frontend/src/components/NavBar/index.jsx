@@ -57,7 +57,7 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar className="customNav" bg="primary" variant="dark" expand="lg" collapseOnSelect>
+    <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Candy Shop</Navbar.Brand>

@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
-import ProductCard from '../../components/ProductCard';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
 import ProductPagination from '../../components/ProductPagination';
+import ProductCatalogue from '../../components/ProductCatalogue';
 
 import { listProducts } from '../../actions/productAction';
 
@@ -17,38 +15,34 @@ const Home = () => {
 
   const productList = useSelector((state) => state.productList);
   const {
-    loading, error, products, page, pages,
+    products, loading, error, page: productPage, pages: productPages,
   } = productList;
 
   useEffect(() => {
     dispatch(listProducts(searchKeyword, pageNumber));
   }, [searchKeyword, pageNumber]);
 
-  const productsContent = () => {
-    if (loading) {
-      return <Loader />;
-    }
-    if (error) {
-      return (<Message variant="danger">{error}</Message>);
-    }
+  const getProductContent = () => {
     return (
       <>
-        <Row className="px-3 px-md-5">
-          {products.map((item) => (
-            <Col xs={6} sm={6} md={6} lg={4} xl={3} key={item._id} className="px-1 px-sm-2 ">
-              <ProductCard product={item} />
-            </Col>
-          ))}
+        <Row className="px-0 mx-0 px-md-5">
+          <ProductCatalogue
+            products={products}
+            loading={loading}
+            error={error}
+          />
         </Row>
-        <ProductPagination pages={pages} page={page} keyword={searchKeyword || ''} />
+        <ProductPagination pages={productPages} page={productPage} keyword={searchKeyword || ''} />
       </>
     );
   };
 
   return (
     <>
-      <h1 className="header-1 mx-3 mx-md-5 mx-xl-0">Последние продукты</h1>
-      {productsContent()}
+      <h1 className="product-catalogue__header mx-0 mx-md-5 mx-xl-0">Последние продукты</h1>
+      {
+        getProductContent()
+      }
     </>
   );
 };

@@ -9,13 +9,19 @@ import Routes from './Routes';
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <main className="py-3 main-container">
-        <Container fluid="xl">
-          <Routes />
-        </Container>
-      </main>
-      <Footer />
+      <div className="page">
+        <header className="page__header">
+          <Header />
+        </header>
+        <main className="page__main py-3">
+          <Container className="main-content">
+            <Routes />
+          </Container>
+        </main>
+        <footer className="page__footer">
+          <Footer />
+        </footer>
+      </div>
     </BrowserRouter>
   );
 }

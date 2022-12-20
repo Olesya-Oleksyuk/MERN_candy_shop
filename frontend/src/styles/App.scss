@@ -26,30 +26,34 @@ $spacers: map-merge(
 
 // Your custom rules here
 
-html {
-  font-size: 16px;
+:root {
+  --bs-body-color: #333;
 }
 
-body {
+@font-face {
+  font-family: 'Lobster Regular';
+  font-display: swap;
+  src: url(../assets/fonts/Lobster/Lobster-Regular.ttf);
+  font-style: normal;
+}
+
+html,
+body,
+#root {
+  font-size: 16px;
   margin: 0;
+  height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.main-container {
-  min-height: 80vh;
-}
-
-.navbar {
-  min-height: 80px;
 }
 
 h1 {
@@ -64,6 +68,44 @@ h2 {
 
 a {
   text-decoration: none;
+}
+
+.page {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.page__header {
+  flex: 0 1 auto;
+  top: 0;
+  position: sticky;
+  min-height: 80px;
+  z-index: 999;
+  background-color: white;
+}
+
+.page__main {
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.page__footer {
+  flex: 0 1 auto;
+}
+
+.main-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__text {
+  color: $gray-500;
+}
+
+.navbar {
+  min-height: 100%;
 }
 
 .inline-link {
@@ -117,13 +159,13 @@ h1 {
   }
 }
 
-.header-1 {
+// Home Page
+.product-catalogue__header {
   @include media-breakpoint-down(sm) {
     text-align: center;
   }
 }
 
-// Home Page
 .card-product {
   @extend .card;
 
