@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
+import UserFormContainer from '../../components/FormContainer';
+
 import { login } from '../../actions/userActions';
-import FormContainer from '../../components/FormContainer';
 
 const LoginScreen = () => {
   const history = useHistory();
@@ -83,9 +84,9 @@ const LoginScreen = () => {
   };
 
   return (
-    <FormContainer>
+    <UserFormContainer>
       {loginFormContent()}
-    </FormContainer>
+    </UserFormContainer>
   );
 };
 

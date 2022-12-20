@@ -6,7 +6,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import CheckoutSteps from '../../components/CheckoutSteps';
-import FormContainer from '../../components/FormContainer';
+import UserFormContainer from '../../components/FormContainer';
+
 import { saveShippingAddress } from '../../actions/shippmentActions';
 
 const ShippingScreen = () => {
@@ -42,7 +43,7 @@ const ShippingScreen = () => {
   };
 
   return (
-    <FormContainer>
+    <UserFormContainer>
       <CheckoutSteps step1 step2 />
       <h1>Оформление заказа</h1>
       <Form onSubmit={submitHandler}>
@@ -88,7 +89,7 @@ const ShippingScreen = () => {
         </FormGroup>
         <Button type="submit" variant="primary">Далее</Button>
       </Form>
-    </FormContainer>
+    </UserFormContainer>
   );
 };
 

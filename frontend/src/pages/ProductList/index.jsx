@@ -90,48 +90,51 @@ const ProductList = () => {
       if (error) return <Message variant="danger">{error}</Message>;
       if (products) {
         return (
-          <div className="mb-3 mb-md-0">
-            <Table striped bordered hover responsive className="table-adaptive">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>НАЗВАНИЕ</th>
-                  <th>ЦЕНА</th>
-                  <th>КАТЕГОРИЯ</th>
-                  <th>БРЕНД</th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((product) => (
-                  <tr key={product.id}>
-                    <td
-                      className={adaptiveCell(product._id)}
-                      onClick={() => onClickCellHandler(product._id)}
-                    >
-                      {product._id}
-                    </td>
-                    <td>
-                      {product.name}
-                    </td>
-                    <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
-                    <td>{product.category}</td>
-                    <td>{product.brand}</td>
-                    <td className="td-control">
-                      <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                        <Button variant="link" size="sm" className="btn-table">
-                          <EditIcon />
-                        </Button>
-                      </LinkContainer>
-                      <Button variant="danger" size="sm" className="btn-table" onClick={() => deleteHandler(product._id)}>
-                        <TrashIcon />
-                      </Button>
-                    </td>
+          <>
+            <div className="mb-3 mb-md-0">
+              <Table striped bordered hover responsive className="table-adaptive">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>НАЗВАНИЕ</th>
+                    <th>ЦЕНА</th>
+                    <th>КАТЕГОРИЯ</th>
+                    <th>БРЕНД</th>
+                    <th />
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product.id}>
+                      <td
+                        className={adaptiveCell(product._id)}
+                        onClick={() => onClickCellHandler(product._id)}
+                      >
+                        {product._id}
+                      </td>
+                      <td>
+                        {product.name}
+                      </td>
+                      <td>{toCurrency(product.price, CURRENCY.DEFAULT)}</td>
+                      <td>{product.category}</td>
+                      <td>{product.brand}</td>
+                      <td className="td-control">
+                        <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                          <Button variant="link" size="sm" className="btn-table">
+                            <EditIcon />
+                          </Button>
+                        </LinkContainer>
+                        <Button variant="danger" size="sm" className="btn-table" onClick={() => deleteHandler(product._id)}>
+                          <TrashIcon />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+            <ProductPagination pages={pages} page={page} isAdmin />
+          </>
         );
       }
     }
@@ -157,7 +160,6 @@ const ProductList = () => {
       {deleteProductProgress()}
       {createProductProgress()}
       {getTableProductList()}
-      <ProductPagination pages={pages} page={page} isAdmin />
     </>
   );
 };
