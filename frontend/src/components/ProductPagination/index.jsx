@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Pagination from '@vlsergey/react-bootstrap-pagination';
 import { useHistory } from 'react-router-dom';
+
+import useBreakpoints from '../../hooks/useBreakpoints';
 
 const ProductPagination = ({
   pages, page, isAdmin = false, keyword = '',
 }) => {
   const history = useHistory();
 
-  const getCurrentBreakpoint = (width) => {
-    if (width >= 1200) return 'xl';
-    if (width >= 768) return 'md';
-    if (width >= 576) return 'sm';
-    return 'xs';
-  };
-
-  const [viewport, setViewport] = useState(getCurrentBreakpoint(window.innerWidth));
-
-  const updateMedia = () => {
-    setViewport(getCurrentBreakpoint(window.innerWidth));
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', updateMedia);
-    return () => window.removeEventListener('resize', updateMedia);
-  });
+  const viewport = useBreakpoints(window);
 
   const getLink = (pageNumber) => {
     if (isAdmin) {
