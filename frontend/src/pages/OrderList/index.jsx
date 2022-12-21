@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { useHistory } from 'react-router-dom';
 
+import DefaultLayout from '../../layout/Default';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { listOrders } from '../../actions/orderAction';
@@ -90,10 +91,10 @@ const OrderListScreen = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Заказы</h1>
       {getTableUserList()}
-    </>
+    </DefaultLayout>
   );
 };
 

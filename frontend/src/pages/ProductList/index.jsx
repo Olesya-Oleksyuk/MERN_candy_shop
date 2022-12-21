@@ -6,6 +6,7 @@ import {
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import DefaultLayout from '../../layout/Default';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import ProductPagination from '../../components/ProductPagination';
@@ -142,7 +143,7 @@ const ProductList = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       {!loadingCreate && (
       <Row className="align-items-center">
         <Col>
@@ -160,7 +161,7 @@ const ProductList = () => {
       {deleteProductProgress()}
       {createProductProgress()}
       {getTableProductList()}
-    </>
+    </DefaultLayout>
   );
 };
 

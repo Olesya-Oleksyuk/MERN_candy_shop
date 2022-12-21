@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Button, Form, FormControl, FormGroup, FormLabel,
+  Button, Form, FormControl, FormGroup, FormLabel, Row,
 } from 'react-bootstrap';
 
+import DefaultLayout from '../../layout/Default';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import UserFormContainer from '../../components/FormContainer';
@@ -174,19 +175,21 @@ const ProductEditScreen = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       { product?.name || errorProductDetails
         ? (
-          <Link to="/admin/productlist" className="btn btn-light my-3">
-            Вернуться
-          </Link>
+          <Row xs={1} sm="auto" className="mx-2 mx-sm-0">
+            <Link to="/admin/productlist" className="btn btn-light my-3">
+              Вернуться
+            </Link>
+          </Row>
         )
         : <></>}
       <UserFormContainer>
         {updateProductProgress()}
         {loginFormContent()}
       </UserFormContainer>
-    </>
+    </DefaultLayout>
   );
 };
 

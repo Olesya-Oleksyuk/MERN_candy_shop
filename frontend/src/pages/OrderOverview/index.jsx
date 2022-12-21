@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
+import DefaultLayout from '../../layout/Default';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
@@ -96,7 +97,11 @@ const OrderOverviewPage = () => {
     return <></>;
   };
 
-  return <>{getContent()}</>;
+  return (
+    <DefaultLayout>
+      {getContent()}
+    </DefaultLayout>
+  );
 };
 
 export default OrderOverviewPage;

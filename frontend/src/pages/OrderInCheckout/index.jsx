@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
+import DefaultLayout from '../../layout/Default';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
@@ -68,7 +69,7 @@ const OrderInCheckoutScreen = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
@@ -104,7 +105,7 @@ const OrderInCheckoutScreen = () => {
           </Receipt>
         </Col>
       </Row>
-    </>
+    </DefaultLayout>
   );
 };
 

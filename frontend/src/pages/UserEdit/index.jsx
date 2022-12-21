@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import {
-  Button, Form, FormCheck, FormControl, FormGroup, FormLabel,
+  Button, Form, FormCheck, FormControl, FormGroup, FormLabel, Row,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import UserFormContainer from '../../components/FormContainer';
@@ -103,16 +104,18 @@ const UserEditScreen = () => {
   };
 
   return (
-    <>
-      <Link to="/admin/userlist" className="btn btn-light my-3">
-        Вернуться
-      </Link>
+    <DefaultLayout>
+      <Row xs={1} sm="auto" className="mx-2 mx-sm-0">
+        <Link to="/admin/userlist" className="btn btn-light my-3">
+          Вернуться
+        </Link>
+      </Row>
       <UserFormContainer>
         <h1>Редактирование</h1>
         {updateUserProgress()}
         {loginFormContent()}
       </UserFormContainer>
-    </>
+    </DefaultLayout>
   );
 };
 

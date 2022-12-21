@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DefaultLayout from '../../layout/Default';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import UserFormContainer from '../../components/FormContainer';
 import { savePaymentMethod } from '../../actions/paymentActions';
@@ -41,36 +42,38 @@ const PaymentScreen = () => {
   };
 
   return (
-    <UserFormContainer>
-      <CheckoutSteps step1 step2 step3 />
-      <h1>Способ оплаты</h1>
-      <Form onSubmit={submitHandler}>
-        <FormGroup className="my-4">
-          <FormLabel as="legend">Выберете способ оплаты:</FormLabel>
-          <Col>
-            <FormCheck
-              checked
-              type="radio"
-              label="Оплата с помощью PayPal"
-              id="paypal"
-              name="paymentMethod"
-              value={PAYMENT_METHOD.PAYPAL}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            <FormCheck
-              disabled
-              type="radio"
-              label="Оплата с помощью QIWI или дебетовой картой"
-              id="qiwi"
-              name="paymentMethod"
-              value={PAYMENT_METHOD.QIWI}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-          </Col>
-        </FormGroup>
-        <Button type="submit" variant="primary">Далее</Button>
-      </Form>
-    </UserFormContainer>
+    <DefaultLayout>
+      <UserFormContainer>
+        <CheckoutSteps step1 step2 step3 />
+        <h1>Способ оплаты</h1>
+        <Form onSubmit={submitHandler}>
+          <FormGroup className="my-4">
+            <FormLabel as="legend">Выберете способ оплаты:</FormLabel>
+            <Col>
+              <FormCheck
+                checked
+                type="radio"
+                label="Оплата с помощью PayPal"
+                id="paypal"
+                name="paymentMethod"
+                value={PAYMENT_METHOD.PAYPAL}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              <FormCheck
+                disabled
+                type="radio"
+                label="Оплата с помощью QIWI или дебетовой картой"
+                id="qiwi"
+                name="paymentMethod"
+                value={PAYMENT_METHOD.QIWI}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+            </Col>
+          </FormGroup>
+          <Button type="submit" variant="primary">Далее</Button>
+        </Form>
+      </UserFormContainer>
+    </DefaultLayout>
   );
 };
 

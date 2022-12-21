@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
+import DefaultLayout from '../../layout/Default';
 import ProductPagination from '../../components/ProductPagination';
 import ProductCatalogue from '../../components/ProductCatalogue';
 import NoFoundProduct from '../../components/NoFound/Product';
@@ -46,12 +47,12 @@ const Home = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1 className="product-catalogue__header mx-0 mx-md-5 mx-xl-0">Последние продукты</h1>
       {
         getProductContent()
       }
-    </>
+    </DefaultLayout>
   );
 };
 
