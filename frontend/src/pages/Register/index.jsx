@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import FormContainer from '../../components/FormContainer';
+import UserFormContainer from '../../components/FormContainer';
 
 import { register } from '../../actions/userActions';
 
@@ -101,10 +101,10 @@ const RegisterScreen = () => {
   };
 
   return (
-    <FormContainer>
+    <UserFormContainer>
       <h1>Регистрация</h1>
       {loginFormContent()}
-    </FormContainer>
+    </UserFormContainer>
   );
 };
 

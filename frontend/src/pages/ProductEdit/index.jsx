@@ -7,7 +7,7 @@ import {
 
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-import FormContainer from '../../components/FormContainer';
+import UserFormContainer from '../../components/FormContainer';
 
 import { listProductDetails, updateProduct, uploadProductPicture } from '../../actions/productAction';
 import {
@@ -182,10 +182,10 @@ const ProductEditScreen = () => {
           </Link>
         )
         : <></>}
-      <FormContainer>
+      <UserFormContainer>
         {updateProductProgress()}
         {loginFormContent()}
-      </FormContainer>
+      </UserFormContainer>
     </>
   );
 };

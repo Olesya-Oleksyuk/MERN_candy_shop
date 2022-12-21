@@ -98,7 +98,11 @@ const Product = () => {
 
   return (
     <>
-      <Link className=" btn btn-return my-3" to="/">Вернуться</Link>
+      <Row xs="auto">
+        <Col>
+          <Link className="btn btn-return my-3" to="/">Вернуться</Link>
+        </Col>
+      </Row>
       {getContent()}
     </>
   );

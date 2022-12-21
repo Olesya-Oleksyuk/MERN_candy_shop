@@ -5,11 +5,11 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { PAYMENT_METHOD } from '../../helpers/constants';
-
 import CheckoutSteps from '../../components/CheckoutSteps';
-import FormContainer from '../../components/FormContainer';
+import UserFormContainer from '../../components/FormContainer';
 import { savePaymentMethod } from '../../actions/paymentActions';
+
+import { PAYMENT_METHOD } from '../../helpers/constants';
 
 const PaymentScreen = () => {
   const history = useHistory();
@@ -41,7 +41,7 @@ const PaymentScreen = () => {
   };
 
   return (
-    <FormContainer>
+    <UserFormContainer>
       <CheckoutSteps step1 step2 step3 />
       <h1>Способ оплаты</h1>
       <Form onSubmit={submitHandler}>
@@ -70,7 +70,7 @@ const PaymentScreen = () => {
         </FormGroup>
         <Button type="submit" variant="primary">Далее</Button>
       </Form>
-    </FormContainer>
+    </UserFormContainer>
   );
 };
 
