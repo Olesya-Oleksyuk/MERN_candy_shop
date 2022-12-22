@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
-import Loader from '../../components/Loader';
+import LoaderSpinner from '../../components/LoaderSpinner';
 import UserFormContainer from '../../components/FormContainer';
 
 import { register } from '../../actions/userActions';
@@ -50,7 +50,7 @@ const RegisterScreen = () => {
     if (loading) {
       return (
         <>
-          <Loader />
+          <LoaderSpinner pageCenter />
         </>
       );
     }

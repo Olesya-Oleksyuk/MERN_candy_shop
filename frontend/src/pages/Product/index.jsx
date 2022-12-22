@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
 import Rating from '../../components/Rating';
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import PriceTag from '../../components/PriceTag';
+import LoaderSpinner from '../../components/LoaderSpinner';
 
 import { toCurrency } from '../../helpers/data';
 import { CURRENCY } from '../../helpers/constants';
@@ -37,7 +37,7 @@ const Product = () => {
 
   const getContent = () => {
     if (loading || (currentProductId !== productId)) {
-      return <Loader />;
+      return <LoaderSpinner pageCenter />;
     }
     if (error) {
       return (<Message variant="danger">{error}</Message>);

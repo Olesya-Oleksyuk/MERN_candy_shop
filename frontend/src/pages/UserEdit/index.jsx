@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
-import Loader from '../../components/Loader';
+import LoaderSpinner from '../../components/LoaderSpinner';
 import UserFormContainer from '../../components/FormContainer';
 
 import { getUserDetails, updateUser } from '../../actions/userActions';
@@ -60,7 +60,7 @@ const UserEditScreen = () => {
     if (loading) {
       return (
         <>
-          <Loader />
+          <LoaderSpinner pageCenter />
         </>
       );
     }
@@ -95,7 +95,7 @@ const UserEditScreen = () => {
 
   const updateUserProgress = () => {
     if (loadingUpdate) {
-      return <Loader />;
+      return <LoaderSpinner pageCenter />;
     }
     if (errorUpdate) {
       return <Message variant="danger">{errorUpdate}</Message>;

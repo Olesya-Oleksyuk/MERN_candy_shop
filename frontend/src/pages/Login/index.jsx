@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
-import Loader from '../../components/Loader';
 import UserFormContainer from '../../components/FormContainer';
+import LoaderSpinner from '../../components/LoaderSpinner';
 
 import { login } from '../../actions/userActions';
 
@@ -42,7 +42,7 @@ const LoginScreen = () => {
       return (
         <>
           <h1>Авторизация</h1>
-          <Loader />
+          <LoaderSpinner pageCenter />
         </>
       );
     }
