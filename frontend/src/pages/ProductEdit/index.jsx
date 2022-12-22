@@ -5,9 +5,9 @@ import {
   Button, Form, FormControl, FormGroup, FormLabel,
 } from 'react-bootstrap';
 
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import UserFormContainer from '../../components/FormContainer';
+import LoaderSpinner from '../../components/LoaderSpinner';
 
 import { listProductDetails, updateProduct, uploadProductPicture } from '../../actions/productAction';
 import {
@@ -104,7 +104,7 @@ const ProductEditScreen = () => {
     if (loadingProduct) {
       return (
         <>
-          <Loader />
+          <LoaderSpinner pageCenter />
         </>
       );
     }
@@ -132,7 +132,7 @@ const ProductEditScreen = () => {
             </FormGroup>
             <Form.Group controlId="image-file" className="mb-3">
               <Form.Control type="file" size="sm" aria-label="Выберете файл" onChange={uploadFileHandler} ref={imgInputRef} />
-              {loadingPic && <Loader styleOptions={{ marginTop: '1rem' }} />}
+              {loadingPic && <LoaderSpinner center stylingOptions={{ marginTop: '1rem' }} />}
               {errorPic && <Message variant="danger">{errorPic}</Message>}
               {successPic && <Message variant="success">Новое фото загружено</Message>}
             </Form.Group>
@@ -165,7 +165,7 @@ const ProductEditScreen = () => {
 
   const updateProductProgress = () => {
     if (loadingUpdate) {
-      return <Loader />;
+      return <LoaderSpinner pageCenter />;
     }
     if (errorUpdate) {
       return <Message variant="danger">{errorUpdate}</Message>;

@@ -3,8 +3,8 @@ import { Button, Table } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Loader from '../Loader';
 import Message from '../Message';
+import LoaderSpinner from '../LoaderSpinner';
 import { CrossIcon } from '../IconsForTable';
 
 import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
@@ -26,9 +26,15 @@ const OrdersTable = () => {
   }, []);
 
   const getOrdersContent = () => {
-    if (loading) return <Loader />;
+    if (loading) {
+      return (
+        <div className="wrapper-center">
+          <LoaderSpinner center />
+        </div>
+      );
+    }
     if (error) return <Message variant="danger">{error}</Message>;
-    if (!orders.length) return <Message variant="secondary">Заказов нет!</Message>;
+    if (!orders && !orders.length) return <Message variant="secondary">Заказов нет!</Message>;
     return (
       <Table striped bordered hover responsive className="table-adaptive">
         <thead>

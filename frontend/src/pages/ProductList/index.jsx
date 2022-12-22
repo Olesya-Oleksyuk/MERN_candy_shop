@@ -6,18 +6,17 @@ import {
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import ProductPagination from '../../components/ProductPagination';
+import LoaderSpinner from '../../components/LoaderSpinner';
+import { EditIcon, TrashIcon } from '../../components/IconsForTable';
 
 import { CURRENCY } from '../../helpers/constants';
 import { toCurrency } from '../../helpers/data';
+import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
 import { createProduct, deleteProduct, listProducts } from '../../actions/productAction';
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
-import { EditIcon, TrashIcon } from '../../components/IconsForTable';
-
-import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -76,7 +75,7 @@ const ProductList = () => {
 
   const createProductProgress = () => {
     if (loadingCreate) {
-      return <Loader />;
+      return <LoaderSpinner pageCenter />;
     }
     if (errorCreate) {
       return <Message variant="danger">{errorCreate}</Message>;
@@ -86,9 +85,13 @@ const ProductList = () => {
 
   const getTableProductList = () => {
     if (!loadingCreate && !successCreate) {
-      if (loading) return <Loader />;
+      if (loading) {
+        return (
+          <LoaderSpinner pageCenter />
+        );
+      }
       if (error) return <Message variant="danger">{error}</Message>;
-      if (products) {
+      if (products.length !== 0) {
         return (
           <>
             <div className="mb-3 mb-md-0">

@@ -4,7 +4,7 @@ import { ListGroupItem } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-import Loader from '../Loader';
+import LoaderSpinner from '../LoaderSpinner';
 
 import { getOrderDetails, payOrder } from '../../actions/orderAction';
 import { ORDER_PAY_PROCESS_RESET } from '../../constants/orderConstants';
@@ -51,9 +51,9 @@ const PaypalButton = ({ orderId, orderIsPaid, orderPrice }) => {
     <>
       {!orderIsPaid && (
       <ListGroupItem>
-        {loadingPay && <Loader />}
+        {loadingPay && <LoaderSpinner pageCenter />}
         {!sdkReady
-          ? <Loader />
+          ? <LoaderSpinner pageCenter />
           : <PayPalButton amount={orderPrice} onSuccess={successPaymentHandler} />}
       </ListGroupItem>
       )}
