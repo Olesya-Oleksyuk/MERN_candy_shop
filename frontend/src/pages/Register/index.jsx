@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
 import LoaderSpinner from '../../components/LoaderSpinner';
 import UserFormContainer from '../../components/FormContainer';
@@ -101,10 +102,12 @@ const RegisterScreen = () => {
   };
 
   return (
-    <UserFormContainer>
-      <h1>Регистрация</h1>
-      {loginFormContent()}
-    </UserFormContainer>
+    <DefaultLayout>
+      <UserFormContainer>
+        <h1>Регистрация</h1>
+        {loginFormContent()}
+      </UserFormContainer>
+    </DefaultLayout>
   );
 };
 

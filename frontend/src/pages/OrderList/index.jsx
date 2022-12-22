@@ -5,14 +5,16 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { useHistory } from 'react-router-dom';
 
+import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
-import { listOrders } from '../../actions/orderAction';
-import { toCurrency, toDateTime } from '../../helpers/data';
 import { CrossIcon } from '../../components/IconsForTable';
 import LoaderSpinner from '../../components/LoaderSpinner';
 
+import { toCurrency, toDateTime } from '../../helpers/data';
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
+
+import { listOrders } from '../../actions/orderAction';
 
 const OrderListScreen = () => {
   const dispatch = useDispatch();
@@ -90,10 +92,10 @@ const OrderListScreen = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Заказы</h1>
       {getTableUserList()}
-    </>
+    </DefaultLayout>
   );
 };
 

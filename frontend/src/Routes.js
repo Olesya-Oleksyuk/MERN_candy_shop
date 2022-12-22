@@ -16,6 +16,7 @@ import UserEditScreen from './pages/UserEdit';
 import ProductList from './pages/ProductList';
 import ProductEditScreen from './pages/ProductEdit';
 import OrderListScreen from './pages/OrderList';
+import StartScreen from './pages/StartScreen';
 
 const Routes = () => (
   <>
@@ -76,8 +77,11 @@ const Routes = () => (
     <Route path="/search/:keyword/page/:pageNumber" exact>
       <Home />
     </Route>
+    <Route path="/welcome" exact>
+      <StartScreen />
+    </Route>
     <Route path="/" exact>
-      <Home />
+      <StartScreen />
     </Route>
   </>
 );

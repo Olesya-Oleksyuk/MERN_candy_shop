@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
+import DefaultLayout from '../../layout/Default';
+import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
@@ -11,7 +13,6 @@ import LoaderSpinner from '../../components/LoaderSpinner';
 import { CURRENCY } from '../../helpers/constants';
 
 import { deliverOrder, getOrderDetails } from '../../actions/orderAction';
-
 import { ORDER_DELIVERY_PROCESS_RESET } from '../../constants/orderConstants';
 
 const OrderOverviewPage = () => {
@@ -97,7 +98,11 @@ const OrderOverviewPage = () => {
     return <></>;
   };
 
-  return <>{getContent()}</>;
+  return (
+    <DefaultLayout>
+      {getContent()}
+    </DefaultLayout>
+  );
 };
 
 export default OrderOverviewPage;

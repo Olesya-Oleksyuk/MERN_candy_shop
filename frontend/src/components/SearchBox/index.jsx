@@ -22,7 +22,7 @@ const SearchBox = () => {
         name="q"
         onChange={(e) => setKeyword(e.target.value)}
         placeholder="Введите название..."
-        className="me-lg-2 ms-lg-3 me-3"
+        className="navbar__input me-lg-2 ms-lg-3 me-3"
       />
       <Button type="submit" variant="outline-light" className="p-2">Поиск</Button>
     </Form>

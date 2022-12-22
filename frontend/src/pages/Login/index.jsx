@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
 import UserFormContainer from '../../components/FormContainer';
 import LoaderSpinner from '../../components/LoaderSpinner';
@@ -23,7 +24,7 @@ const LoginScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const redirect = location.search ? location.search.split('=')[1] : '/home';
 
   useEffect(() => {
     if (userInfo) {
@@ -84,9 +85,11 @@ const LoginScreen = () => {
   };
 
   return (
-    <UserFormContainer>
-      {loginFormContent()}
-    </UserFormContainer>
+    <DefaultLayout>
+      <UserFormContainer>
+        {loginFormContent()}
+      </UserFormContainer>
+    </DefaultLayout>
   );
 };
 

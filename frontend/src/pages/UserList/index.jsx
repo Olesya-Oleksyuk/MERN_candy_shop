@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { deleteUser, listUsers } from '../../actions/userActions';
 
 import Message from '../../components/Message';
+import DefaultLayout from '../../layout/Default';
 import {
   CheckIcon, CrossIcon, EditIcon, TrashIcon,
 } from '../../components/IconsForTable';
@@ -94,10 +95,10 @@ const UserListScreen = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <h1>Пользователи</h1>
       {getTableUserList()}
-    </>
+    </DefaultLayout>
   );
 };
 

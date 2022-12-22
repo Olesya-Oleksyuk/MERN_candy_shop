@@ -3,6 +3,7 @@ import {
   Container, Nav, Navbar, NavDropdown,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useLocation } from 'react-router-dom';
 import { logout } from '../../actions/userActions';
 
 import SearchBox from '../SearchBox';
@@ -11,6 +12,8 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const currLocation = useLocation().pathname;
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -59,7 +62,7 @@ const NavBar = () => {
   return (
     <Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
       <Container>
-        <LinkContainer to="/">
+        <LinkContainer to={currLocation === '/home' ? '/welcome' : '/home'}>
           <Navbar.Brand>Candy Shop</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

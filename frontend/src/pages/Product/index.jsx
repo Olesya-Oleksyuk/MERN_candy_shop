@@ -5,6 +5,7 @@ import {
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DefaultLayout from '../../layout/Default';
 import Rating from '../../components/Rating';
 import Message from '../../components/Message';
 import PriceTag from '../../components/PriceTag';
@@ -97,14 +98,14 @@ const Product = () => {
   };
 
   return (
-    <>
+    <DefaultLayout>
       <Row xs="auto">
         <Col>
-          <Link className="btn btn-return my-3" to="/">Вернуться</Link>
+          <Link className="btn btn-return my-3" to="/home">Вернуться</Link>
         </Col>
       </Row>
       {getContent()}
-    </>
+    </DefaultLayout>
   );
 };
 export default Product;
