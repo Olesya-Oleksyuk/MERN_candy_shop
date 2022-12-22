@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
+import LoaderSpinner from '../../components/LoaderSpinner';
+
 import { CURRENCY } from '../../helpers/constants';
 
 import { deliverOrder, getOrderDetails } from '../../actions/orderAction';
@@ -44,7 +45,7 @@ const OrderOverviewPage = () => {
 
   const getContent = () => {
     if (loading) {
-      return <Loader />;
+      return <LoaderSpinner pageCenter />;
     }
     if (error) {
       return <Message variant="danger">{error}</Message>;

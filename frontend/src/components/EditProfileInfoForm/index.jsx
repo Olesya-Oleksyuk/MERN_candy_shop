@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Message from '../Message';
-import Loader from '../Loader';
+import LoaderSpinner from '../LoaderSpinner';
 
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
@@ -63,7 +63,7 @@ const EditProfileInfoForm = () => {
   const getFormContent = () => {
     if (loading) {
       return (
-        <Loader />
+        <LoaderSpinner center />
       );
     }
     return (

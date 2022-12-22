@@ -1,15 +1,15 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import Loader from '../Loader';
+
 import Message from '../Message';
 import ProductCard from '../ProductCard';
+import LoaderSpinner from '../LoaderSpinner';
 
 const ProductCatalogue = ({
   products, loading, error,
 }) => {
-
   if (loading) {
-    return <Loader />;
+    return <LoaderSpinner pageCenter />;
   }
   if (error) {
     return (<Message variant="danger">{error}</Message>);

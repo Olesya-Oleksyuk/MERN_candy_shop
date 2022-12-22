@@ -6,11 +6,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { deleteUser, listUsers } from '../../actions/userActions';
 
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import {
   CheckIcon, CrossIcon, EditIcon, TrashIcon,
 } from '../../components/IconsForTable';
+import LoaderSpinner from '../../components/LoaderSpinner';
 
 import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
@@ -44,7 +44,7 @@ const UserListScreen = () => {
   };
 
   const getTableUserList = () => {
-    if (loading) return <Loader />;
+    if (loading) return <LoaderSpinner pageCenter />;
     if (error) return <Message variant="danger">{error}</Message>;
     if (users) {
       return (

@@ -5,11 +5,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { useHistory } from 'react-router-dom';
 
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { listOrders } from '../../actions/orderAction';
 import { toCurrency, toDateTime } from '../../helpers/data';
 import { CrossIcon } from '../../components/IconsForTable';
+import LoaderSpinner from '../../components/LoaderSpinner';
 
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
@@ -35,7 +35,7 @@ const OrderListScreen = () => {
   }, [dispatch, history, userInfo]);
 
   const getTableUserList = () => {
-    if (loading) return <Loader />;
+    if (loading) return <LoaderSpinner pageCenter />;
     if (error) return <Message variant="danger">{error}</Message>;
     if (orders) {
       return (
