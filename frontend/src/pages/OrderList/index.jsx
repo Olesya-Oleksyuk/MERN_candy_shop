@@ -53,7 +53,7 @@ const OrderListScreen = () => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr key={order.id}>
+              <tr key={order._id}>
                 <td
                   className={adaptiveCell(order._id)}
                   onClick={() => onClickCellHandler(order._id)}

@@ -60,7 +60,7 @@ const UserListScreen = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id}>
+              <tr key={user._id}>
                 <td
                   className={adaptiveCell(user._id)}
                   onClick={() => onClickCellHandler(user._id)}

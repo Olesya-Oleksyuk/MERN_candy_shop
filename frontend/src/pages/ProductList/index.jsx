@@ -108,7 +108,7 @@ const ProductList = () => {
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id}>
+                    <tr key={product._id}>
                       <td
                         className={adaptiveCell(product._id)}
                         onClick={() => onClickCellHandler(product._id)}
