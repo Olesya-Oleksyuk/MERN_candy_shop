@@ -152,20 +152,6 @@ a {
 
 .btn {
   font-family: 'Nunito Bold', sans-serif;
-  &-return {
-    border-color: white;
-    border-width: 5px;
-    @media (max-width: 576px) {
-      background-color: $reg-gray;
-      border-width: 5px;
-      border-radius: 15px;
-    }
-  }
-  &-return:hover {
-    border-color: yellow;
-    border-width: 5px;
-  }
-
   &-outline-dark {
     border-color: #f7f7f9;
   }
