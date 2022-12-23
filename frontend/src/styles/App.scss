@@ -144,9 +144,9 @@ a {
 }
 
 .alert {
+  border: none;
   &-secondary {
     background-color: $reg-gray;
-    border: none;
   }
 }
 
