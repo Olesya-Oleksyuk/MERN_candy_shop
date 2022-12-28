@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {
-  Button, Card, Col, FormSelect, ListGroup, ListGroupItem, Row,
+  Card, Col, FormSelect, ListGroup, ListGroupItem, Row,
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+
+import ButtonCandyPrimary from '../buttons/ButtonCandyPrimary';
 
 const PriceTag = ({
   productInfo,
@@ -60,9 +62,9 @@ const PriceTag = ({
           </ListGroupItem>
         )}
         <ListGroupItem className="d-grid" disabled={!countInStock}>
-          <Button type="button" disabled={countInStock === 0} onClick={addToCartHandler}>
+          <ButtonCandyPrimary type="button" variant="light" fullWidth disabled={countInStock === 0} onClick={addToCartHandler}>
             Добавить в корзину
-          </Button>
+          </ButtonCandyPrimary>
         </ListGroupItem>
       </ListGroup>
     </Card>

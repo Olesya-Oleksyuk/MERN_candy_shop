@@ -10,6 +10,7 @@
     "@vlsergey/react-bootstrap-pagination": "^3.2.1",
     "axios": "^0.21.4",
     "bootstrap": "^5.1.0",
+    "classnames": "^2.3.2",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

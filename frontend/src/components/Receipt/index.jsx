@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  Button, Card, Col, ListGroup, ListGroupItem, Row,
+  Card, Col, ListGroup, ListGroupItem, Row,
 } from 'react-bootstrap';
 
+import ButtonCandyPrimary from '../buttons/ButtonCandyPrimary';
 import PaypalButton from '../PaypalButton';
 import { toCurrency } from '../../helpers/data';
 
@@ -46,9 +47,9 @@ const Receipt = (
       return (
         <ListGroupItem>
           <div className="d-grid">
-            <Button type="button" className="btn btn-block" onClick={deliverHandler}>
+            <ButtonCandyPrimary type="button" onClick={deliverHandler} fullWidth>
               {loadingProgressDeliver ? 'Загрузка...' : 'Отметить как доставлено'}
-            </Button>
+            </ButtonCandyPrimary>
           </div>
         </ListGroupItem>
       );
