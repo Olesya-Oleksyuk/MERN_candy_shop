@@ -18,7 +18,6 @@ import { toCurrency } from '../../helpers/data';
 import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
 import { createProduct, deleteProduct, listProducts } from '../../actions/productAction';
-import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -38,6 +37,7 @@ const ProductList = () => {
   const { error: errorDelete, success: successDelete } = productDelete;
 
   const productCreate = useSelector((state) => state.productCreate);
+
   const {
     loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct,
   } = productCreate;
@@ -48,7 +48,6 @@ const ProductList = () => {
   useEffect(() => {
     if (loggedInUser && loggedInUser.isAdmin) {
       if (successCreate) {
-        dispatch({ type: PRODUCT_CREATE_RESET });
         history.push(`/admin/product/${createdProduct._id}/edit`);
       } else {
         dispatch(listProducts('', pageNumber));

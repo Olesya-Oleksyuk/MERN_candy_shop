@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   Col, Image, ListGroup, Row,
 } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
@@ -10,6 +10,7 @@ import Rating from '../../components/Rating';
 import Message from '../../components/Message';
 import PriceTag from '../../components/PriceTag';
 import LoaderSpinner from '../../components/LoaderSpinner';
+import ButtonReturn from '../../components/buttons/ButtonReturn';
 
 import { toCurrency } from '../../helpers/data';
 import { CURRENCY } from '../../helpers/constants';
@@ -101,7 +102,9 @@ const Product = () => {
     <DefaultLayout>
       <Row xs="auto">
         <Col>
-          <Link className="btn btn-return my-3" to="/home">Вернуться</Link>
+          <div className="my-3">
+            <ButtonReturn to="/home">Вернуться</ButtonReturn>
+          </div>
         </Col>
       </Row>
       {getContent()}
