@@ -8,6 +8,7 @@ $theme: "journal" !default;
 //
 
 $white:    #fff !default;
+$gray-default: #f7f7f9 !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #eee !default;
 $gray-300: #dee2e6 !default;
@@ -17,25 +18,27 @@ $gray-600: #777 !default;
 $gray-700: #495057 !default;
 $gray-800: #333 !default;
 $gray-900: #222 !default;
+$light-gray: $gray-500;
+$dark-gray: $gray-900;
 $black:    #000 !default;
 
-//#d2317e
-$pink: #d2317e;
-$pinkish-beige: #E4B7B7;
-$light-green: #7cb78f;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
-$pink:    #fb4f99 !default;
-$red:     #f57a00 !default;
+$pink: #dc689c !default;
+$light-pink: #fab0d1;
+$pinkish-beige: #E4B7B7 !default;
+$red: #dc2702 !default;
 $orange:  #fd7e14 !default;
 $yellow:  #FADA02 !default;
+$bright-yellow: #FFFF00 !default;
 $green:   #408c54 !default;
 $teal:    #20c997 !default;
+$light-green: #7cb78f !default;
 $cyan:    #369 !default;
 
 $primary:       $pink !default;
 $secondary:     $gray-500 !default;
-$success:       $green !default;
+$success:       $light-green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
