@@ -1,0 +1,69 @@
+@import 'src/styles/variables';
+
+.label-borderless {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.form-group-borderless {
+  position: relative;
+
+  &--light {
+    color: $pink;
+
+    .label-borderless {
+      color: $light-gray;
+    }
+  }
+
+  &--dark {
+    color: $pink;
+
+    .label-borderless {
+      color: #c18b8b;
+    }
+  }
+}
+
+.form-group-borderless.used {
+  .label-borderless {
+    color: black;
+  }
+}
+
+.form-group-borderless:active,
+.form-group-borderless:focus-within,
+.form-group-borderless.used {
+  position: relative;
+
+  .label-borderless {
+    //background-color: rgba($pinkish-beige, .15);
+    //border-radius: 20px;
+    min-width: 170px;
+    transform: scale(0.75);
+    left: -20px;
+    top: -22px;
+    //color: inherit;
+  }
+
+  .label-borderless--light {
+    background-color: rgba($pinkish-beige, 0.15);
+    border-radius: 20px;
+    color: $pink;
+  }
+
+  .label-borderless--dark {
+    color: #29080f;
+    font-family: 'Nunito Bold', sans-serif;
+  }
+
+  .borderless-input-box {
+    .input-borderless {
+      padding-left: 20px;
+    }
+  }
+}
