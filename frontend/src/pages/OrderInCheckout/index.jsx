@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 import DefaultLayout from '../../layout/Default';
@@ -8,6 +8,7 @@ import CheckoutSteps from '../../components/CheckoutSteps';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
+import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
 import { CURRENCY } from '../../helpers/constants';
 
@@ -92,15 +93,9 @@ const OrderInCheckoutScreen = () => {
             paymentMethod={payment.paymentMethod}
           >
             {error ? <Message variant="danger">{error}</Message> : (
-              <Button
-                style={{ width: '100%' }}
-                type="button"
-                size="lg"
-                disabled={cart.cartItems === 0}
-                onClick={placeOrderHandler}
-              >
+              <ButtonCandyPrimary type="button" onClick={placeOrderHandler} disabled={cart.cartItems === 0} fullWidth>
                 Завершить заказ
-              </Button>
+              </ButtonCandyPrimary>
             )}
           </Receipt>
         </Col>
