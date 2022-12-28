@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Button, Form, FormControl, FormGroup, FormLabel,
+  Form, FormControl, FormGroup, FormLabel,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import UserFormContainer from '../../components/FormContainer';
+import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
 import { saveShippingAddress } from '../../actions/shippmentActions';
 
@@ -89,7 +90,9 @@ const ShippingScreen = () => {
               onChange={(e) => setCountry(e.target.value)}
             />
           </FormGroup>
-          <Button type="submit" variant="primary">Далее</Button>
+          <ButtonCandyPrimary type="submit">
+            Далее
+          </ButtonCandyPrimary>
         </Form>
       </UserFormContainer>
     </DefaultLayout>

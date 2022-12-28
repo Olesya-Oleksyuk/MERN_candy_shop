@@ -11,13 +11,13 @@ import Message from '../../components/Message';
 import ProductPagination from '../../components/ProductPagination';
 import LoaderSpinner from '../../components/LoaderSpinner';
 import { EditIcon, TrashIcon } from '../../components/IconsForTable';
+import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
 import { CURRENCY } from '../../helpers/constants';
 import { toCurrency } from '../../helpers/data';
 import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
 
 import { createProduct, deleteProduct, listProducts } from '../../actions/productAction';
-import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const ProductList = () => {
   const { error: errorDelete, success: successDelete } = productDelete;
 
   const productCreate = useSelector((state) => state.productCreate);
+
   const {
     loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct,
   } = productCreate;
@@ -47,7 +48,6 @@ const ProductList = () => {
   useEffect(() => {
     if (loggedInUser && loggedInUser.isAdmin) {
       if (successCreate) {
-        dispatch({ type: PRODUCT_CREATE_RESET });
         history.push(`/admin/product/${createdProduct._id}/edit`);
       } else {
         dispatch(listProducts('', pageNumber));
@@ -128,7 +128,7 @@ const ProductList = () => {
                             <EditIcon />
                           </Button>
                         </LinkContainer>
-                        <Button variant="danger" size="sm" className="btn-table" onClick={() => deleteHandler(product._id)}>
+                        <Button variant="warning" size="sm" className="btn-table ms-sm-2" onClick={() => deleteHandler(product._id)}>
                           <TrashIcon />
                         </Button>
                       </td>
@@ -153,11 +153,11 @@ const ProductList = () => {
           <h1>Продукты</h1>
         </Col>
         <Col className="text-end">
-          <Button className="my-3" onClick={createProductHandler}>
+          <ButtonCandyPrimary type="button" variant="light" className="my-3" onClick={createProductHandler}>
             <i className="fas fa-plus" />
             {' '}
-            Создать продукт
-          </Button>
+            СОЗДАТЬ
+          </ButtonCandyPrimary>
         </Col>
       </Row>
       )}

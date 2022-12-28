@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Button, Col, Form, FormCheck, FormGroup, FormLabel,
+  Col, Form, FormCheck, FormGroup, FormLabel,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
 import CheckoutSteps from '../../components/CheckoutSteps';
+import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 import UserFormContainer from '../../components/FormContainer';
-import { savePaymentMethod } from '../../actions/paymentActions';
 
+import { savePaymentMethod } from '../../actions/paymentActions';
 import { PAYMENT_METHOD } from '../../helpers/constants';
 
 const PaymentScreen = () => {
@@ -70,7 +71,9 @@ const PaymentScreen = () => {
               />
             </Col>
           </FormGroup>
-          <Button type="submit" variant="primary">Далее</Button>
+          <ButtonCandyPrimary type="submit">
+            Далее
+          </ButtonCandyPrimary>
         </Form>
       </UserFormContainer>
     </DefaultLayout>

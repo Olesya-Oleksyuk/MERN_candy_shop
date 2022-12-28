@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import {
   Button, Form, FormCheck, FormControl, FormGroup, FormLabel, Row,
 } from 'react-bootstrap';
@@ -9,6 +9,7 @@ import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
 import LoaderSpinner from '../../components/LoaderSpinner';
 import UserFormContainer from '../../components/FormContainer';
+import ButtonReturn from '../../components/buttons/ButtonReturn';
 
 import { getUserDetails, updateUser } from '../../actions/userActions';
 import { USER_UPDATE_RESET } from '../../constants/userConstants';
@@ -57,7 +58,7 @@ const UserEditScreen = () => {
   };
 
   const loginFormContent = () => {
-    if (loading) {
+    if (loading || loadingUpdate) {
       return (
         <>
           <LoaderSpinner pageCenter />
@@ -94,9 +95,6 @@ const UserEditScreen = () => {
   };
 
   const updateUserProgress = () => {
-    if (loadingUpdate) {
-      return <LoaderSpinner pageCenter />;
-    }
     if (errorUpdate) {
       return <Message variant="danger">{errorUpdate}</Message>;
     }
@@ -105,15 +103,18 @@ const UserEditScreen = () => {
 
   return (
     <DefaultLayout>
+      { !loadingUpdate
+      && (
       <Row xs={1} sm="auto" className="mx-2 mx-sm-0">
-        <Link to="/admin/userlist" className="btn btn-light my-3">
-          Вернуться
-        </Link>
+        <div className="my-3">
+          <ButtonReturn to="/admin/userlist">Вернуться</ButtonReturn>
+        </div>
       </Row>
+      )}
       <UserFormContainer>
-        <h1>Редактирование</h1>
+        { !loadingUpdate && <h1>Редактирование</h1> }
         {updateUserProgress()}
-        {loginFormContent()}
+        { !loadingUpdate && loginFormContent()}
       </UserFormContainer>
     </DefaultLayout>
   );

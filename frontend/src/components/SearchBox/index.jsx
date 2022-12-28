@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Form, FormControl } from 'react-bootstrap';
+import { Form, FormControl } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import ButtonCandyPrimary from '../buttons/ButtonCandyPrimary';
 
 const SearchBox = () => {
   const [keyword, setKeyword] = useState('');
@@ -24,7 +25,7 @@ const SearchBox = () => {
         placeholder="Введите название..."
         className="navbar__input me-lg-2 ms-lg-3 me-3"
       />
-      <Button type="submit" variant="outline-light" className="p-2">Поиск</Button>
+      <ButtonCandyPrimary type="submit" variant="dark">Поиск</ButtonCandyPrimary>
     </Form>
   );
 };

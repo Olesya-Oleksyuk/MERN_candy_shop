@@ -9,6 +9,7 @@ import {
 
 import DefaultLayout from '../../layout/Default';
 import Message from '../../components/Message';
+import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
 import { toCurrency } from '../../helpers/data';
 import { CURRENCY } from '../../helpers/constants';
@@ -140,15 +141,10 @@ const Cart = () => {
                   {overallProductPrice()}
                 </h2>
               </ListGroupItem>
-              <ListGroupItem>
-                <Button
-                  type="button"
-                  className="btn-block ms-auto mx-md-auto ms-lg-auto me-lg-0"
-                  disabled={cartItems.length === 0}
-                  onClick={checkoutHandler}
-                >
+              <ListGroupItem className="d-flex justify-content-end">
+                <ButtonCandyPrimary type="button" onClick={checkoutHandler} disabled={cartItems.length === 0}>
                   Оформить заказ
-                </Button>
+                </ButtonCandyPrimary>
               </ListGroupItem>
             </ListGroup>
           </Card>

@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Message from '../Message';
+import ButtonCandyPrimary from '../buttons/ButtonCandyPrimary';
 import LoaderSpinner from '../LoaderSpinner';
 
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
+
+import './style.scss';
 
 const EditProfileInfoForm = () => {
   const [name, setName] = useState('');
@@ -108,9 +111,9 @@ const EditProfileInfoForm = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </FormGroup>
-          <Button type="submit" variant="primary" className="my-3">
-            Обновить
-          </Button>
+          <div className="edit-profile__update-btn">
+            <ButtonCandyPrimary type="submit" variant="light" fullWidth>Обновить</ButtonCandyPrimary>
+          </div>
         </Form>
       </>
     );
