@@ -27,21 +27,20 @@ const Home = () => {
   const getProductContent = () => {
     if (!loading && products.length === 0) {
       return (
-        <div className="product-catalogue__no-found">
-          <NoFoundProduct />
-        </div>
+        <NoFoundProduct parentBlock="product-catalogue" />
       );
     }
     return (
       <>
-        <Row className="px-0 mx-0 px-md-5">
+        <Row className="flex-grow-1 px-0 mx-0 px-md-5">
           <ProductCatalogue
             products={products}
             loading={loading}
             error={error}
           />
         </Row>
-        <ProductPagination pages={productPages} page={productPage} keyword={searchKeyword || ''} />
+        { !loading
+          && <ProductPagination pages={productPages} page={productPage} keyword={searchKeyword || ''} />}
       </>
     );
   };

@@ -2,7 +2,7 @@ import React from 'react';
 
 const NoProduct = ({ logoStyle }) => {
   const {
-    height = '120', width = '120', mainColor = '#f5e625', strokeColor = '#ced4da', minorColor1 = '#48E5C2',
+    height = '120', width = '120', mainColor = '#f5e625', strokeColor = '#ced4da', minorColor = '#48E5C2',
   } = logoStyle;
 
   return (
@@ -43,12 +43,12 @@ const NoProduct = ({ logoStyle }) => {
       <circle cx="45" cy="245.5" r="12.5" fill="none" stroke={strokeColor} strokeWidth="3.248" strokeMiterlimit="10" />
       <circle cx="432" cy="333.5" r="9" fill="none" stroke={strokeColor} strokeWidth="4.872" strokeMiterlimit="10" />
       <path
-        fill={minorColor1}
+        fill={minorColor}
         d="M440.9 163.7l-3.6-3.6-7.2 7.2-7.1-7.2-3.6 3.6 7.1 7.2-7.1 7.1 3.6 3.6 7.1-7.1 7.2 7.1 3.6-3.6-7.1-7.1M32.4 261.3l-1.4-1.5-2.9 2.9-2.8-2.9-1.5 1.5 2.9 2.8-2.9 2.9 1.5 1.4 2.8-2.9 2.9 2.9 1.4-1.4-2.8-2.9"
       />
       <path
         fill="#FFF"
-        stroke={minorColor1}
+        stroke={minorColor}
         strokeWidth="2.765"
         strokeLinecap="square"
         strokeLinejoin="bevel"

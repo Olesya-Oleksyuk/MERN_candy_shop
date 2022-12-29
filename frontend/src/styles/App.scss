@@ -22,7 +22,6 @@ $spacers: map-merge(
 
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'src/styles/bootswatch';
-@import 'src/styles/customVariables';
 
 // Your custom rules here
 
@@ -153,7 +152,7 @@ a {
 .alert {
   border: none;
   &-secondary {
-    background-color: $reg-gray;
+    background-color: $light-gray;
   }
 }
 
@@ -196,48 +195,6 @@ h1 {
       font-size: 1.2rem;
     }
   }
-}
-
-.product-catalogue__no-found {
-  box-sizing: border-box;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .no-found__central-container {
-    flex-basis: calc(100% - 80px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @include media-breakpoint-up(sm) {
-    justify-content: center;
-
-    .no-found__central-container {
-      flex-basis: auto;
-    }
-  }
-  @include media-breakpoint-down(sm) {
-    .no-found__text {
-      padding: 0 10%;
-      margin-bottom: 2rem;
-    }
-  }
-}
-
-.no-found-header {
-  font-family: 'Lobster Regular', sans-serif;
-  font-size: 3rem;
-  text-align: center;
-}
-
-.no-found__text {
-  font-size: 1rem;
-  color: $gray-500;
-  margin-bottom: 80px;
 }
 
 // Cart Page

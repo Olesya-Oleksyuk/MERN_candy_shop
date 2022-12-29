@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import NoProduct from '../../../svg/noProduct';
 import useBreakpoints from '../../../hooks/useBreakpoints';
 
-const NoFoundProduct = () => {
+import {
+  gray400, gray700, orange, yellow, aqua,
+} from '../../../styles/colors.module.scss';
+import '../style.scss';
+
+const NoFoundProduct = ({ parentBlock = '' }) => {
   const [isHover, setIsHover] = useState(false);
 
   const viewport = useBreakpoints(window);
@@ -17,13 +22,14 @@ const NoFoundProduct = () => {
   const logoStyle = {
     height: '200',
     width: '200',
-    mainColor: isHover ? '#f57a00' : '#f5e625',
-    strokeColor: isHover ? '#333333' : '#ced4da',
+    mainColor: isHover ? orange : yellow,
+    strokeColor: isHover ? gray700 : gray400,
+    minorColor: aqua,
   };
 
   return (
-    <>
-      <div className="no-found__central-container">
+    <div className="no-found">
+      <div className={`no-found-main ${parentBlock ? `${parentBlock}__no-found-main` : ''}`}>
         <div
           className="no-found-logo"
           onMouseEnter={handleMouseEnter}
@@ -33,14 +39,13 @@ const NoFoundProduct = () => {
         </div>
         <p className="no-found-header">Упс! Товар не найден... </p>
       </div>
-      <p className="no-found__text">
+      <p className={`no-found__text ${parentBlock ? `${parentBlock}__no-found__text` : ''}`}>
         Нам жаль, что
         {' '}
         {viewport !== 'xs' && <br />}
         мы не смогли найти товары по вашему запросу
       </p>
-
-    </>
+    </div>
   );
 };
 
