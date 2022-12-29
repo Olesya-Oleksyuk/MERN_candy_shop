@@ -12,7 +12,7 @@ const ProfileScreen = () => (
         <h2>Профиль</h2>
         <EditProfileInfoForm />
       </Col>
-      <Col lg={9}>
+      <Col lg={9} style={{ height: 'fit-content' }}>
         <h2>Мои заказы</h2>
         <OrdersTable />
       </Col>

@@ -28,9 +28,7 @@ const OrdersTable = () => {
   const getOrdersContent = () => {
     if (loading) {
       return (
-        <div className="wrapper-center">
-          <LoaderSpinner center />
-        </div>
+        <LoaderSpinner center />
       );
     }
     if (error) return <Message variant="danger">{error}</Message>;
