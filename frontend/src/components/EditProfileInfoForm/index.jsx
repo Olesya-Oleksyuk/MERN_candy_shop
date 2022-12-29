@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Button, Form, FormControl, FormGroup, FormLabel,
-} from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Message from '../Message';
 import ButtonCandyPrimary from '../buttons/ButtonCandyPrimary';
 import LoaderSpinner from '../LoaderSpinner';
+import FormGroupBorderless from '../formElements/FormGroupBorderless';
+
+import useInputAutocomplete from '../../hooks/useInputAutocomplete';
 
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
@@ -63,10 +64,22 @@ const EditProfileInfoForm = () => {
     }
   };
 
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+  const nameRef = useRef();
+  const emailRef = useRef();
+
+  useInputAutocomplete(nameRef, 'off');
+  useInputAutocomplete(emailRef, 'off');
+  useInputAutocomplete(passwordRef, 'new-password');
+  useInputAutocomplete(confirmPasswordRef, 'new-password');
+
+  const colorScheme = 'light';
+
   const getFormContent = () => {
     if (loading) {
       return (
-        <LoaderSpinner center />
+        <LoaderSpinner center stylingOptions={{ marginBottom: '1rem' }} />
       );
     }
     return (
@@ -75,42 +88,48 @@ const EditProfileInfoForm = () => {
         { error && <Message variant="danger">{error}</Message>}
         { success && <Message variant="success">Профиль обновлён</Message>}
         <Form onSubmit={submitHandler}>
-          <FormGroup controlId="name" className="my-3">
-            <FormLabel>Имя пользователя</FormLabel>
-            <FormControl
-              type="name"
-              placeholder="Введите имя"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup controlId="email" className="my-3">
-            <FormLabel>Электронная почта</FormLabel>
-            <FormControl
-              type="email"
-              placeholder="Введите email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" className="my-3">
-            <FormLabel>Пароль</FormLabel>
-            <FormControl
-              type="password"
-              placeholder="Введите пароль"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup controlId="confirmPassword" className="my-3">
-            <FormLabel>Пароль</FormLabel>
-            <FormControl
-              type="password"
-              placeholder="Подтвердите пароль"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </FormGroup>
+          <FormGroupBorderless
+            controlId="name"
+            inputValue={name}
+            setInputValue={setName}
+            valueAsPlaceholder
+            inputType="name"
+            variant={colorScheme}
+            inputRef={nameRef}
+          >
+            Имя пользователя
+          </FormGroupBorderless>
+          <FormGroupBorderless
+            controlId="email"
+            inputValue={email}
+            setInputValue={setEmail}
+            valueAsPlaceholder
+            inputType="email"
+            variant={colorScheme}
+            inputRef={emailRef}
+          >
+            Электронная почта
+          </FormGroupBorderless>
+          <FormGroupBorderless
+            controlId="password"
+            inputValue={password}
+            setInputValue={setPassword}
+            inputType="password"
+            variant={colorScheme}
+            inputRef={passwordRef}
+          >
+            Пароль
+          </FormGroupBorderless>
+          <FormGroupBorderless
+            controlId="confirmPassword"
+            inputValue={confirmPassword}
+            setInputValue={setConfirmPassword}
+            inputType="password"
+            variant={colorScheme}
+            inputRef={confirmPasswordRef}
+          >
+            Повторите пароль
+          </FormGroupBorderless>
           <div className="edit-profile__update-btn">
             <ButtonCandyPrimary type="submit" variant="light" fullWidth>Обновить</ButtonCandyPrimary>
           </div>

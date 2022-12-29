@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Form, FormControl } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+
+import InputBorderless from '../formElements/InputBorderless';
 import ButtonCandyPrimary from '../buttons/ButtonCandyPrimary';
 
 const SearchBox = () => {
@@ -17,13 +19,14 @@ const SearchBox = () => {
   };
 
   return (
-    <Form onSubmit={submitHandler} className="d-flex my-3 my-sm-3 my-lg-0">
-      <FormControl
-        type="text"
-        name="q"
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder="Введите название..."
-        className="navbar__input me-lg-2 ms-lg-3 me-3"
+    <Form onSubmit={submitHandler} className="d-flex">
+      <InputBorderless
+        setValue={setKeyword}
+        inputName="product"
+        dark
+        placeholder="Поиск товара..."
+        positioning="me-lg-3 ms-lg-3 me-3"
+        variant="dark"
       />
       <ButtonCandyPrimary type="submit" variant="dark">Поиск</ButtonCandyPrimary>
     </Form>
