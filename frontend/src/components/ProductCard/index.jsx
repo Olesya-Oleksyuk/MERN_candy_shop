@@ -14,7 +14,12 @@ const ProductCard = ({ product }) => {
     <>
       <Card className="my-3 pb-0 p-sm-3 pb-md-0 rounded" bsPrefix="card-product">
         <Link to={`/product/${product._id}`}>
-          <Card.Img src={product.image} />
+          <Card.Img
+            src={product.image}
+            onError={(e) => {
+              e.target.setAttribute('src', '/images/sample.jpg');
+            }}
+          />
         </Link>
         <Card.Body className="pb-0 p-md-3">
           <Link to={`/product/${product._id}`} className="product-link">
