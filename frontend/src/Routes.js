@@ -16,7 +16,7 @@ import UserEditScreen from './pages/UserEdit';
 import ProductList from './pages/ProductList';
 import ProductEditScreen from './pages/ProductEdit';
 import OrderListScreen from './pages/OrderList';
-import StartScreen from './pages/StartScreen';
+import Welcome from './pages/Welcome';
 
 const Routes = () => (
   <>
@@ -78,10 +78,10 @@ const Routes = () => (
       <Home />
     </Route>
     <Route path="/welcome" exact>
-      <StartScreen />
+      <Welcome />
     </Route>
     <Route path="/" exact>
-      <StartScreen />
+      <Welcome />
     </Route>
   </>
 );

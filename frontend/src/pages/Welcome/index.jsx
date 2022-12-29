@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 import femaleFaceImg from '../../assets/cartoon-female-face.png';
 import CandyShopLargeLogo from '../../svg/candyShopLargeLogo';
 
+import ButtonWelcome from '../../components/buttons/ButtonWelcome';
 import './style.scss';
 
-const StartScreen = () => {
+const Welcome = () => {
   const history = useHistory();
 
   return (
@@ -21,8 +22,8 @@ const StartScreen = () => {
             {' '}
           </div>
           <div className="content__row">
-            <button className="content__button regular-button" onClick={() => history.push('/home')}>каталог</button>
-            <button className="content__button regular-button" onClick={() => history.push('/login')}>заказать</button>
+            <ButtonWelcome className="content__button" onClick={() => history.push('/home')}>каталог</ButtonWelcome>
+            <ButtonWelcome className="content__button" onClick={() => history.push('/login')}>заказать</ButtonWelcome>
           </div>
         </div>
         <div className="logo">
@@ -35,4 +36,4 @@ const StartScreen = () => {
   );
 };
 
-export default StartScreen;
+export default Welcome;
