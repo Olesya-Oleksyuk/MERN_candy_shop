@@ -4,34 +4,34 @@ import useBreakpoints from '../../hooks/useBreakpoints';
 import { oldLavender } from '../../styles/colors.module.scss';
 import './style.scss';
 
-const LoginRegisterContainer = ({ headerLogo: HeaderLogo, registerPage, children }) => {
+const AuthorizationScreenWrapper = ({ headerLogo: HeaderLogo, registerPage, children }) => {
   const viewport = useBreakpoints(window);
   const viewportsDesktop = ['lg', 'xl'];
   const viewportsMobile = ['md', 'sm', 'xs'];
 
-  const registerPageGrid = registerPage ? 'login-grid--register-page' : '';
+  const registerPageGrid = registerPage ? 'authorization-grid--register-page' : '';
 
   return (
     <>
-      <div className={`login-grid ${registerPageGrid}`}>
-        <div className="position-relative image-container">
+      <div className={`authorization-grid ${registerPageGrid}`}>
+        <aside className="authorization-grid__aside-img position-relative">
           {viewportsMobile.includes(viewport)
           && (
             <>
-              <p className="position-absolute login__login-logo">
+              <p className="aside-img__header-logo position-absolute">
                 <HeaderLogo fill={oldLavender} size={{ width: '58%', height: 'auto' }} />
               </p>
-              <div className="hero" />
+              <div className="candies-on-table" />
             </>
           )}
           {viewportsDesktop.includes(viewport)
           && (
             <>
-              <div className="hero" />
+              <div className="candies-on-table" />
             </>
           )}
-        </div>
-        <main className="login-form">
+        </aside>
+        <main className="authorization-grid__main-content">
           {children}
         </main>
       </div>
@@ -39,4 +39,4 @@ const LoginRegisterContainer = ({ headerLogo: HeaderLogo, registerPage, children
   );
 };
 
-export default LoginRegisterContainer;
+export default AuthorizationScreenWrapper;

@@ -3,23 +3,27 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'src/styles/variables';
 
-.login-grid {
+.authorization-grid {
   display: grid;
   gap: 20px;
   height: 100%;
   width: 100%;
 }
 
-.hero {
+.authorization-grid__aside-img {
+  background-color: rgba($sundown, 0.34);
+}
+
+.candies-on-table {
   background-image: url('../../assets/candyshop-login-small.png');
   background-color: rgba($sundown, 0.34);
 }
 
-.login-form {
+.authorization-grid__main-content {
   background-color: rgba($sundown, 0.34);
 }
 
-.login-form {
+.authorization-grid__main-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,22 +31,26 @@
 
 // Mobile version
 @include media-breakpoint-down(lg) {
-  .login-grid {
+  .authorization-grid {
     grid-template-rows: 40% 58%;
-    //login-grid--register-page
     &--register-page {
       grid-template-rows: 30% 70%;
     }
   }
 
-  .hero {
+  .authorization-grid__aside-img {
+    background-color: transparent;
+  }
+
+    // big picture
+  .candies-on-table {
     height: 100%;
     background-size: cover;
     background-position: top;
     border-radius: 0 0 70px 70px;
   }
 
-  .login__login-logo {
+  .aside-img__header-logo {
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -50,18 +58,17 @@
     padding: 2% 5%;
   }
 
-  .login-form {
+  // interface part
+  .authorization-grid__main-content {
     padding: 0 2rem 0 2rem;
     border-radius: 40px;
   }
 }
 
-@include media-breakpoint-only(md) {
-}
 
 // Desktop version
 @include media-breakpoint-up(lg) {
-  .login-grid {
+  .authorization-grid {
     gap: 0;
     grid-template-rows: none;
     grid-template-columns: 50% 35rem;
@@ -70,14 +77,15 @@
     padding: 3rem 0;
   }
 
-  .hero {
+  // big picture
+  .candies-on-table {
     height: 100%;
     background-size: cover;
     background-position: center;
     border-radius: 0 70px 70px 0;
   }
 
-  .login__login-logo {
+  .aside-img__header-logo {
     width: fit-content;
     margin: 0 auto;
   }
