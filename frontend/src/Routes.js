@@ -1,11 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
-import LoginScreen from './pages/Login';
-import RegisterScreen from './pages/Register';
 import ProfileScreen from './pages/Profile';
 import ShippingScreen from './pages/Shipping';
 import PaymentScreen from './pages/Payment';
@@ -17,6 +15,8 @@ import ProductList from './pages/ProductList';
 import ProductEditScreen from './pages/ProductEdit';
 import OrderListScreen from './pages/OrderList';
 import Welcome from './pages/Welcome';
+import NewLogin from './pages/NewLogin';
+import NewRegister from './pages/NewRegister';
 
 const Routes = () => (
   <>
@@ -33,10 +33,10 @@ const Routes = () => (
       <ShippingScreen />
     </Route>
     <Route path="/login" exact>
-      <LoginScreen />
+      <NewLogin />
     </Route>
     <Route path="/register" exact>
-      <RegisterScreen />
+      <NewRegister />
     </Route>
     <Route path="/profile" exact>
       <ProfileScreen />
@@ -83,6 +83,7 @@ const Routes = () => (
     <Route path="/" exact>
       <Welcome />
     </Route>
+    <Redirect to="/" />
   </>
 );
 

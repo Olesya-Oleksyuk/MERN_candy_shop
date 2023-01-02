@@ -1,0 +1,10 @@
+@import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'src/styles/variables';
+
+@include media-breakpoint-down(sm) {
+  .register-screen__button {
+    margin-top: 1rem !important;
+  }
+}

@@ -1,0 +1,84 @@
+@import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'src/styles/variables';
+
+.login-grid {
+  display: grid;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.hero {
+  background-image: url('../../assets/candyshop-login-small.png');
+  background-color: rgba($sundown, 0.34);
+}
+
+.login-form {
+  background-color: rgba($sundown, 0.34);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// Mobile version
+@include media-breakpoint-down(lg) {
+  .login-grid {
+    grid-template-rows: 40% 58%;
+    //login-grid--register-page
+    &--register-page {
+      grid-template-rows: 30% 70%;
+    }
+  }
+
+  .hero {
+    height: 100%;
+    background-size: cover;
+    background-position: top;
+    border-radius: 0 0 70px 70px;
+  }
+
+  .login__login-logo {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0;
+    padding: 2% 5%;
+  }
+
+  .login-form {
+    padding: 0 2rem 0 2rem;
+    border-radius: 40px;
+  }
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop version
+@include media-breakpoint-up(lg) {
+  .login-grid {
+    gap: 0;
+    grid-template-rows: none;
+    grid-template-columns: 50% 35rem;
+
+    justify-content: center;
+    padding: 3rem 0;
+  }
+
+  .hero {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 70px 70px 0;
+  }
+
+  .login__login-logo {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}

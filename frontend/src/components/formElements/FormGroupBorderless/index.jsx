@@ -12,6 +12,7 @@ const FormGroupBorderless = (
     setInputValue,
     inputType = 'text',
     positioning = 'mt-4_5',
+    inputPositioning = 'ms-3 pt-2',
     valueAsPlaceholder,
     variant = 'light',
     inputRef,
@@ -44,7 +45,15 @@ const FormGroupBorderless = (
       className={formClasses}
     >
       <label htmlFor={controlId} className={labelClasses}>{children}</label>
-      <InputBorderless variant={variant} inputName={controlId} setValue={setInputValue} inputType={inputType} placeholder={placeholder} positioning="ms-3 pt-2" inputRef={inputRef} />
+      <InputBorderless
+        variant={variant}
+        inputName={controlId}
+        setValue={setInputValue}
+        inputType={inputType}
+        placeholder={placeholder}
+        positioning={inputPositioning}
+        inputRef={inputRef}
+      />
     </FormGroup>
   );
 };

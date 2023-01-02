@@ -19,20 +19,27 @@
 
   &--light:focus-within {
     border-bottom: 3px solid $yellow;
+    color: black;
+
+    .input-borderless {
+      color: black;
+    }
   }
 }
 
 .input-borderless {
+  width: 100%;
   border: none;
+  outline: none;
   padding-right: 0;
   padding-left: 0;
   background-color: inherit;
 
   &--dark,
   &--dark:-webkit-autofill {
-    caret-color: white;
     color: $light-pink;
     -webkit-text-fill-color: $light-pink !important;
+    caret-color: #29080f;
   }
 
   &--dark:focus,
@@ -43,18 +50,28 @@
     -webkit-text-fill-color: white !important;
   }
 
-  &--light,
-  &--light:-webkit-autofill {
+  &--light {
     caret-color: $pink;
     color: $light-gray;
-    -webkit-text-fill-color: $light-gray !important;
   }
 
-  &--light:focus-within,
-  &--light:-webkit-autofill:hover,
-  &--light:-webkit-autofill:focus {
-    background-color: inherit;
+  &--light:focus {
     color: $dark-gray;
+  }
+
+  &--light:-webkit-autofill,
+  &--light:-webkit-autofill:hover {
+    caret-color: $pink;
+    color: #f8e1e000 !important;
+  }
+
+  &--light:-webkit-autofill:active,
+  &--light:-webkit-autofill:focus,
+  &--light:-webkit-autofill:focus-within,
+  &--light:-webkit-autofill:target,
+  &--light:-webkit-autofill:visited {
+    background-color: inherit;
+    color: $dark-gray !important;
     -webkit-text-fill-color: $dark-gray !important;
   }
 }

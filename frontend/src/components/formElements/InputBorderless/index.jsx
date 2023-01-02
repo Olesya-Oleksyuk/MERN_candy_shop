@@ -22,7 +22,6 @@ const InputBorderless = ({
       'input-borderless--light': variant === 'light',
       'input-borderless--dark': variant === 'dark',
     },
-    positioning,
   );
 
   return (
