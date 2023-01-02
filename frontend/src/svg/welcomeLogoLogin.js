@@ -1,7 +1,7 @@
 import React from 'react';
 import { goldenBrown } from '../styles/colors.module.scss';
 
-const LoginCandyShop = ({ size = {}, fill = goldenBrown }) => {
+const WelcomeLogoLogin = ({ size = {}, fill = goldenBrown }) => {
   const { width = '210', height = '77' } = size;
   return (
     <svg width={width} height={height} viewBox="0 0 210 77" xmlns="http://www.w3.org/2000/svg">
@@ -17,4 +17,4 @@ const LoginCandyShop = ({ size = {}, fill = goldenBrown }) => {
   );
 };
 
-export default LoginCandyShop;
+export default WelcomeLogoLogin;

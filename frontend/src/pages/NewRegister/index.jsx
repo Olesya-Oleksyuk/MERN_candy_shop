@@ -10,7 +10,7 @@ import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 import FormGroupBorderless from '../../components/formElements/FormGroupBorderless';
 import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
-import RegistrationCandyshopLogo from '../../svg/registrationCandyshopLogo';
+import WelcomeLogoRegistration from '../../svg/welcomeLogoRegistration';
 
 import useInputAutocomplete from '../../hooks/useInputAutocomplete';
 import useBreakpoints from '../../hooks/useBreakpoints';
@@ -76,12 +76,12 @@ const NewRegister = () => {
         <>
           { message && <Message variant="danger">{message}</Message>}
           { error && <Message variant="danger">{error}</Message>}
-          <LoginRegisterContainer registerPage>
+          <LoginRegisterContainer headerLogo={WelcomeLogoRegistration} registerPage>
             {viewportsDesktop.includes(viewport)
             && (
               <>
                 <p className="login__login-logo mb-5">
-                  <RegistrationCandyshopLogo />
+                  <WelcomeLogoRegistration />
                 </p>
               </>
             )}

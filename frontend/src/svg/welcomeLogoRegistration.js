@@ -1,7 +1,7 @@
 import React from 'react';
 import { goldenBrown } from '../styles/colors.module.scss';
 
-const RegistrationCandyshopLogo = ({ size = {}, fill = goldenBrown }) => {
+const WelcomeLogoRegistration = ({ size = {}, fill = goldenBrown }) => {
   const { width = '189', height = '77' } = size;
 
   return (
@@ -18,4 +18,4 @@ const RegistrationCandyshopLogo = ({ size = {}, fill = goldenBrown }) => {
   );
 };
 
-export default RegistrationCandyshopLogo;
+export default WelcomeLogoRegistration;

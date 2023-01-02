@@ -10,7 +10,7 @@ import FormGroupBorderless from '../../components/formElements/FormGroupBorderle
 import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
-import LoginCandyShop from '../../svg/loginCandyShop';
+import WelcomeLogoLogin from '../../svg/welcomeLogoLogin';
 import HumanLogin from '../../svg/human-login';
 
 import useBreakpoints from '../../hooks/useBreakpoints';
@@ -61,12 +61,12 @@ const NewLogin = () => {
       return (
         <>
           { error && <Message variant="danger">{error}</Message>}
-          <LoginRegisterContainer>
+          <LoginRegisterContainer headerLogo={WelcomeLogoLogin}>
             {viewportsDesktop.includes(viewport)
             && (
               <>
                 <p className="login__login-logo">
-                  <LoginCandyShop />
+                  <WelcomeLogoLogin />
                 </p>
                 { viewportsDesktop.includes(viewport) && (
                   <div className="login__human-logo">
