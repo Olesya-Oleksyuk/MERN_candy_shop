@@ -15,8 +15,8 @@ import ProductList from './pages/ProductList';
 import ProductEditScreen from './pages/ProductEdit';
 import OrderListScreen from './pages/OrderList';
 import Welcome from './pages/Welcome';
-import NewLogin from './pages/NewLogin';
-import NewRegister from './pages/NewRegister';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const Routes = () => (
   <>
@@ -33,10 +33,10 @@ const Routes = () => (
       <ShippingScreen />
     </Route>
     <Route path="/login" exact>
-      <NewLogin />
+      <Login />
     </Route>
     <Route path="/register" exact>
-      <NewRegister />
+      <Register />
     </Route>
     <Route path="/profile" exact>
       <ProfileScreen />

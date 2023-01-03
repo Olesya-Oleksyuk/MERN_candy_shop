@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HumanLogin = ({ colors = {}, strokeColor = 'black', size = {} }) => {
+const HumanIcon = ({ colors = {}, strokeColor = 'black', size = {} }) => {
   const { circle = 'transparent', body = '#000000', head = '#000000' } = colors;
   const { width = '100', height = '100' } = size;
 
@@ -16,4 +16,4 @@ const HumanLogin = ({ colors = {}, strokeColor = 'black', size = {} }) => {
   );
 };
 
-export default HumanLogin;
+export default HumanIcon;
