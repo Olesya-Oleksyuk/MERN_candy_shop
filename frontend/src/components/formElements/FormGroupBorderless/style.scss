@@ -1,11 +1,19 @@
 @import 'src/styles/variables';
 
 .label-borderless {
+  position: absolute;
+  transition: all 0.2s ease;
+
   color: #999;
   font-weight: normal;
-  position: absolute;
+
+  // not enough space for a full-view label
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+
   pointer-events: none;
-  transition: all 0.2s ease;
 }
 
 .form-group-borderless {

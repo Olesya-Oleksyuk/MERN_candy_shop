@@ -15,11 +15,10 @@ const Welcome = () => {
       <div className="start-page">
         <div className="content">
           <div className="content__large-logo"><CandyShopLargeLogo /></div>
-          <div className="content__moto">сладко и ярко</div>
+          <div className="content__moto">закажи сладости!</div>
           <div className="content__text">
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor!
-            {' '}
           </div>
           <div className="content__row">
             <ButtonWelcome className="content__button" onClick={() => history.push('/home')}>каталог</ButtonWelcome>
@@ -28,7 +27,7 @@ const Welcome = () => {
         </div>
         <div className="logo">
           <div className="logo__wrapper">
-            <img className="logo__pic" src={femaleFaceImg} />
+            <img className="logo__pic" src={femaleFaceImg} alt="Логотип магазина девушка в стиле поп-арт" />
           </div>
         </div>
       </div>
