@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
 
 import DefaultLayout from '../../layout/Default';
+import AuthorizationScreenWrapper from '../../components/AuthorizationScreenWrapper';
 import LoaderSpinner from '../../components/LoaderSpinner';
 import Message from '../../components/Message';
-import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 import FormGroupBorderless from '../../components/formElements/FormGroupBorderless';
 import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
@@ -76,25 +76,24 @@ const NewRegister = () => {
         <>
           { message && <Message variant="danger">{message}</Message>}
           { error && <Message variant="danger">{error}</Message>}
-          <LoginRegisterContainer headerLogo={WelcomeLogoRegistration} registerPage>
+          <AuthorizationScreenWrapper headerLogo={WelcomeLogoRegistration} registerPage>
             {viewportsDesktop.includes(viewport)
             && (
               <>
-                <p className="login__login-logo mb-5">
+                <p className="authorization-content__header-logo mb-5">
                   <WelcomeLogoRegistration />
                 </p>
               </>
             )}
-            <div className="login-form__content-wrapper">
-              <Form onSubmit={submitHandler} ref={newRef} className="login-form__form-wrapper">
+            <div className="authorization-content__content-wrapper">
+              <Form onSubmit={submitHandler} ref={newRef} className="authorization__form-wrapper">
                 <FormGroupBorderless
                   inputValue={name}
                   setInputValue={setName}
                   controlId="name"
                   inputType="name"
                   variant="dark"
-                  // positioning="mt-0"
-                  inputPositioning="ms-0 pt-2_5"
+                  inputPositioning="ms-0 pt-1 pt-sm-2_5"
                   positioning="mt-0"
                 >
                   Введите имя
@@ -105,8 +104,7 @@ const NewRegister = () => {
                   controlId="email"
                   inputType="email"
                   variant="dark"
-                  // positioning="mt-0"
-                  inputPositioning="ms-0 pt-2_5"
+                  inputPositioning="ms-0 pt-1 pt-sm-2_5"
                 >
                   Введите электронную почту
                 </FormGroupBorderless>
@@ -116,7 +114,7 @@ const NewRegister = () => {
                   setInputValue={setPassword}
                   inputType="password"
                   variant="dark"
-                  inputPositioning="ms-0 pt-2_5"
+                  inputPositioning="ms-0 pt-1 pt-sm-2_5"
                   inputRef={passwordRef}
                 >
                   Введите пароль
@@ -127,15 +125,15 @@ const NewRegister = () => {
                   setInputValue={setConfirmPassword}
                   inputType="password"
                   variant="dark"
-                  inputPositioning="ms-0 pt-2_5"
+                  inputPositioning="ms-0 pt-1 pt-sm-2_5"
                   inputRef={confirmPasswordRef}
                 >
                   Повторите пароль
                 </FormGroupBorderless>
-                <ButtonCandyPrimary type="submit" fullWidth className="mt-5 register-screen__button">Создать</ButtonCandyPrimary>
+                <ButtonCandyPrimary type="submit" fullWidth className="mt-3 mt-sm-5">Создать</ButtonCandyPrimary>
               </Form>
             </div>
-            <p className="login-form__redirect">
+            <p className="authorization__redirect">
               Уже зарегистрированы?
               <Link
                 to={redirect ? `/login?redirect=${redirect}` : '/login'}
@@ -145,7 +143,7 @@ const NewRegister = () => {
                 Авторизироваться
               </Link>
             </p>
-          </LoginRegisterContainer>
+          </AuthorizationScreenWrapper>
         </>
       );
     }

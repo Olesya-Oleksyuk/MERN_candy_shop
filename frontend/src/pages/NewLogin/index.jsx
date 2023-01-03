@@ -4,11 +4,11 @@ import { Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
+import AuthorizationScreenWrapper from '../../components/AuthorizationScreenWrapper';
 import Message from '../../components/Message';
 import LoaderSpinner from '../../components/LoaderSpinner';
 import FormGroupBorderless from '../../components/formElements/FormGroupBorderless';
 import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
-import LoginRegisterContainer from '../../components/LoginRegisterContainer';
 
 import WelcomeLogoLogin from '../../svg/welcomeLogoLogin';
 import HumanLogin from '../../svg/human-login';
@@ -61,17 +61,17 @@ const NewLogin = () => {
       return (
         <>
           { error && <Message variant="danger">{error}</Message>}
-          <LoginRegisterContainer headerLogo={WelcomeLogoLogin}>
+          <AuthorizationScreenWrapper headerLogo={WelcomeLogoLogin}>
             {viewportsDesktop.includes(viewport)
             && (
               <>
-                <p className="login__login-logo">
+                <p className="authorization-content__header-logo">
                   <WelcomeLogoLogin />
                 </p>
                 { viewportsDesktop.includes(viewport) && (
-                  <div className="login__human-logo">
+                  <div className="authorization-content__human-logo">
                     <HumanLogin
-                      colors={{ circle: pink, body: '#F3DCDC', head: '#F3DCDC' }}
+                      colors={{ circle: pink, body: '#faefee', head: '#faefee' }}
                       strokeColor="none"
                       size={{ height: '100px', width: '100px' }}
                     />
@@ -79,8 +79,8 @@ const NewLogin = () => {
                 ) }
               </>
             )}
-            <div className="login-form__content-wrapper">
-              <Form onSubmit={submitHandler} className="login-form__form-wrapper">
+            <div className="authorization-content__content-wrapper">
+              <Form onSubmit={submitHandler} className="authorization__form-wrapper">
                 <FormGroupBorderless
                   valueAsPlaceholder
                   inputValue={email}
@@ -108,7 +108,7 @@ const NewLogin = () => {
                 <ButtonCandyPrimary type="submit" fullWidth className="mt-5">Вход</ButtonCandyPrimary>
               </Form>
             </div>
-            <p className="login-form__redirect">
+            <p className="authorization__redirect">
               Впервые у нас?
               <Link
                 to={redirect ? `/register?redirect=${redirect}` : '/register'}
@@ -118,7 +118,7 @@ const NewLogin = () => {
                 Зарегистрироваться
               </Link>
             </p>
-          </LoginRegisterContainer>
+          </AuthorizationScreenWrapper>
         </>
       );
     }

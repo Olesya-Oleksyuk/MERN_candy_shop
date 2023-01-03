@@ -31,7 +31,7 @@ const AuthorizationScreenWrapper = ({ headerLogo: HeaderLogo, registerPage, chil
             </>
           )}
         </aside>
-        <main className="authorization-grid__main-content">
+        <main className="authorization-grid__authorization-content">
           {children}
         </main>
       </div>

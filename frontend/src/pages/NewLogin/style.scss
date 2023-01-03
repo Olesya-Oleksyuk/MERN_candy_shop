@@ -3,147 +3,74 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'src/styles/variables';
 
-.login-grid {
-  display: grid;
-  height: 100%;
-  width: 100%;
-  gap: 20px;
-}
-
-.image-container {
-  background-color: rgba($sundown, 0.34);
-}
-
-.login-form {
-  overflow: hidden;
-  background-color: rgba($sundown, 0.34);
-}
-
-.login-form__redirect {
+.authorization__redirect {
   width: fit-content;
   margin: 1rem auto 0 auto;
   text-align: center;
 }
 
-// down 1199px
+// Mobile version: less than ...992px
 @include media-breakpoint-down(lg) {
-  .login-grid {
-    grid-template-rows: 40% 58%;
+  .authorization-content__content-wrapper {
+    padding: 0 10%;
   }
 
-  .login-form {
-    border-radius: 40px;
-    //padding-top: 50px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .login-form__form-wrapper {
-    font-size: 1.2rem;
-  }
-
-  .image-box {
-    height: 100%;
-  }
-
-  .image-container {
-    background-color: transparent;
-  }
-
-  .hero {
-    background-color: rgba($sundown, 0.34);
-    background-image: url('../../assets/candyshop-login-small.png');
-    background-size: cover;
-    background-position: top;
-    height: 100%;
-    border-radius: 0 0 70px 70px;
-  }
-
-  .login__login-logo {
+  .authorization-content__header-logo {
     padding: 2% 5%;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin: 0;
   }
-
-  .login-form__content-wrapper {
-    padding: 0 10%;
-  }
 }
 
-// down ...768px
+// less than ...768px
 @include media-breakpoint-down(md) {
-  .login-form__form-wrapper {
-    font-size: 1rem;
-  }
-
-  .login-form__content-wrapper {
+  .authorization-content__content-wrapper {
     padding: 0;
   }
 
-  .login-form__redirect {
+  .authorization__form-wrapper {
+    font-size: 1rem;
+  }
+
+  .authorization__redirect {
     font-size: 0.9rem;
   }
 }
 
 // between 768px ... 991px
 @include media-breakpoint-only(md) {
-  .login-form__form-wrapper {
+  .authorization__form-wrapper {
     font-size: 1.2rem;
   }
 
-  //.login-form__content-wrapper {
-  //  padding: 0;
-  //}
-
-  .login-form__redirect {
+  .authorization__redirect {
     font-size: 1em;
   }
 }
 
-// more than 1199px
+// Desktop version: more than 992px
 @include media-breakpoint-up(lg) {
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .login-grid {
-    gap: 0;
-    justify-content: center;
-    grid-template-rows: none;
-    grid-template-columns: 50% 35rem;
-    padding: 3rem 0;
-  }
-
-  .login-form__content-wrapper {
+  .authorization-content__content-wrapper {
     padding: 0 4rem;
   }
 
-  .login-form__form-wrapper {
-    font-size: 1.2em;
-  }
-
-  .hero {
-    background-image: url('../../assets/candyshop-login-small.png');
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    border-radius: 0 70px 70px 0;
-    background-color: rgba($sundown, 0.34);
-  }
-
-  .login__login-logo {
+  .authorization-content__header-logo {
     width: fit-content;
     margin: 0 auto;
   }
 
-  .login__human-logo {
+  .authorization-content__human-logo {
     width: fit-content;
     margin: 2.5rem auto 4rem auto;
+  }
+
+  .authorization__form-wrapper {
+    font-size: 1.25em;
+  }
+
+  .authorization__redirect {
+    font-size: 1em;
   }
 }
