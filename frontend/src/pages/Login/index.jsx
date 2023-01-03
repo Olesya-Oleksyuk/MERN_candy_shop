@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import {
-  Form, Button, Row, Col, FormGroup, FormLabel, FormControl,
-} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
+import AuthorizationScreenWrapper from '../../components/AuthorizationScreenWrapper';
+import FormGroupBorderless from '../../components/formElements/FormGroupBorderless';
 import Message from '../../components/Message';
-import UserFormContainer from '../../components/FormContainer';
 import LoaderSpinner from '../../components/LoaderSpinner';
 
+import WelcomeLogoLogin from '../../svg/welcomeLogoLogin';
 import { login } from '../../actions/userActions';
 
-const LoginScreen = () => {
+const Login = () => {
   const history = useHistory();
   const location = useLocation();
 
@@ -51,32 +50,38 @@ const LoginScreen = () => {
       return (
         <>
           { error && <Message variant="danger">{error}</Message>}
-          <Form onSubmit={submitHandler}>
-            <FormGroup controlId="email" className="my-3">
-              <FormLabel>Электронная почта</FormLabel>
-              <FormControl type="email" placeholder="Введите email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </FormGroup>
-            <FormGroup controlId="password" className="my-3">
-              <FormLabel>Пароль</FormLabel>
-              <FormControl type="password" placeholder="Введите пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormGroup>
-            <Button type="submit" variant="primary" className="mt-3">
-              Вход
-            </Button>
-          </Form>
+          <AuthorizationScreenWrapper
+            loginPage
+            headerLogo={WelcomeLogoLogin}
+            submitAuthorizationForm={submitHandler}
+            redirect={redirect}
+            humanIcon
+          >
+            <FormGroupBorderless
+              valueAsPlaceholder
+              inputValue={email}
+              setInputValue={setEmail}
+              controlId="email"
+              inputType="email"
+              variant="dark"
+              positioning="mt-0"
+              inputPositioning="ms-0 pt-2_5"
+            >
+              Электронная почта
+            </FormGroupBorderless>
 
-          <Row className="py-3">
-            <Col>
-              Впервые у нас?
-              <Link
-                to={redirect ? `/register?redirect=${redirect}` : '/register'}
-                style={{ marginLeft: '10px' }}
-                className="inline-link"
-              >
-                Зарегистрироваться
-              </Link>
-            </Col>
-          </Row>
+            <FormGroupBorderless
+              controlId="name"
+              inputValue={password}
+              setInputValue={setPassword}
+              valueAsPlaceholder
+              inputType="password"
+              variant="dark"
+              inputPositioning="ms-0 pt-2_5"
+            >
+              Пароль
+            </FormGroupBorderless>
+          </AuthorizationScreenWrapper>
         </>
       );
     }
@@ -85,12 +90,10 @@ const LoginScreen = () => {
   };
 
   return (
-    <DefaultLayout>
-      <UserFormContainer>
-        {loginFormContent()}
-      </UserFormContainer>
+    <DefaultLayout noFooter>
+      {loginFormContent()}
     </DefaultLayout>
   );
 };
 
-export default LoginScreen;
+export default Login;

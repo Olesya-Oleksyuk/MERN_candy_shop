@@ -1,16 +1,24 @@
 @import 'src/styles/variables';
 
 .label-borderless {
-  color: #999;
-  font-size: 18px;
-  font-weight: normal;
   position: absolute;
-  pointer-events: none;
   transition: all 0.2s ease;
+
+  color: #999;
+  font-weight: normal;
+
+  // not enough space for a full-view label
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+
+  pointer-events: none;
 }
 
 .form-group-borderless {
   position: relative;
+  font-size: inherit;
 
   &--light {
     color: $pink;
@@ -25,6 +33,21 @@
 
     .label-borderless {
       color: #c18b8b;
+      font-family: 'Nunito Bold', sans-serif;
+    }
+  }
+
+  .borderless-input-box {
+    .input-borderless {
+      padding-left: 20px;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    &--light {
+    }
+
+    &--dark {
+      border-bottom: 3px solid $light-pink;
     }
   }
 }
@@ -32,6 +55,10 @@
 .form-group-borderless.used {
   .label-borderless {
     color: black;
+    min-width: 170px;
+    transform: scale(0.75);
+    left: -20px;
+    top: -22px;
   }
 }
 
@@ -41,13 +68,10 @@
   position: relative;
 
   .label-borderless {
-    //background-color: rgba($pinkish-beige, .15);
-    //border-radius: 20px;
     min-width: 170px;
     transform: scale(0.75);
     left: -20px;
     top: -22px;
-    //color: inherit;
   }
 
   .label-borderless--light {
@@ -62,8 +86,35 @@
   }
 
   .borderless-input-box {
-    .input-borderless {
-      padding-left: 20px;
+    &--light {
+      .input-borderless {
+        padding-left: 20px;
+        -webkit-text-fill-color: $light-gray !important;
+      }
+
+      .input-borderless:focus,
+      .input-borderless:focus-within {
+        -webkit-text-fill-color: $light-gray !important;
+      }
+    }
+
+    &--dark {
+      font-family: 'Nunito Bold', sans-serif;
+      border-bottom: 3px solid $light-pink;
+
+      .input-borderless {
+        font-size: inherit;
+        padding-left: 20px;
+        -webkit-text-fill-color: #c18b8b !important;
+      }
+
+      .input-borderless:focus,
+      .input-borderless:focus-within {
+        -webkit-text-fill-color: #c18b8b !important;
+      }
+    }
+    &--dark:focus-within {
+      border-bottom: 3px solid $bright-yellow;
     }
   }
 }

@@ -7,6 +7,9 @@
 
 $spacers: map-merge(
   (
+    '2_5': (
+      $spacer * 0.75,
+    ),
     '4_5': (
       $spacer * 2.25,
     ),
@@ -19,6 +22,8 @@ $spacers: map-merge(
   ),
   $spacers
 );
+
+$header-height: 60px;
 
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'src/styles/bootswatch';
@@ -66,6 +71,7 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: $gray-default;
 }
 
 input:-webkit-autofill,
@@ -97,21 +103,29 @@ a {
 .page {
   display: flex;
   flex-flow: column;
-  height: 100%;
 }
 
 .page__header {
   flex: 0 1 auto;
   top: 0;
   position: sticky;
-  min-height: 80px;
+  min-height: $header-height;
+  box-sizing: border-box;
   z-index: 999;
-  background-color: white;
+  background-color: $pink;
 }
 
 .page__main {
   position: relative;
-  flex: 1 1 auto;
+  flex: 1 0 auto;
+  min-height: calc(100vh - #{$header-height} - 80px);
+}
+
+.page__main--no-footer {
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  height: calc(100vh - #{$header-height} - 1rem);
 }
 
 .page__footer {

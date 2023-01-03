@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import {
-  Button, Col, Form, FormControl, FormGroup, FormLabel, Row,
-} from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
-import Message from '../../components/Message';
+import AuthorizationScreenWrapper from '../../components/AuthorizationScreenWrapper';
+import FormGroupBorderless from '../../components/formElements/FormGroupBorderless';
 import LoaderSpinner from '../../components/LoaderSpinner';
-import UserFormContainer from '../../components/FormContainer';
+import Message from '../../components/Message';
 
+import WelcomeLogoRegistration from '../../svg/welcomeLogoRegistration';
+
+import useInputAutocomplete from '../../hooks/useInputAutocomplete';
 import { register } from '../../actions/userActions';
 
-const RegisterScreen = () => {
+const Register = () => {
   const history = useHistory();
   const location = useLocation();
 
@@ -23,6 +24,11 @@ const RegisterScreen = () => {
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  useInputAutocomplete(passwordRef, 'new-password');
+  useInputAutocomplete(confirmPasswordRef, 'new-password');
 
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo: userRegisteredInfo } = userRegister;
@@ -30,7 +36,6 @@ const RegisterScreen = () => {
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
-    // если регистрация прошла успешно, появились данные в state.userRegister
     if (userRegisteredInfo) {
       history.push(redirect);
     }
@@ -60,40 +65,56 @@ const RegisterScreen = () => {
         <>
           { message && <Message variant="danger">{message}</Message>}
           { error && <Message variant="danger">{error}</Message>}
-          <Form onSubmit={submitHandler}>
-            <FormGroup controlId="name" className="my-3">
-              <FormLabel>Имя пользователя</FormLabel>
-              <FormControl type="name" placeholder="Введите имя" value={name} onChange={(e) => setName(e.target.value)} />
-            </FormGroup>
-            <FormGroup controlId="email" className="my-3">
-              <FormLabel>Электронная почта</FormLabel>
-              <FormControl type="email" placeholder="Введите email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </FormGroup>
-            <FormGroup controlId="password" className="my-3">
-              <FormLabel>Пароль</FormLabel>
-              <FormControl type="password" placeholder="Введите пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </FormGroup>
-            <FormGroup controlId="confirmPassword" className="my-3">
-              <FormLabel>Пароль</FormLabel>
-              <FormControl type="password" placeholder="Подтвердите пароль" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-            </FormGroup>
-            <Button type="submit" variant="primary" className="mt-3">
-              Создать
-            </Button>
-          </Form>
-
-          <Row className="py-3">
-            <Col>
-              Уже зарегистрированы?
-              <Link
-                to={redirect ? `/login?redirect=${redirect}` : '/login'}
-                style={{ marginLeft: '10px' }}
-                className="inline-link"
-              >
-                Авторизироваться
-              </Link>
-            </Col>
-          </Row>
+          <AuthorizationScreenWrapper
+            registerPage
+            headerLogo={WelcomeLogoRegistration}
+            submitAuthorizationForm={submitHandler}
+            redirect={redirect}
+          >
+            <FormGroupBorderless
+              inputValue={name}
+              setInputValue={setName}
+              controlId="name"
+              inputType="name"
+              variant="dark"
+              inputPositioning="ms-0 pt-1 pt-sm-2_5"
+              positioning="mt-0 mt-lg-5"
+            >
+              Введите имя
+            </FormGroupBorderless>
+            <FormGroupBorderless
+              inputValue={email}
+              setInputValue={setEmail}
+              controlId="email"
+              inputType="email"
+              variant="dark"
+              inputPositioning="ms-0 pt-1 pt-sm-2_5"
+            >
+              Введите электронную почту
+            </FormGroupBorderless>
+            <FormGroupBorderless
+              controlId="name"
+              inputValue={password}
+              setInputValue={setPassword}
+              inputType="password"
+              variant="dark"
+              inputPositioning="ms-0 pt-1 pt-sm-2_5"
+              inputRef={passwordRef}
+            >
+              Введите пароль
+            </FormGroupBorderless>
+            <FormGroupBorderless
+              controlId="confirmPassword"
+              inputValue={confirmPassword}
+              setInputValue={setConfirmPassword}
+              inputType="password"
+              variant="dark"
+              inputPositioning="ms-0 pt-1 pt-sm-2_5"
+              inputRef={confirmPasswordRef}
+            >
+              Повторите пароль
+            </FormGroupBorderless>
+          </AuthorizationScreenWrapper>
         </>
       );
     }
@@ -102,13 +123,10 @@ const RegisterScreen = () => {
   };
 
   return (
-    <DefaultLayout>
-      <UserFormContainer>
-        <h1>Регистрация</h1>
-        {loginFormContent()}
-      </UserFormContainer>
+    <DefaultLayout noFooter>
+      {loginFormContent()}
     </DefaultLayout>
   );
 };
 
-export default RegisterScreen;
+export default Register;
