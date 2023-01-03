@@ -96,6 +96,7 @@ const EditProfileInfoForm = () => {
             inputType="name"
             variant={colorScheme}
             inputRef={nameRef}
+            blockClass="profile-page"
           >
             Имя пользователя
           </FormGroupBorderless>
@@ -107,6 +108,7 @@ const EditProfileInfoForm = () => {
             inputType="email"
             variant={colorScheme}
             inputRef={emailRef}
+            blockClass="profile-page"
           >
             Электронная почта
           </FormGroupBorderless>
@@ -117,6 +119,7 @@ const EditProfileInfoForm = () => {
             inputType="password"
             variant={colorScheme}
             inputRef={passwordRef}
+            blockClass="profile-page"
           >
             Пароль
           </FormGroupBorderless>
@@ -127,6 +130,7 @@ const EditProfileInfoForm = () => {
             inputType="password"
             variant={colorScheme}
             inputRef={confirmPasswordRef}
+            blockClass="profile-page"
           >
             Повторите пароль
           </FormGroupBorderless>
