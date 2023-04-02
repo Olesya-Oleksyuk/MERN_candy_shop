@@ -63,7 +63,7 @@ const OrderInfo = (
   };
 
   return (
-    <ListGroup variant="flush">
+    <ListGroup variant="flush" className="list-group-default">
       <ListGroupItem>
         <h2>Доставка</h2>
         {isOrderPlaced && (

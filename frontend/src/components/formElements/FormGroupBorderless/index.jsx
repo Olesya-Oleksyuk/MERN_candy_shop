@@ -16,10 +16,14 @@ const FormGroupBorderless = (
     valueAsPlaceholder,
     variant = 'light',
     inputRef,
+    blockClass = '',
     children,
   },
 ) => {
   const placeholder = valueAsPlaceholder ? inputValue : '';
+
+  const formElementClass = blockClass ? `${blockClass}__form-group-borderless` : '';
+  const labelElementClass = blockClass ? `${blockClass}__label-borderless` : '';
 
   const formClasses = classNames(
     'form-group-borderless',
@@ -29,6 +33,7 @@ const FormGroupBorderless = (
       used: inputValue,
     },
     positioning,
+    formElementClass,
   );
 
   const labelClasses = classNames(
@@ -37,6 +42,7 @@ const FormGroupBorderless = (
       'label-borderless--light': variant === 'light',
       'label-borderless--dark': variant === 'dark',
     },
+    labelElementClass,
   );
 
   return (

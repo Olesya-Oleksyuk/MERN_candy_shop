@@ -90,7 +90,7 @@ const Login = () => {
   };
 
   return (
-    <DefaultLayout noFooter>
+    <DefaultLayout noFooter mainContainerPaddings="p-0">
       {loginFormContent()}
     </DefaultLayout>
   );

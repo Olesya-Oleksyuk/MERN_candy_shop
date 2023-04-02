@@ -12,7 +12,7 @@ import LoaderSpinner from '../../components/LoaderSpinner';
 
 import { toCurrency, toDateTime } from '../../helpers/data';
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
-import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
+import useAdaptiveCell from '../../helpers/AdaptiveTable';
 
 import { listOrders } from '../../actions/orderAction';
 
@@ -50,6 +50,7 @@ const OrderListScreen = () => {
               <th>СУММА</th>
               <th className="td-center">ОПЛАЧЕНО</th>
               <th className="td-center">ДОСТАВЛЕНО</th>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <th />
             </tr>
           </thead>
@@ -59,6 +60,7 @@ const OrderListScreen = () => {
                 <td
                   className={adaptiveCell(order._id)}
                   onClick={() => onClickCellHandler(order._id)}
+                  onKeyPress={() => onClickCellHandler(order._id)}
                 >
                   {order._id}
                 </td>

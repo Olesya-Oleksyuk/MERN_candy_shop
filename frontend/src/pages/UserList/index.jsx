@@ -13,7 +13,7 @@ import {
 } from '../../components/IconsForTable';
 import LoaderSpinner from '../../components/LoaderSpinner';
 
-import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
+import useAdaptiveCell from '../../helpers/AdaptiveTable';
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
@@ -56,6 +56,7 @@ const UserListScreen = () => {
               <th>ИМЯ</th>
               <th>EMAIL</th>
               <th className="td-center">АДМИН</th>
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <th />
             </tr>
           </thead>
@@ -65,6 +66,7 @@ const UserListScreen = () => {
                 <td
                   className={adaptiveCell(user._id)}
                   onClick={() => onClickCellHandler(user._id)}
+                  onKeyPress={() => onClickCellHandler(user._id)}
                 >
                   {user._id}
                 </td>

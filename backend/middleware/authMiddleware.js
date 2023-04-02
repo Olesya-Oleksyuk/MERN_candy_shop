@@ -16,7 +16,6 @@ const protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
-      console.log('Token found: ', req.headers.authorization);
       token = req.headers.authorization.split(' ')[1];
 
       // верифицируем полученный токен на основе "секретной" подписи

@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { COLOR, RATING_TYPE, STAR_TYPE } from './constants';
+import { STAR_TYPE } from './constants';
 
 const Rating = ({
   ratingValue, reviewsNumber = 0, noReviewsNumber, starColor, ratingType,
@@ -26,29 +25,17 @@ const Rating = ({
       </span>
       { !!reviewsNumber && (
         <div>
-          Просмотров:&nbsp;
+          Отзывов:&nbsp;
           {reviewsNumber}
         </div>
       )}
       { !reviewsNumber && !noReviewsNumber ? (
         <div>
-          Просмотров нет
+          Отзывов нет
         </div>
       ) : <></> }
     </div>
   );
-};
-
-Rating.defaultProps = {
-  starColor: COLOR.GOLD,
-  ratingType: RATING_TYPE.FIVE_STARS,
-};
-
-Rating.propTypes = {
-  ratingValue: PropTypes.number.isRequired,
-  reviewsNumber: PropTypes.number.isRequired,
-  starColor: PropTypes.oneOf((Object.values(COLOR))),
-  ratingType: PropTypes.oneOf((Object.values(RATING_TYPE))),
 };
 
 export default Rating;

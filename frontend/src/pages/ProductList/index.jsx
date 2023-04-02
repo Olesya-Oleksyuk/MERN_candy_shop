@@ -15,7 +15,7 @@ import ButtonCandyPrimary from '../../components/buttons/ButtonCandyPrimary';
 
 import { CURRENCY } from '../../helpers/constants';
 import { toCurrency } from '../../helpers/data';
-import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
+import useAdaptiveCell from '../../helpers/AdaptiveTable';
 
 import { createProduct, deleteProduct, listProducts } from '../../actions/productAction';
 
@@ -104,6 +104,7 @@ const ProductList = () => {
                     <th>ЦЕНА</th>
                     <th>КАТЕГОРИЯ</th>
                     <th>БРЕНД</th>
+                    {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                     <th />
                   </tr>
                 </thead>
@@ -113,6 +114,7 @@ const ProductList = () => {
                       <td
                         className={adaptiveCell(product._id)}
                         onClick={() => onClickCellHandler(product._id)}
+                        onKeyPress={() => onClickCellHandler(product._id)}
                       >
                         {product._id}
                       </td>

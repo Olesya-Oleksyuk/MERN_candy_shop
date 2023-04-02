@@ -117,6 +117,8 @@ a {
 
 .page__main {
   position: relative;
+  display: flex;
+  flex-direction: column;
   flex: 1 0 auto;
   min-height: calc(100vh - #{$header-height} - 80px);
 }
@@ -132,22 +134,12 @@ a {
   flex: 0 1 auto;
 }
 
-.main-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .footer__text {
-  color: $gray-500;
+  color: $light-gray;
 }
 
 .navbar {
   min-height: 100%;
-  font-family: 'Nunito Regular', sans-serif;
-}
-
-.navbar__input {
   font-family: 'Nunito Regular', sans-serif;
 }
 
@@ -212,7 +204,8 @@ h1 {
 }
 
 // Cart Page
-.cart-list {
+.cart-item {
+  background-color: $light-gray;
   @include media-breakpoint-up(xl) {
     font-size: 1.2rem;
   }
@@ -332,7 +325,7 @@ h1 {
 .cell-expanded {
   @include media-breakpoint-down(md) {
     position: absolute;
-    color: $light-gray;
+    color: white;
     background: $primary !important;
     border-right: #ff9793;
     padding-bottom: 12px !important;
@@ -349,16 +342,11 @@ h1 {
   }
 }
 
-.regular-button {
-  border: none;
-  border-radius: 24px;
-
-  font-size: calc(0.8rem + 0.4vw);
-  font-family: 'Nunito Bold', sans-serif;
-  color: $pink;
-  text-transform: uppercase;
+.list-group-item {
+  background-color: $gray-default;
 }
 
-.regular-button:hover {
-  background-color: black;
+input:focus-visible {
+  outline: none;
 }
+

@@ -4,7 +4,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 
 import DefaultLayout from '../../layout/Default';
-import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import Receipt from '../../components/Receipt';
 import OrderInfo from '../../components/OrderInfo';
@@ -54,7 +53,7 @@ const OrderOverviewPage = () => {
     if (order) {
       return (
         <>
-          <h1 className="d-flex flex-wrap flex-md-fill align-items-end">
+          <h1 className="d-flex flex-wrap">
             <span> Номер заказа:</span>
             <span className="ms-3 orderId">{order._id}</span>
           </h1>

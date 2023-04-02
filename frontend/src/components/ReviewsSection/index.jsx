@@ -82,16 +82,15 @@ const ReviewsSection = ({
       </Button>
     </Form>
   );
-
   return (
     <>
       <h1 className="ms-3 mb-0">Отзывы</h1>
-      {reviewsNumber === 0 && <Message>Отзывов пока нет</Message>}
+      {reviewsNumber === 0 && <Message variant="info">Отзывов пока нет</Message>}
       <ListGroup variant="flush">
         {reviews.map((rew) => reviewPost(rew))}
         <ListGroupItem>
           <h2>Оставить отзыв</h2>
-          {errorProductReview && <Message variant="danger">{errorProductReview}</Message> }
+          {errorProductReview && <Message variant="secondary">{errorProductReview}</Message> }
           {isLoggedIn ? (
             reviewForm()
           ) : (

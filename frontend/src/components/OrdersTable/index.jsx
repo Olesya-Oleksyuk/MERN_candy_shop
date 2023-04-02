@@ -7,7 +7,7 @@ import Message from '../Message';
 import LoaderSpinner from '../LoaderSpinner';
 import { CrossIcon } from '../IconsForTable';
 
-import { useAdaptiveCell } from '../../helpers/AdaptiveTable';
+import useAdaptiveCell from '../../helpers/AdaptiveTable';
 import { toCurrency, toDateTime } from '../../helpers/data';
 import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 
@@ -42,6 +42,7 @@ const OrdersTable = () => {
             <th>ИТОГО</th>
             <th className="td-center">ОПЛАЧЕНО</th>
             <th className="td-center">ДОСТАВЛЕНО</th>
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <th />
           </tr>
         </thead>
@@ -51,6 +52,7 @@ const OrdersTable = () => {
               <td
                 className={adaptiveCell(order._id)}
                 onClick={() => onClickCellHandler(order._id)}
+                onKeyPress={() => onClickCellHandler(order._id)}
               >
                 {order._id}
               </td>

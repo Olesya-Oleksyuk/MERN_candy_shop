@@ -1,6 +1,6 @@
 @import 'src/styles/variables';
 
-a.checkout {
+.checkout {
   border-radius: 8px;
   font-weight: 500;
   display: block;
@@ -10,7 +10,12 @@ a.checkout {
 
   &-passed {
     border-radius: 8px;
-    background: $light-gray !important;
+    color: #394B41 !important;
+    background: rgba($light-green, .2) !important;
+
+    &:hover {
+      color: $pink !important;
+    }
   }
 }
 
