@@ -40,7 +40,11 @@ const Home = () => {
           />
         </Row>
         { !loading
-          && <ProductPagination pages={productPages} page={productPage} keyword={searchKeyword || ''} />}
+          && (
+          <div className="home-page__product-pagination mt-3 mt-sm-0">
+            <ProductPagination pages={productPages} page={productPage} keyword={searchKeyword || ''} />
+          </div>
+          )}
       </>
     );
   };

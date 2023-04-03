@@ -6,13 +6,14 @@ import PropTypes from 'prop-types';
 import Rating from '../Rating';
 import { toCurrency } from '../../helpers/data';
 import { CURRENCY } from '../../helpers/constants';
+import './style.scss';
 
 const ProductCard = ({ product }) => {
   const price = toCurrency(product.price, CURRENCY.DEFAULT);
 
   return (
     <>
-      <Card className="my-3 pb-0 p-sm-3 pb-md-0 rounded" bsPrefix="card-product">
+      <Card className="my-3 pb-0 p-sm-3 pb-md-0 h-90 rounded" bsPrefix="card-product">
         <Link to={`/product/${product._id}`}>
           <Card.Img
             src={product.image}
