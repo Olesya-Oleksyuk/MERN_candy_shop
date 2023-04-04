@@ -14,7 +14,6 @@ https://youtu.be/yJS_kzFq5wg
 Проект состоит из 2-х частей: 
 * Адаптивного под моб. устройства Frontend-приложения (React, Redux, React Bootstrap, Scss)
 * Backend-приложения на базе REST-API архитектуры (Node.js, Express, MongoDB)
-* 
 
 Также подключен PayPal API для реализации P2P платежей (с возможностью дальнейшего расширения способов оплаты).
 
