@@ -25,9 +25,10 @@ router
 
 router
   .route('/:id')
-  .delete(protect, isAdmin, deleteUser)
   .get(protect, isAdmin, getUserById)
   .put(protect, isAdmin, updateUser);
+
+router.route('/delete/:id').put(protect, isAdmin, deleteUser);
 
 // GET /api/users
 export default router;

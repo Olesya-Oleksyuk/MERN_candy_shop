@@ -16,6 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email });
+  if (!user.isActive) throw new Error('Пользователь был удалён');
 
   if (user && (await user.matchPassword(password))) {
     res.json({
@@ -128,18 +129,35 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route GET /api/users
 // @access Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({"isActive": true});
   res.json(users);
 });
 
-// @desc Удалить пользователя
+// @desc Удалить пользователя из БД
 // @route DELETE /api/user/:id
 // @access Private/Admin
-const deleteUser = asyncHandler(async (req, res) => {
+const deleteUserDB = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
     await user.remove();
+    res.json({ message: 'Пользователь удален' });
+  } else {
+    res.status(404);
+    throw new Error('Пользователь не найдем');
+  }
+});
+
+// @desc Удалить пользователя (не удаляя из БД)
+// @route DELETE /api/user/delete/:id
+// @access Private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.isActive = false;
+    await user.save();
     res.json({ message: 'Пользователь удален' });
   } else {
     res.status(404);
