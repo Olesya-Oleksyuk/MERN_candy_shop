@@ -16,7 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-  if (!user.isActive) throw new Error('Пользователь был удалён');
+  if (user && !user.isActive) throw new Error('Пользователь был удалён');
 
   if (user && (await user.matchPassword(password))) {
     res.json({
