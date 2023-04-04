@@ -41,7 +41,7 @@ const Routes = () => (
     <Route path="/profile" exact>
       <ProfileScreen />
     </Route>
-    <Route path="/product/:id" exact>
+    <Route path="/product/:id">
       <Product />
     </Route>
     <Route path="/cart/:id?" exact>

@@ -3,7 +3,7 @@ import NoProduct from '../../../svg/noProduct';
 import useBreakpoints from '../../../hooks/useBreakpoints';
 
 import {
-  gray400, gray700, orange, yellow, aqua,
+  aqua, gray400, gray700, orange, yellow,
 } from '../../../styles/colors.module.scss';
 import '../style.scss';
 

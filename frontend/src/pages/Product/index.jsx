@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   Col, Image, ListGroup, Row,
 } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../../layout/Default';
@@ -17,34 +17,39 @@ import { CURRENCY } from '../../helpers/constants';
 
 import { listProductDetails } from '../../actions/productAction';
 import ReviewsSection from '../../components/ReviewsSection';
+import NoFoundProduct from '../../components/NoFound/Product';
 
 const Product = () => {
   const dispatch = useDispatch();
-
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
-  const currentProductId = productDetails.product._id;
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
   const { id: productId } = useParams();
+  const location = useLocation();
 
+  const redirect = location.search ? location.search.split('redirect=')[1] : '/home';
   useEffect(() => {
     dispatch(listProductDetails(productId));
   }, [productId]);
 
-  const price = toCurrency(product.price, CURRENCY.DEFAULT);
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
+  const currentProductId = product && product._id;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const price = product && product.price && toCurrency(product.price, CURRENCY.DEFAULT);
 
   const getContent = () => {
-    if (loading || (currentProductId !== productId)) {
-      return <LoaderSpinner pageCenter />;
+    if (error && error.status && error.status === 404) {
+      return (<NoFoundProduct />);
     }
     if (error) {
       return (<Message variant="danger">{error}</Message>);
     }
+    if (loading || (currentProductId !== productId)) {
+      return <LoaderSpinner pageCenter />;
+    }
 
-    if (product._id === productId) {
+    if (currentProductId && product._id === productId) {
       return (
         <>
           <Row>
@@ -103,7 +108,7 @@ const Product = () => {
       <Row xs="auto">
         <Col>
           <div className="my-3">
-            <ButtonReturn to="/home">Вернуться</ButtonReturn>
+            <ButtonReturn to={redirect}>Вернуться</ButtonReturn>
           </div>
         </Col>
       </Row>

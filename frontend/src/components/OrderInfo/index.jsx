@@ -11,6 +11,7 @@ import { CURRENCY, DATE_TIME_FORMAT } from '../../helpers/constants';
 
 const OrderInfo = (
   {
+    orderId,
     isOrderPlaced = false,
     customerName = '',
     customerEmail = '',
@@ -110,7 +111,7 @@ const OrderInfo = (
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
                   <Col>
-                    <Link to={`/product/${item.product}`}>
+                    <Link to={`/product/${item.product}?redirect=/orders/${orderId}`}>
                       {item.name}
                     </Link>
                   </Col>

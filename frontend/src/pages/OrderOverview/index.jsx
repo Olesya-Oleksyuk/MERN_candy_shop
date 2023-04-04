@@ -60,6 +60,7 @@ const OrderOverviewPage = () => {
           <Row>
             <Col md={8}>
               <OrderInfo
+                orderId={orderId}
                 isOrderPlaced
                 customerName={order.user.name}
                 customerEmail={order.user.email}

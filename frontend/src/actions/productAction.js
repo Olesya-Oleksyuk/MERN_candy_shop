@@ -60,10 +60,14 @@ export const listProductDetails = (id) => async (dispatch) => {
     console.log(e.response.data.message);
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
-      payload:
-        e.response && e.response.data.message
+      payload: {
+        status: e.response && e.response.status
+          ? e.response.status
+          : 404,
+        message: e.response && e.response.data.message
           ? e.response.data.message
           : e.message,
+      },
     });
   }
 };
