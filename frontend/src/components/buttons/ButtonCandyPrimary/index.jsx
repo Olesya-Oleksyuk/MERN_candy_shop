@@ -17,7 +17,9 @@ const ButtonCandyPrimary = ({
   );
 
   return (
+
     <button
+      // eslint-disable-next-line react/button-has-type
       type={type || 'button'}
       disabled={disabled}
       className={classes}

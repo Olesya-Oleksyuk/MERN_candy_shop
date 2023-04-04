@@ -181,7 +181,19 @@ const ProductEditScreen = () => {
   return (
     <DefaultLayout>
       <Row xs={1} sm="auto" className="mx-2 mx-sm-0">
-        <div className="my-3" onClick={() => { dispatch({ type: PRODUCT_CREATE_RESET }); dispatch({ type: PRODUCT_UPDATE_RESET }); }}>
+        <div
+          className="my-3"
+          role="button"
+          tabIndex={0}
+          onClick={() => {
+            dispatch({ type: PRODUCT_CREATE_RESET });
+            dispatch({ type: PRODUCT_UPDATE_RESET });
+          }}
+          onKeyDown={() => {
+            dispatch({ type: PRODUCT_CREATE_RESET });
+            dispatch({ type: PRODUCT_UPDATE_RESET });
+          }}
+        >
           <ButtonReturn to="/admin/productlist">Вернуться</ButtonReturn>
         </div>
       </Row>
