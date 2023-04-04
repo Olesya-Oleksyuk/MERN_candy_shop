@@ -47,7 +47,6 @@ const FormGroupBorderless = (
 
   return (
     <FormGroup
-      controlId={controlId}
       className={formClasses}
     >
       <label htmlFor={controlId} className={labelClasses}>{children}</label>
