@@ -93,7 +93,7 @@ const Register = () => {
               Введите электронную почту
             </FormGroupBorderless>
             <FormGroupBorderless
-              controlId="name"
+              controlId="password"
               inputValue={password}
               setInputValue={setPassword}
               inputType="password"

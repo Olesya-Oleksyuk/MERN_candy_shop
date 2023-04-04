@@ -49,7 +49,14 @@ const Login = () => {
     if (!userInfo) {
       return (
         <>
-          { error && <Message variant="danger">{error}</Message>}
+          { error && (
+          <Message
+            variant="danger"
+            styleOptions={{ marginTop: '1rem', marginBottom: '0' }}
+          >
+            {error}
+          </Message>
+          )}
           <AuthorizationScreenWrapper
             loginPage
             headerLogo={WelcomeLogoLogin}
@@ -71,7 +78,7 @@ const Login = () => {
             </FormGroupBorderless>
 
             <FormGroupBorderless
-              controlId="name"
+              controlId="password"
               inputValue={password}
               setInputValue={setPassword}
               valueAsPlaceholder
